@@ -15,6 +15,14 @@ run/main_scene="uid://bjijdfhncf3jx"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*res://Scenes/SceneManager/scene_manager.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
