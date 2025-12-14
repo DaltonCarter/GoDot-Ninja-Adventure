@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj3lp6unvcasg"]
+
+[ext_resource type="Script" uid="uid://bfd3ke0hdccc6" path="res://place_holder.gd" id="1_6hi43"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqbhb"]
+
+[node name="Place Holder" type="Area2D"]
+script = ExtResource("1_6hi43")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cqbhb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
