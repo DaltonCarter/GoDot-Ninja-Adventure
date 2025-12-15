@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="GoDot Ninja Adventure"
+config/tags=PackedStringArray("2d", "action", "adventure")
 run/main_scene="uid://bjijdfhncf3jx"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
