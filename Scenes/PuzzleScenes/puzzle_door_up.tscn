@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://fayugfji6sbj"]
+
+[ext_resource type="Script" uid="uid://bcweff2awdknp" path="res://puzzle_door_up.gd" id="1_auil1"]
+[ext_resource type="Texture2D" uid="uid://dqrvs6vf4g75q" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/Elements3.png" id="2_1yhsb"]
+[ext_resource type="AudioStream" uid="uid://dn32q3owk1pli" path="res://Ninja Adventure - Asset Pack/Audio/Alt/Secret Sound.mp3" id="3_dgxos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6x8p"]
+size = Vector2(32, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfk8x"]
+atlas = ExtResource("2_1yhsb")
+region = Rect2(111.931015, 17.917048, 32.068985, 14.022953)
+
+[node name="PuzzleDoorUp" type="StaticBody2D"]
+script = ExtResource("1_auil1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_c6x8p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gfk8x")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dgxos")

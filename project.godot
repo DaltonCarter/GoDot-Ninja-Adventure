@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GoDot Ninja Adventure"
-config/tags=PackedStringArray("2d", "action", "adventure")
+config/tags=PackedStringArray("2d", "action", "adventure", "fantasy")
 run/main_scene="uid://bjijdfhncf3jx"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -35,6 +35,10 @@ folder_colors={
 "res://Ninja Adventure - Asset Pack/": "green",
 "res://Scenes/": "blue"
 }
+
+[global_group]
+
+pushable="Group for pushable objects"
 
 [input]
 
@@ -66,6 +70,13 @@ move_down={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Environment"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Puzzle Elements"
+2d_physics/layer_4="Puzzle Walls"
 
 [rendering]
 

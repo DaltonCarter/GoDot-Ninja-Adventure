@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b4mbagxka8amh"
+path="res://.godot/imported/Battle with Shade.mp3-d57070d299f6c8bc5210f9c12f96bf63.mp3str"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Audio/Alt/Battle with Shade.mp3"
+dest_files=["res://.godot/imported/Battle with Shade.mp3-d57070d299f6c8bc5210f9c12f96bf63.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=4.5
+bpm=0
+beat_count=0
+bar_beats=4

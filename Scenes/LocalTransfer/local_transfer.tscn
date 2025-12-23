@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dakkak2s8lev"]
+
+[ext_resource type="Script" uid="uid://bfdpfwjo5dd1h" path="res://Scenes/LocalTransfer/LocalTransfer.gd" id="1_5qlia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkqkn"]
+
+[node name="LocalTransfer" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_5qlia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pkqkn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
