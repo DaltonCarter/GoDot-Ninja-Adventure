@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://damhsabuy0qob"]
+[gd_scene load_steps=14 format=4 uid="uid://gjeaaykck26x"]
 
 [ext_resource type="Texture2D" uid="uid://cx7fbe78xbh7w" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetInteriorFloor.png" id="1_102mq"]
 [ext_resource type="PackedScene" uid="uid://budnke2k262ov" path="res://Scenes/Player/player.tscn" id="1_okyhq"]

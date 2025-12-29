@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5b8dj456xi46"]
+
+[ext_resource type="PackedScene" uid="uid://d2qlwlc2rgu2r" path="res://Scenes/DungeonScene/CaveD/CaveD.tscn" id="1_g25p0"]
+[ext_resource type="Texture2D" uid="uid://djoabhv5d5ua4" path="res://Ninja Adventure - Asset Pack/Actor/Characters/SamuraiBlue/SpriteSheet.png" id="2_0homs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob7vm"]
+atlas = ExtResource("2_0homs")
+region = Rect2(-0.03, 0.038, 16, 16)
+
+[node name="DungeonScene" instance=ExtResource("1_g25p0")]
+
+[node name="Sprite2D" parent="OldMan" index="0"]
+texture = SubResource("AtlasTexture_ob7vm")
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(1545, -45)
+
+[editable path="OldMan"]

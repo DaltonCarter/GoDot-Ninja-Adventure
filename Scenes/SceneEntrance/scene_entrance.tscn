@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dl8iml3no4xhc" path="res://Scenes/SceneEntrance/scene_entrance.gd" id="1_6rkgu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elpgg"]
-size = Vector2(17, 15)
+size = Vector2(16, 16)
 
 [node name="SceneEntrance" type="Area2D"]
 collision_mask = 2

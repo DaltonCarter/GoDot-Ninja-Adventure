@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cspka8mgbe4th"]
+
+[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/dungeon_scene.tscn" id="1_77gr6"]
+
+[node name="DungeonScene" instance=ExtResource("1_77gr6")]

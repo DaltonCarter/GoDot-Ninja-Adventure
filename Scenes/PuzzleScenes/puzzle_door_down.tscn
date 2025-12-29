@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs223hnbastt4"]
+
+[ext_resource type="PackedScene" uid="uid://fayugfji6sbj" path="res://Scenes/PuzzleScenes/puzzle_door_up.tscn" id="1_7tog0"]
+[ext_resource type="Texture2D" uid="uid://dqrvs6vf4g75q" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/Elements3.png" id="2_w4fw7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewxo4"]
+atlas = ExtResource("2_w4fw7")
+region = Rect2(111.931015, 31.94, 32.068985, 14.072203)
+
+[node name="PuzzleDoorUp" instance=ExtResource("1_7tog0")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -1.5)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_ewxo4")

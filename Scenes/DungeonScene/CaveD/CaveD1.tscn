@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmc742rnpwb6j"]
+
+[ext_resource type="PackedScene" uid="uid://d2qlwlc2rgu2r" path="res://Scenes/DungeonScene/CaveD/CaveD.tscn" id="1_4avbg"]
+[ext_resource type="Texture2D" uid="uid://bj4bmhdv2wh5m" path="res://Ninja Adventure - Asset Pack/Actor/Characters/SamuraiRed/redsamurai.png" id="2_dxxx1"]
+[ext_resource type="Texture2D" uid="uid://da61r01lhbrw" path="res://Ninja Adventure - Asset Pack/Actor/Characters/SamuraiRed/Faceset.png" id="3_t12uu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1d1y"]
+atlas = ExtResource("2_dxxx1")
+region = Rect2(-0.03, 0.038, 16, 16)
+
+[node name="DungeonScene" instance=ExtResource("1_4avbg")]
+
+[node name="Dungeon Decoration" parent="DungeonFloor" index="0"]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 2, 0, 1, 0, 255, 255, 2, 0, 1, 0, 1, 0, 2, 0, 1, 0, 252, 255, 252, 255, 2, 0, 2, 0, 2, 0, 0, 0, 3, 0, 252, 255, 2, 0, 2, 0, 2, 0, 0, 0)
+
+[node name="OldMan" parent="." index="2"]
+position = Vector2(0, -52)
+
+[node name="Sprite2D" parent="OldMan" index="0"]
+texture = SubResource("AtlasTexture_t1d1y")
+
+[node name="CollisionShape2D" parent="OldMan" index="1"]
+position = Vector2(0, 1)
+
+[node name="NPCFace" parent="OldMan/CanvasLayer/DialogueBox" index="0"]
+texture = ExtResource("3_t12uu")
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(823, -150)
+
+[editable path="OldMan"]

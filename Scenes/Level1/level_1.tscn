@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://brpatn0xem6ch"]
+[gd_scene load_steps=31 format=4 uid="uid://brpatn0xem6ch"]
 
 [ext_resource type="PackedScene" uid="uid://budnke2k262ov" path="res://Scenes/Player/player.tscn" id="1_iyse3"]
 [ext_resource type="Texture2D" uid="uid://cx7fbe78xbh7w" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetInteriorFloor.png" id="1_ojcjo"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://du35scv4n4cq" path="res://Scenes/PuzzleScenes/block.tscn" id="9_4ibnj"]
 [ext_resource type="PackedScene" uid="uid://dakkak2s8lev" path="res://Scenes/LocalTransfer/local_transfer.tscn" id="9_s0xjy"]
 [ext_resource type="PackedScene" uid="uid://bxesw3cq42i3l" path="res://Scenes/Secrets/overworld_secret_floor_tile_brown.tscn" id="12_nukn2"]
+[ext_resource type="PackedScene" uid="uid://qo6r0tcvalb2" path="res://Scenes/NPCs/old_man.tscn" id="13_hbmd5"]
+[ext_resource type="Texture2D" uid="uid://btmahqna5bc4f" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan2/SpriteSheet.png" id="14_calo4"]
+[ext_resource type="Texture2D" uid="uid://d32jovp6625jt" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan2/Faceset.png" id="15_yhq2l"]
 [ext_resource type="PackedScene" uid="uid://dcflsg1etl36h" path="res://Scenes/PuzzleScenes/puzzle_door_left.tscn" id="16_4ibnj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmmu5"]
@@ -1006,6 +1009,10 @@ terrain_set_0/terrain_0/name = "Walls"
 terrain_set_0/terrain_0/color = Color(1, 0.25440896, 0.3411696, 1)
 sources/1 = SubResource("TileSetAtlasSource_hbmd5")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfyie"]
+atlas = ExtResource("14_calo4")
+region = Rect2(-0.03, 0.038, 16, 16)
+
 [node name="Level 1" type="Node2D"]
 
 [node name="DungeonFloor" type="TileMapLayer" parent="."]
@@ -1047,7 +1054,22 @@ zoom = Vector2(4.3, 3.45)
 [node name="OverworldSecretFloorTileBrown" parent="WallLayer/ObstacleLayer" instance=ExtResource("12_nukn2")]
 position = Vector2(-344, -1401)
 
+[node name="OldMan" parent="WallLayer/ObstacleLayer" instance=ExtResource("13_hbmd5")]
+position = Vector2(-705, -872)
+repeat_dialogue = true
+dialogue = Array[String](["An adventurer once came through here with a bow...", " I wonder what happened to them."])
+
+[node name="Sprite2D" parent="WallLayer/ObstacleLayer/OldMan" index="0"]
+texture = SubResource("AtlasTexture_vfyie")
+
+[node name="NPCFace" parent="WallLayer/ObstacleLayer/OldMan/CanvasLayer/DialogueBox" index="0"]
+texture = ExtResource("15_yhq2l")
+
+[node name="DialogueLabel" parent="WallLayer/ObstacleLayer/OldMan/CanvasLayer" index="1"]
+text = ""
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("2_la6op")
 autoplay = true
 
@@ -1244,6 +1266,7 @@ position = Vector2(0, 19)
 scale = Vector2(1.0093398, 0.36000124)
 next_scene = "res://Scenes/GameScene/game_scene.tscn"
 player_spawn_position = Vector2(-7, -703)
+player_direction = Vector2(0, 1)
 
 [node name="Block2" parent="." instance=ExtResource("9_4ibnj")]
 position = Vector2(-360, -857)
@@ -1259,3 +1282,5 @@ position = Vector2(-453.62, -856.26)
 [connection signal="block_out_of_area" from="RemoveBlockSecret2" to="PuzzleDoorLeft" method="_on_remove_block_secret_2_block_out_of_area"]
 [connection signal="body_entered" from="RemoveBlockSecret2" to="RemoveBlockSecret2" method="_on_body_entered"]
 [connection signal="body_exited" from="RemoveBlockSecret2" to="RemoveBlockSecret2" method="_on_body_exited"]
+
+[editable path="WallLayer/ObstacleLayer/OldMan"]

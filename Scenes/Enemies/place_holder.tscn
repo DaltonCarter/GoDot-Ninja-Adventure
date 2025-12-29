@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8r2bgn4alson"]
+
+[ext_resource type="Texture2D" uid="uid://dmqcdoua3qacd" path="res://Ninja Adventure - Asset Pack/Actor/Monsters/Reptile/Reptile.png" id="1_cgdu2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7rkq"]
+atlas = ExtResource("1_cgdu2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8gcd"]
+atlas = ExtResource("1_cgdu2")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um7ax"]
+atlas = ExtResource("1_cgdu2")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndwmn"]
+atlas = ExtResource("1_cgdu2")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5qmck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7rkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8gcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_um7ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndwmn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tgg8m"]
+radius = 8.0
+height = 16.0
+
+[node name="PlaceHolder" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5qmck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_tgg8m")

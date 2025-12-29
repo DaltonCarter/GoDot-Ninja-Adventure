@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn3rr1o5ymtjd"]
+
+[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/EquipmentCaves/dungeon_scene.tscn" id="1_77gr6"]
+[ext_resource type="Texture2D" uid="uid://bh6p2dxhrrk7x" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Villager5/SpriteSheet.png" id="2_nw5l4"]
+[ext_resource type="Texture2D" uid="uid://butl785hjdgeu" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Villager5/Faceset.png" id="3_apm11"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71wty"]
+atlas = ExtResource("2_nw5l4")
+region = Rect2(-0.03, 0.038, 16, 16)
+
+[node name="DungeonScene" instance=ExtResource("1_77gr6")]
+
+[node name="OldMan" parent="." index="2"]
+repeat_dialogue = true
+dialogue = Array[String](["This stuff is well worth the price."])
+
+[node name="Sprite2D" parent="OldMan" index="0"]
+texture = SubResource("AtlasTexture_71wty")
+
+[node name="NPCFace" parent="OldMan/CanvasLayer/DialogueBox" index="0"]
+texture = ExtResource("3_apm11")
+
+[node name="NameLabel" parent="OldMan/CanvasLayer" index="2"]
+text = "Merchant"
+
+[node name="SceneEntrance" parent="." index="4"]
+position = Vector2(0, 39)
+player_spawn_position = Vector2(-808, -710)
+player_direction = Vector2(1, 0)
+
+[editable path="OldMan"]

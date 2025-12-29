@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds4mi0ht10a8w"]
+
+[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/EquipmentCaves/dungeon_scene.tscn" id="1_77gr6"]
+[ext_resource type="Texture2D" uid="uid://yj7ied0laxkr" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Monk2/SpriteSheet.png" id="2_gaw6o"]
+[ext_resource type="Texture2D" uid="uid://djnyo16qydbjg" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Monk2/Faceset.png" id="3_icjga"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx6cw"]
+atlas = ExtResource("2_gaw6o")
+region = Rect2(-0.03, 0.038, 16, 16)
+
+[node name="DungeonScene" instance=ExtResource("1_77gr6")]
+
+[node name="OldMan" parent="." index="2"]
+dialogue = Array[String](["You may take only one.", "Choose carefully..."])
+
+[node name="Sprite2D" parent="OldMan" index="0"]
+texture = SubResource("AtlasTexture_xx6cw")
+
+[node name="NPCFace" parent="OldMan/CanvasLayer/DialogueBox" index="0"]
+texture = ExtResource("3_icjga")
+
+[node name="NameLabel" parent="OldMan/CanvasLayer" index="2"]
+text = "Priest"
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(55, -508)
+player_direction = Vector2(0, -1)
+
+[editable path="OldMan"]
