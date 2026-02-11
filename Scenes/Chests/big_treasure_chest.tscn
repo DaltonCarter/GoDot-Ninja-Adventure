@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckv4j00clwufr"]
+
+[ext_resource type="Texture2D" uid="uid://c8i6crfx0dilt" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_58x2m"]
+[ext_resource type="Script" uid="uid://c5yaxqec0t4ul" path="res://Scenes/Chests/big_treasure_chest.gd" id="1_yf0nf"]
+[ext_resource type="AudioStream" uid="uid://bsla1n6w5s4uu" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Hit & Impact/Impact.wav" id="3_5xxjv"]
+[ext_resource type="AudioStream" uid="uid://cxrpe4r7i14x0" path="res://Ninja Adventure - Asset Pack/Audio/Alt/Found an Item.mp3" id="4_csnw4"]
+[ext_resource type="Texture2D" uid="uid://cdu883jdq6e3u" path="res://Ninja Adventure - Asset Pack/Items/Scroll/Scroll.png" id="5_i7qcv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf0nf"]
+atlas = ExtResource("1_58x2m")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymcm4"]
+atlas = ExtResource("1_58x2m")
+region = Rect2(16, 0, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xqv25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf0nf")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymcm4")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xxjv"]
+size = Vector2(16, 14)
+
+[node name="BigTreasureChest" type="StaticBody2D" groups=["interactable"]]
+script = ExtResource("1_yf0nf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xqv25")
+animation = &"closed"
+autoplay = "closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5xxjv")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_5xxjv")
+
+[node name="ME" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("4_csnw4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -14)
+texture = ExtResource("5_i7qcv")
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 1.4
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -8,12 +8,16 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="GoDot Ninja Adventure"
 config/tags=PackedStringArray("2d", "action", "adventure", "fantasy")
 run/main_scene="uid://bjijdfhncf3jx"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -40,6 +44,8 @@ folder_colors={
 
 pushable="Group for pushable objects"
 interactable="for things you can Interact with. I.E Talking"
+Hostiles=""
+Health=""
 
 [input]
 
@@ -85,6 +91,7 @@ interact={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Puzzle Elements"
 2d_physics/layer_4="Puzzle Walls"
+2d_physics/layer_5="Enemies"
 
 [rendering]
 

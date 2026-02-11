@@ -14,6 +14,7 @@ func _on_body_entered(body):
 			pressed.emit()
 			$AnimatedSprite2D.play("pressed")
 			print("I have been pressed!")
+			$AudioStreamPlayer.pitch_scale = 1.0
 			$AudioStreamPlayer.playing = true
 
 
@@ -27,4 +28,5 @@ func _on_body_exited(body):
 			unpressed.emit()
 			$AnimatedSprite2D.play("unpressed")
 			print("I am no longer pushed!")
+			$AudioStreamPlayer.pitch_scale = 0.5
 			$AudioStreamPlayer.playing = true

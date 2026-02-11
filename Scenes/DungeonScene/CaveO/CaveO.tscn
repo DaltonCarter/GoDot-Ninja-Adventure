@@ -1,5 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://cspka8mgbe4th"]
 
-[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/dungeon_scene.tscn" id="1_77gr6"]
+[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/EquipmentCaves/dungeon_scene.tscn" id="1_77gr6"]
 
 [node name="DungeonScene" instance=ExtResource("1_77gr6")]
+
+[node name="OldMan" parent="." index="2"]
+repeat_dialogue = true
+dialogue = Array[String](["The Southern Forest hides many secrets...", "Try searching under the tree at the dead-end."])
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(1336, -1078)

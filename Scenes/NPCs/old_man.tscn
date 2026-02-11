@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://qo6r0tcvalb2"]
+[gd_scene load_steps=10 format=3 uid="uid://qo6r0tcvalb2"]
 
 [ext_resource type="Script" uid="uid://c485ye487lbbr" path="res://old_man.gd" id="1_faw3b"]
 [ext_resource type="Texture2D" uid="uid://cgmntrh2mx7jy" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan3/SpriteSheet.png" id="2_7foq0"]
 [ext_resource type="Texture2D" uid="uid://bbrub0e3ie6cu" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBoxFaceset.png" id="3_7foq0"]
 [ext_resource type="Texture2D" uid="uid://0xknjbwky2ou" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan3/Faceset.png" id="4_w18ug"]
+[ext_resource type="AudioStream" uid="uid://bewk3jh358i8c" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Alert/Alert.wav" id="5_ncsuf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w18ug"]
 atlas = ExtResource("2_7foq0")
@@ -65,3 +66,6 @@ offset_bottom = 41.0
 text = "Old Man"
 label_settings = SubResource("LabelSettings_w18ug")
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ncsuf")

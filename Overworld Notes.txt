@@ -1,0 +1,68 @@
+Tweaks to the Overworld to make it more unique rather than a 1-1 copy of the inspiration material will
+include the following:
+	
+	
+	Points of Interest will be given their own unique Scenes in order to give them more
+	detail, and gameplay.
+	
+	Overworld will under go some aesthetic changes with the intent of making it so that
+	you can only tell what I modled the map after if you are ablew to see the entire
+	overworld map, AND know what your looking at/can pick out certain key details.
+	
+	Over all Homage to the original NES LoZ will remain.
+	
+	Points Of Interest:
+		Dungeon Locations 1-7
+			Dungeon Location 8 will be located INSIDE of the Southern Woods P.O.I
+			Access to Dungeon Location 9's scene will only be avaliable AFTER the Player 
+				has obtained either the NPC Hint about it's location OR has all 
+				8 Sacred Treasures.
+		
+		Spirit Lakes:
+			The Two Spirit Lakes will get their own Scene similar to the Caves containing NPCs
+			
+		Wandering Forest:
+			Already has it's own scene with contains the puzzle logic.
+			it will be expanded to be a more interesting area, with
+			at least one special interaction that will hint at the 
+			location of the Old Woman you can pay to give you the 
+			puzzle soulution, remind/tell the player how to exit 
+			back into the Overworld.
+			
+		Wandering Hills:
+			Already has it's own scene. I am unsure if I should change this
+			one at all. Since unlike the Wandering Forest the solution is straight 
+			forward when you know it. May include a special interaction
+			similar to the one planned for the Wandering Forest that will
+			hint at where the player can get the solution and how to exit
+			 the area.
+			
+		Sword Master Locations:
+			The First Sword Master is located at the top of the waterfall in the
+				North East part of the Overworld, you will first have to FIND the
+				Sword Master in the Scene at that location, who will then assess
+				how much HP you have and if you have enough will test your skills
+				with your Wooden sword. If you win you will earn the New Sword.
+			
+			
+			The Second Sword Master is Located inside the Graveyard P.O.I, and
+				will assess and test you like the previous Sword Master, but only 
+				if your max HP is high enough AND Have already gotten the "Lvl. 2"
+				Sword.
+				
+		
+		Southern Forest:
+			The Southern Forest is located East of the Starting position, and
+			south of Level 2. It will also contain the Entrance to Level 8.
+			Exits East to the Ocean, North near Level 2, and West.
+			
+		The Graveyard:
+			This location will be a labrynth of graves and ghosts that contains
+			the Second Sword Master. You enter this scene when you
+			exit the Wandering Forest, you can also re-enter the Forest. 
+			The other exit will return you to the Overworld just south 
+			of Level 6. 
+		
+		Power Bracelet:
+			A Mini Dungeon that will reward you with the Power bracelet
+			for solving it's puzzles. Still not sure what this item will do.

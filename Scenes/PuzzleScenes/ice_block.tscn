@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce01fedtmma5d"]
+[gd_scene load_steps=6 format=3 uid="uid://ce01fedtmma5d"]
 
 [ext_resource type="PackedScene" uid="uid://du35scv4n4cq" path="res://Scenes/PuzzleScenes/block.tscn" id="1_kkloy"]
 [ext_resource type="Texture2D" uid="uid://2ht6lxj777p7" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetDungeon.png" id="2_dc1st"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c2agm"]
 bounce = 0.05
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkloy"]
+size = Vector2(12, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_laxek"]
 atlas = ExtResource("2_dc1st")
@@ -13,6 +16,9 @@ region = Rect2(-0.064, 31.989, 16, 16)
 [node name="Block" instance=ExtResource("1_kkloy")]
 physics_material_override = SubResource("PhysicsMaterial_c2agm")
 linear_damp = 0.2
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_kkloy")
 
 [node name="Sprite2D" parent="." index="1"]
 texture = SubResource("AtlasTexture_laxek")

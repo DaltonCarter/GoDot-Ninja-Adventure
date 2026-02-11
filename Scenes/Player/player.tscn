@@ -1,7 +1,19 @@
-[gd_scene load_steps=22 format=3 uid="uid://budnke2k262ov"]
+[gd_scene format=3 uid="uid://budnke2k262ov"]
 
 [ext_resource type="Script" uid="uid://bcqf45fb2cdfh" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://bhscmjst12ryi" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaRed/SeparateAnim/Walk.png" id="2_a3d8c"]
+[ext_resource type="Texture2D" uid="uid://b3j3mtkkofpdl" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaRed/SeparateAnim/Dead.png" id="2_jlvik"]
+[ext_resource type="Texture2D" uid="uid://brfqf443113k0" path="res://Ninja Adventure - Asset Pack/Ui/Input/Keyboard/KeyX.png" id="3_xpcdj"]
+[ext_resource type="Texture2D" uid="uid://cyddsglyw3vxm" path="res://Ninja Adventure - Asset Pack/Ui/Receptacle/Receptacle Rectangle/BackgroundWood.png" id="4_mtuoh"]
+[ext_resource type="Texture2D" uid="uid://op5dnhumvalh" path="res://Ninja Adventure - Asset Pack/Ui/Input/Keyboard/KeyZ.png" id="5_htcer"]
+[ext_resource type="Texture2D" uid="uid://dq55wxptk83y4" path="res://Ninja Adventure - Asset Pack/Items/Treasure/Coin2.png" id="6_dd0ac"]
+[ext_resource type="Texture2D" uid="uid://b7oh5cqhr11ba" path="res://Ninja Adventure - Asset Pack/Items/Treasure/SilverKey.png" id="7_0u5uq"]
+[ext_resource type="Script" uid="uid://ddswoyqdrm5g6" path="res://Scenes/Player/Health_Bar.gd" id="9_jhyir"]
+[ext_resource type="PackedScene" uid="uid://b351f2yuvdutx" path="res://Scenes/Player/life_container.tscn" id="10_74mp2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcvs5"]
+atlas = ExtResource("2_jlvik")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpcdj"]
 atlas = ExtResource("2_a3d8c")
@@ -69,6 +81,14 @@ region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqm4k"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcvs5")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xpcdj")
@@ -145,28 +165,159 @@ height = 12.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3d8c"]
 size = Vector2(8, 8)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0u5uq"]
+radius = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3d8c"]
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqm4k"]
+atlas = ExtResource("6_dd0ac")
+region = Rect2(0, 0, 10.292625, 10)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oikmp"]
+font_size = 20
+
+[node name="Player" type="CharacterBody2D" unique_id=624711245]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_a3d8c")
 move_speed = 60.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=2026893970]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_aqm4k")
 animation = &"move_down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1863340187]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_hbghi")
 
-[node name="InteractionArea2D" type="Area2D" parent="."]
+[node name="InteractionArea2D" type="Area2D" parent="." unique_id=1308576663]
 position = Vector2(0, 1)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D" unique_id=523920964]
 shape = SubResource("RectangleShape2D_a3d8c")
 debug_color = Color(0.2191405, 0.6394035, 0, 0.41960785)
 
+[node name="HitboxArea2D" type="Area2D" parent="." unique_id=1884008005]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D" unique_id=854230324]
+shape = SubResource("CircleShape2D_0u5uq")
+debug_color = Color(0.99610955, 0, 0.2014986, 0.41960785)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=599445408]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1717501203]
+offset_top = 549.0
+offset_right = 1152.0
+offset_bottom = 650.0
+
+[node name="money" type="Label" parent="CanvasLayer/Panel" unique_id=1582509042]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 531.0
+offset_top = 53.0
+offset_right = 640.0
+offset_bottom = 120.0
+text = "x000"
+label_settings = SubResource("LabelSettings_a3d8c")
+
+[node name="X_Key" type="TextureRect" parent="CanvasLayer/Panel" unique_id=911099284]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 2.0
+offset_right = 299.0
+offset_bottom = 42.0
+texture = ExtResource("3_xpcdj")
+
+[node name="Equip Frame X" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1471769584]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 1.0
+offset_right = 472.0
+offset_bottom = 98.0
+texture = ExtResource("4_mtuoh")
+
+[node name="Currently Equiped to X" type="TextureRect" parent="CanvasLayer/Panel/Equip Frame X" unique_id=2109752690]
+layout_mode = 0
+offset_left = -45.0
+offset_top = 1.0
+offset_right = -5.0
+offset_bottom = 41.0
+
+[node name="Z_Key" type="TextureRect" parent="CanvasLayer/Panel" unique_id=78070337]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 43.0
+offset_bottom = 42.0
+texture = ExtResource("5_htcer")
+
+[node name="Equip Frame Z" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1310179003]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 1.0
+offset_right = 216.0
+offset_bottom = 98.0
+texture = ExtResource("4_mtuoh")
+
+[node name="Currently Equipped to Z" type="TextureRect" parent="CanvasLayer/Panel/Equip Frame Z" unique_id=451681511]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="coin" type="TextureRect" parent="CanvasLayer/Panel" unique_id=1526436880]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 58.0
+offset_right = 527.0
+offset_bottom = 98.0
+texture = SubResource("AtlasTexture_aqm4k")
+
+[node name="keys" type="Label" parent="CanvasLayer/Panel" unique_id=2074596995]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 531.0
+offset_top = 3.0
+offset_right = 640.0
+offset_bottom = 70.0
+text = "x000"
+label_settings = SubResource("LabelSettings_a3d8c")
+
+[node name="key" type="TextureRect" parent="CanvasLayer/Panel" unique_id=218971928]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 10.0
+offset_right = 527.0
+offset_bottom = 50.0
+texture = ExtResource("7_0u5uq")
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer" unique_id=17101800]
+offset_left = 838.0
+offset_top = 543.0
+offset_right = 915.0
+offset_bottom = 571.0
+text = "HEALTH"
+label_settings = SubResource("LabelSettings_oikmp")
+horizontal_alignment = 1
+
+[node name="HealthBar" type="CanvasLayer" parent="." unique_id=1183493361]
+
+[node name="HFlowContainer" type="HFlowContainer" parent="HealthBar" unique_id=586807338]
+offset_left = 642.0
+offset_top = 563.0
+offset_right = 1142.0
+offset_bottom = 643.0
+script = ExtResource("9_jhyir")
+heart_scene = ExtResource("10_74mp2")
+
+[connection signal="health_changed" from="." to="HealthBar/HFlowContainer" method="update_health_ui"]
+[connection signal="health_gained" from="." to="HealthBar/HFlowContainer" method="update_health_ui_for_healing"]
+[connection signal="area_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_area_entered"]
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]

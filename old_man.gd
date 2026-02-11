@@ -12,6 +12,7 @@ var dialogue_index: int = 0
 
 func _process(delta):
 	if Input.is_action_just_pressed("interact") and can_interact:
+		$AudioStreamPlayer2D.play()
 		if dialogue_index < dialogue.size():
 			$CanvasLayer.visible = true
 			get_tree().paused = true

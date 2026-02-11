@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm1hbyaaorrr0"]
+
+[ext_resource type="PackedScene" uid="uid://ckv4j00clwufr" path="res://Scenes/Chests/big_treasure_chest.tscn" id="1_dgqkn"]
+[ext_resource type="Script" uid="uid://camgyc7a2335l" path="res://Scenes/Chests/treasure_chest.gd" id="2_6611y"]
+[ext_resource type="Texture2D" uid="uid://bjd4q5b8x8f0c" path="res://Ninja Adventure - Asset Pack/Items/Treasure/LittleTreasureChest.png" id="2_ajxp6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81ddr"]
+atlas = ExtResource("2_ajxp6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tfuu"]
+atlas = ExtResource("2_ajxp6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_76hc6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81ddr")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tfuu")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="TreasureChest" instance=ExtResource("1_dgqkn")]
+script = ExtResource("2_6611y")
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Treasure/SilverCoin.png"
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_76hc6")

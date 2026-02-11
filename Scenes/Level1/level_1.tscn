@@ -1071,6 +1071,7 @@ text = ""
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("2_la6op")
+volume_db = -14.0
 autoplay = true
 
 [node name="A3 - A4" parent="." instance=ExtResource("9_s0xjy")]

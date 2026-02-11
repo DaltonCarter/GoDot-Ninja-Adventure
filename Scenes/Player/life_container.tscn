@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b351f2yuvdutx"]
+
+[ext_resource type="Texture2D" uid="uid://hpyarutf6pwn" path="res://Ninja Adventure - Asset Pack/Ui/Receptacle/Heart.png" id="1_y7erc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7erc"]
+atlas = ExtResource("1_y7erc")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl4e2"]
+atlas = ExtResource("1_y7erc")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgdon"]
+atlas = ExtResource("1_y7erc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7orv"]
+atlas = ExtResource("1_y7erc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qob0"]
+atlas = ExtResource("1_y7erc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_21kjv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7erc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl4e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgdon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7orv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qob0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SubViewportContainer" type="SubViewportContainer" unique_id=1037146262]
+custom_minimum_size = Vector2(46, 39)
+offset_left = 648.0
+offset_top = 563.0
+offset_right = 694.0
+offset_bottom = 602.0
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=424290550]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4293918721
+size = Vector2i(46, 39)
+render_target_update_mode = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SubViewport" unique_id=1118406251]
+position = Vector2(23, 18)
+scale = Vector2(2.8, 2.8)
+sprite_frames = SubResource("SpriteFrames_21kjv")

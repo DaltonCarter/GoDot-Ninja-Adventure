@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7tu0hq20yrc1"]
+[gd_scene format=3 uid="uid://b7tu0hq20yrc1"]
 
 [ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/EquipmentCaves/dungeon_scene.tscn" id="1_77gr6"]
 [ext_resource type="Texture2D" uid="uid://b6vbq7fryxjgj" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Villager2/SpriteSheet.png" id="2_qseni"]
@@ -8,9 +8,9 @@
 atlas = ExtResource("2_qseni")
 region = Rect2(-0.03, 0.038, 16, 16)
 
-[node name="CaveM_1" instance=ExtResource("1_77gr6")]
+[node name="CaveM_1" unique_id=1613882577 instance=ExtResource("1_77gr6")]
 
-[node name="OldMan" parent="." index="2"]
+[node name="OldMan" parent="." index="2" unique_id=464641605]
 repeat_dialogue = true
 dialogue = Array[String](["Buy somethin' will ya!", "Anything at all!"])
 
@@ -26,10 +26,10 @@ text = "Buy somethin' will ya!"
 [node name="NameLabel" parent="OldMan/CanvasLayer" index="2"]
 text = "Shop Keep"
 
-[node name="Player" parent="." index="3"]
-position = Vector2(0, 25)
+[node name="Player" parent="." index="3" unique_id=1302233293]
+position = Vector2(0, 18)
 
-[node name="SceneEntrance" parent="." index="4"]
+[node name="SceneEntrance" parent="." index="4" unique_id=1534303184]
 player_spawn_position = Vector2(-263, -221)
 
 [editable path="OldMan"]

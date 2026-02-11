@@ -1,5 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt6j7882gcdvd"]
+[gd_scene load_steps=5 format=3 uid="uid://dt6j7882gcdvd"]
 
-[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/dungeon_scene.tscn" id="1_77gr6"]
+[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/EquipmentCaves/dungeon_scene.tscn" id="1_77gr6"]
+[ext_resource type="Texture2D" uid="uid://drfa71mauwvxo" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldWoman/SpriteSheet.png" id="2_as5i2"]
+[ext_resource type="Texture2D" uid="uid://bqema4rg0y0g0" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldWoman/Faceset.png" id="3_020tb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83iki"]
+atlas = ExtResource("2_as5i2")
+region = Rect2(-0.03, 0.038, 16, 16)
 
 [node name="DungeonScene" instance=ExtResource("1_77gr6")]
+
+[node name="OldMan" parent="." index="2"]
+dialogue = Array[String](["Pay me, and I will tell you what I know.", "East will always lead you out of the Wandering Woods.", "Go North, West, South, West, and West again in the Wandering Woods", "to progress..."])
+
+[node name="Sprite2D" parent="OldMan" index="0"]
+texture = SubResource("AtlasTexture_83iki")
+
+[node name="NPCFace" parent="OldMan/CanvasLayer/DialogueBox" index="0"]
+texture = ExtResource("3_020tb")
+
+[node name="NameLabel" parent="OldMan/CanvasLayer" index="2"]
+text = "Old Woman"
+
+[node name="Player" parent="." index="3"]
+position = Vector2(0, 0)
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(-1736, -45)
+
+[editable path="OldMan"]
