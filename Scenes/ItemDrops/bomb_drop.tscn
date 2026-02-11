@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://btol341s7crvu"]
+
+[ext_resource type="Script" uid="uid://dy5vwpb7j32xp" path="res://Scenes/ItemDrops/bomb_drop.gd" id="1_feabn"]
+[ext_resource type="Texture2D" uid="uid://doshgbyhu20c0" path="res://Ninja Adventure - Asset Pack/Items/Projectile/Bomb.png" id="1_hurx5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feabn"]
+atlas = ExtResource("1_hurx5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1e336"]
+size = Vector2(8, 8)
+
+[node name="Bomb_Drop" type="Area2D" unique_id=1124218939]
+collision_mask = 2
+script = ExtResource("1_feabn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=9837160]
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_feabn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=501525717]
+shape = SubResource("RectangleShape2D_1e336")
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]

@@ -6,13 +6,21 @@ var hearts: Array = []
 
 
 func _ready():
+	current_hp()
+		
+
+func current_hp():
 	for i in range(SceneManager.player_life_containers):
 		var heart = heart_scene.instantiate()
 	
 		add_child(heart)
 		hearts.append(heart)
-		
-		print(hearts.size())
+
+
+func add_life_container():
+	var heart = heart_scene.instantiate()
+	add_child(heart)
+	hearts.append(heart)
 
 
 func update_health_ui(current_hp: int):

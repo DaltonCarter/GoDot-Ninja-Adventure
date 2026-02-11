@@ -7,12 +7,13 @@ var current_hp: int
 
 signal health_changed(new_health)
 signal health_gained(new_health)
+signal new_life_container()
 
 var hearts_list: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(SceneManager.player_hp)
+
 	update_wallet()
 	update_keys()
 	#update_hp_bar()
@@ -143,3 +144,16 @@ func die():
 func _on_interaction_area_2d_area_entered(area):
 	if area is Health_Drop:
 		heal_damage(4)
+	if area is Heart_Jewel:
+		obtained_new_heart_jewel()
+		print(SceneManager.player_hp)
+		print(SceneManager.player_max_hp)
+		print(SceneManager.player_life_containers)
+
+		
+
+func obtained_new_heart_jewel():
+	SceneManager.player_life_containers += 1
+	SceneManager.player_max_hp = 4 * SceneManager.player_life_containers
+	new_life_container.emit()
+	heal_damage(80)

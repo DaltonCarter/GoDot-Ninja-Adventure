@@ -317,6 +317,7 @@ heart_scene = ExtResource("10_74mp2")
 
 [connection signal="health_changed" from="." to="HealthBar/HFlowContainer" method="update_health_ui"]
 [connection signal="health_gained" from="." to="HealthBar/HFlowContainer" method="update_health_ui_for_healing"]
+[connection signal="new_life_container" from="." to="HealthBar/HFlowContainer" method="add_life_container"]
 [connection signal="area_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_area_entered"]
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]

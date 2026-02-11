@@ -5,19 +5,40 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eswx7"]
 size = Vector2(16, 15)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vbqsa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5664"]
 atlas = ExtResource("1_s5664")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eswx7"]
+atlas = ExtResource("1_s5664")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbqsa"]
+atlas = ExtResource("1_s5664")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eglj5"]
+atlas = ExtResource("1_s5664")
+region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eglj5"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_s5664")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_eswx7")
+}, {
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_vbqsa")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_eglj5")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [node name="BatEnemy" type="CharacterBody2D" unique_id=1795263494 groups=["Hostiles"]]
@@ -29,3 +50,5 @@ shape = SubResource("RectangleShape2D_eswx7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=414931117]
 sprite_frames = SubResource("SpriteFrames_eglj5")
+autoplay = "default"
+frame_progress = 0.46423674

@@ -20,9 +20,15 @@
 [ext_resource type="PackedScene" uid="uid://c8r2bgn4alson" path="res://Scenes/Enemies/place_holder.tscn" id="14_jaj74"]
 [ext_resource type="PackedScene" uid="uid://b1au8mx08ped" path="res://Scenes/Secrets/remove_block_secret.tscn" id="15_6dkqd"]
 [ext_resource type="PackedScene" uid="uid://budnke2k262ov" path="res://Scenes/Player/player.tscn" id="17_cxqrt"]
+[ext_resource type="PackedScene" uid="uid://bymhrgx3lblp2" path="res://Scenes/ItemDrops/key_drop.tscn" id="17_pwwki"]
 [ext_resource type="PackedScene" uid="uid://cwndnfyb5xd36" path="res://Scenes/Enemies/bat_enemy.tscn" id="19_cxqrt"]
+[ext_resource type="PackedScene" uid="uid://yjj4fe2ilew3" path="res://Scenes/ItemDrops/xal_coin.tscn" id="19_ipjqc"]
+[ext_resource type="PackedScene" uid="uid://6kauo3ywedfc" path="res://Scenes/ItemDrops/arrow_drop.tscn" id="21_glqu0"]
 [ext_resource type="PackedScene" uid="uid://4fg8onyqlvjr" path="res://Scenes/PuzzleScenes/puzzle_wall.tscn" id="21_oieme"]
+[ext_resource type="PackedScene" uid="uid://btol341s7crvu" path="res://Scenes/ItemDrops/bomb_drop.tscn" id="22_bknev"]
 [ext_resource type="PackedScene" uid="uid://bqb6ecs8te1un" path="res://Scenes/ItemDrops/life_drop.tscn" id="23_6at6t"]
+[ext_resource type="PackedScene" uid="uid://b6ligwvnq7hcu" path="res://Scenes/ItemDrops/xal_coin_5.tscn" id="23_up7ow"]
+[ext_resource type="PackedScene" uid="uid://do6er8n3rwh6x" path="res://Scenes/ItemDrops/heart_jewel.tscn" id="26_bknev"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ynty"]
 texture = ExtResource("1_kr7le")
@@ -2922,8 +2928,29 @@ position = Vector2(-1616, -879)
 [node name="OverworldSecretFloorTile2" parent="ObstacleLayer/OverworldSecretFloorTile" unique_id=986112973 instance=ExtResource("10_rpdpv")]
 position = Vector2(961, -1087)
 
-[node name="Area2D" parent="ObstacleLayer" unique_id=193827540 groups=["Health"] instance=ExtResource("23_6at6t")]
-position = Vector2(34, -160)
+[node name="Key_Drop" parent="ObstacleLayer" unique_id=542279587 instance=ExtResource("17_pwwki")]
+position = Vector2(120, -173)
+
+[node name="Life_Drop" parent="ObstacleLayer" unique_id=193827540 instance=ExtResource("23_6at6t")]
+position = Vector2(45, -182)
+
+[node name="Life_Drop2" parent="ObstacleLayer" unique_id=1224442504 instance=ExtResource("23_6at6t")]
+position = Vector2(45, -203)
+
+[node name="Life_Drop3" parent="ObstacleLayer" unique_id=2431754 instance=ExtResource("23_6at6t")]
+position = Vector2(46, -156)
+
+[node name="XalCoin" parent="ObstacleLayer" unique_id=1042612354 instance=ExtResource("19_ipjqc")]
+position = Vector2(-76, -219)
+
+[node name="XalCoin5" parent="ObstacleLayer" unique_id=1271711284 instance=ExtResource("23_up7ow")]
+position = Vector2(76, -216)
+
+[node name="Arrow_Drop" parent="ObstacleLayer" unique_id=1794477408 instance=ExtResource("21_glqu0")]
+position = Vector2(-72, -122)
+
+[node name="Bomb_Drop" parent="ObstacleLayer" unique_id=1124218939 instance=ExtResource("22_bknev")]
+position = Vector2(68, -130)
 
 [node name="Player" parent="ObstacleLayer" unique_id=811049593 instance=ExtResource("17_cxqrt")]
 position = Vector2(-8, 10)
@@ -3207,7 +3234,10 @@ position = Vector2(129, -317)
 position = Vector2(96, -348)
 
 [node name="BatEnemy" parent="ObstacleLayer" unique_id=1412562188 instance=ExtResource("19_cxqrt")]
-position = Vector2(-8, -135)
+position = Vector2(-1, -169)
+
+[node name="Heart_Jewel" parent="ObstacleLayer" unique_id=109252556 instance=ExtResource("26_bknev")]
+position = Vector2(-123, -171)
 
 [node name="Entrance toSwordCave1" parent="." unique_id=560253601 instance=ExtResource("5_oi8ly")]
 editor_description = "Entrance to The Cave where you Obtain the First Sword,"
@@ -3602,9 +3632,9 @@ player_direction = Vector2(0, -1)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=384827030]
 process_mode = 3
 stream = ExtResource("9_nr542")
-volume_db = -23.929
+volume_db = -13.317
 autoplay = true
-parameters/looping = false
+parameters/looping = true
 
 [node name="PuzzleWallSea" parent="." unique_id=1215191852 instance=ExtResource("21_oieme")]
 position = Vector2(471, 36.000004)

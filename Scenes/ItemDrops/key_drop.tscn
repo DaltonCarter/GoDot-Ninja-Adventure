@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bymhrgx3lblp2"]
+
+[ext_resource type="Script" uid="uid://cwp8klbclycqo" path="res://Scenes/ItemDrops/key_drop.gd" id="1_bnogd"]
+[ext_resource type="Texture2D" uid="uid://b7oh5cqhr11ba" path="res://Ninja Adventure - Asset Pack/Items/Treasure/SilverKey.png" id="2_0t572"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnogd"]
+atlas = ExtResource("2_0t572")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0t572"]
+size = Vector2(4, 8)
+
+[node name="Key_Drop" type="Area2D" unique_id=542279587]
+scale = Vector2(0.75, 0.75)
+collision_mask = 2
+script = ExtResource("1_bnogd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1918071191]
+rotation = 1.5707964
+texture = SubResource("AtlasTexture_bnogd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2137850975]
+shape = SubResource("RectangleShape2D_0t572")
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]

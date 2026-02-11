@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://do6er8n3rwh6x"]
+
+[ext_resource type="Script" uid="uid://cs07uns7i78wu" path="res://Scenes/ItemDrops/heart_jewel.gd" id="1_6b3cv"]
+[ext_resource type="Texture2D" uid="uid://l331sjda55om" path="res://Ninja Adventure - Asset Pack/Ui/Receptacle/heart_4.png" id="1_gkdd7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b3cv"]
+atlas = ExtResource("1_gkdd7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_con4m"]
+size = Vector2(12, 9)
+
+[node name="Heart_Jewel" type="Area2D" unique_id=109252556]
+collision_mask = 2
+script = ExtResource("1_6b3cv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=258511099]
+scale = Vector2(0.75, 0.75)
+texture = SubResource("AtlasTexture_6b3cv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=274671604]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_con4m")
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]

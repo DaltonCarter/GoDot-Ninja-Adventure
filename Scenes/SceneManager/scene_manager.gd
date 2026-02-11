@@ -7,7 +7,7 @@ var opened_chests: Array[String] = []
 
 var player_hp: int = 12
 var player_life_containers: int = 3
-var player_max_hp: int = 4 * player_life_containers
+var player_max_hp: int = 12
 
 
 

@@ -42,14 +42,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bsxq"]
 size = Vector2(5, 5)
 
-[node name="Area2D" type="Area2D" unique_id=193827540 groups=["Health"]]
+[node name="Life_Drop" type="Area2D" unique_id=193827540 groups=["Health"]]
 collision_mask = 2
 script = ExtResource("1_6bsxq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1465439165]
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_x605p")
 autoplay = "default"
-frame_progress = 0.92657787
+frame_progress = 0.9695278
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2065488134]
 shape = SubResource("RectangleShape2D_6bsxq")
