@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cwp8klbclycqo" path="res://Scenes/ItemDrops/key_drop.gd" id="1_bnogd"]
 [ext_resource type="Texture2D" uid="uid://b7oh5cqhr11ba" path="res://Ninja Adventure - Asset Pack/Items/Treasure/SilverKey.png" id="2_0t572"]
+[ext_resource type="AudioStream" uid="uid://dx2xfrpc2yary" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Bonus/PowerUp2.wav" id="3_0t572"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bnogd"]
 atlas = ExtResource("2_0t572")
@@ -21,4 +22,12 @@ texture = SubResource("AtlasTexture_bnogd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2137850975]
 shape = SubResource("RectangleShape2D_0t572")
 
+[node name="Timer" type="Timer" parent="." unique_id=504877673]
+wait_time = 0.3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=802424419]
+stream = ExtResource("3_0t572")
+volume_db = 5.0
+
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

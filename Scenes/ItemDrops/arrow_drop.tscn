@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://buqf03q48iqhk" path="res://Scenes/ItemDrops/arrow_drop.gd" id="1_hr3na"]
 [ext_resource type="Texture2D" uid="uid://cjpor3utef0ak" path="res://Ninja Adventure - Asset Pack/Items/Projectile/Arrow.png" id="1_s1ff8"]
+[ext_resource type="AudioStream" uid="uid://dx2xfrpc2yary" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Bonus/PowerUp2.wav" id="3_5jfqa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hr3na"]
 atlas = ExtResource("1_s1ff8")
@@ -20,4 +21,12 @@ texture = SubResource("AtlasTexture_hr3na")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1749420427]
 shape = SubResource("RectangleShape2D_5jfqa")
 
+[node name="Timer" type="Timer" parent="." unique_id=871277394]
+wait_time = 0.3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1475099494]
+stream = ExtResource("3_5jfqa")
+volume_db = 5.0
+
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,6 +4,7 @@ class_name Player
 @export var move_speed: float = 100
 @export var push_strength: float = 140
 var current_hp: int
+var is_attacking: bool = false
 
 signal health_changed(new_health)
 signal health_gained(new_health)
@@ -35,10 +36,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
-	move_player()
+	if not is_attacking:
+		move_player()
+	
 	push_blocks()
 	update_wallet()
 	update_keys()
+	
+	if Input.is_action_just_pressed("interact"):
+		attack()
 	
 	move_and_slide()
 	
@@ -136,15 +142,17 @@ func heal_damage(amount: int):
 		health_gained.emit(SceneManager.player_hp)
 
 func die():
-	$PlayerSprite.play("dead")
+	
 	SceneManager.player_hp = SceneManager.player_max_hp
 	get_tree().call_deferred("reload_current_scene")
+	
 
 
 func _on_interaction_area_2d_area_entered(area):
 	if area is Health_Drop:
 		heal_damage(4)
 	if area is Heart_Jewel:
+		
 		obtained_new_heart_jewel()
 		print(SceneManager.player_hp)
 		print(SceneManager.player_max_hp)
@@ -157,3 +165,48 @@ func obtained_new_heart_jewel():
 	SceneManager.player_max_hp = 4 * SceneManager.player_life_containers
 	new_life_container.emit()
 	heal_damage(80)
+	
+
+func attack():
+	$AttackDuration.start()
+	$Sword.visible = true
+	%SwordArea2D.monitoring = true
+	is_attacking = true
+	velocity = Vector2(0, 0)
+	
+	var player_anim: String = $PlayerSprite.animation
+	
+	match player_anim:
+		"move_right":
+			$PlayerSprite.play("attack_right")
+			$AnimationPlayer.play("attack_right")
+		"move_left":
+			$PlayerSprite.play("attack_left")
+			$AnimationPlayer.play("attack_left")
+		"move_down":
+			$PlayerSprite.play("attack_down")
+			$AnimationPlayer.play("attack_down")
+		"move_up":
+			$PlayerSprite.play("attack_up")
+			$AnimationPlayer.play("attack_up")
+
+func _on_sword_area_2d_body_entered(body):
+	body.queue_free()
+
+
+func _on_attack_duration_timeout():
+	$Sword.visible = false
+	%SwordArea2D.monitoring = false
+	is_attacking = false
+	
+	var player_anim: String = $PlayerSprite.animation
+	
+	match player_anim:
+		"attack_right":
+			$PlayerSprite.play("move_right")
+		"attack_left":
+			$PlayerSprite.play("move_left")
+		"attack_down":
+			$PlayerSprite.play("move_down")
+		"attack_up":
+			$PlayerSprite.play("move_up")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7qvg25uhkpxs"
+path="res://.godot/imported/Critical Shot (godot looped).mp3-b5262f121e144586b3220f7210f7caf5.mp3str"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Audio/Alt/Critical Shot (godot looped).mp3"
+dest_files=["res://.godot/imported/Critical Shot (godot looped).mp3-b5262f121e144586b3220f7210f7caf5.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=5.0
+bpm=0
+beat_count=0
+bar_beats=4

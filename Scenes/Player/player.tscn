@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://budnke2k262ov"]
 
 [ext_resource type="Script" uid="uid://bcqf45fb2cdfh" path="res://Scenes/Player/player.gd" id="1_a3d8c"]
+[ext_resource type="Texture2D" uid="uid://36altob2sx6r" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaRed/SeparateAnim/Item.png" id="2_74mp2"]
 [ext_resource type="Texture2D" uid="uid://bhscmjst12ryi" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaRed/SeparateAnim/Walk.png" id="2_a3d8c"]
 [ext_resource type="Texture2D" uid="uid://b3j3mtkkofpdl" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaRed/SeparateAnim/Dead.png" id="2_jlvik"]
+[ext_resource type="Texture2D" uid="uid://ctupf071ffm5f" path="res://Ninja Adventure - Asset Pack/Actor/Characters/NinjaRed/SeparateAnim/Attack.png" id="3_06tpx"]
 [ext_resource type="Texture2D" uid="uid://brfqf443113k0" path="res://Ninja Adventure - Asset Pack/Ui/Input/Keyboard/KeyX.png" id="3_xpcdj"]
 [ext_resource type="Texture2D" uid="uid://cyddsglyw3vxm" path="res://Ninja Adventure - Asset Pack/Ui/Receptacle/Receptacle Rectangle/BackgroundWood.png" id="4_mtuoh"]
 [ext_resource type="Texture2D" uid="uid://op5dnhumvalh" path="res://Ninja Adventure - Asset Pack/Ui/Input/Keyboard/KeyZ.png" id="5_htcer"]
@@ -10,6 +12,30 @@
 [ext_resource type="Texture2D" uid="uid://b7oh5cqhr11ba" path="res://Ninja Adventure - Asset Pack/Items/Treasure/SilverKey.png" id="7_0u5uq"]
 [ext_resource type="Script" uid="uid://ddswoyqdrm5g6" path="res://Scenes/Player/Health_Bar.gd" id="9_jhyir"]
 [ext_resource type="PackedScene" uid="uid://b351f2yuvdutx" path="res://Scenes/Player/life_container.tscn" id="10_74mp2"]
+[ext_resource type="Texture2D" uid="uid://d2mhy3s16sw4o" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Katana/Sprite.png" id="12_oikmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06tpx"]
+size = Vector2(10, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ma5"]
+atlas = ExtResource("2_74mp2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eksi1"]
+atlas = ExtResource("3_06tpx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jincj"]
+atlas = ExtResource("3_06tpx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqdc0"]
+atlas = ExtResource("3_06tpx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr1w5"]
+atlas = ExtResource("3_06tpx")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rcvs5"]
 atlas = ExtResource("2_jlvik")
@@ -81,6 +107,46 @@ region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqm4k"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8ma5")
+}],
+"loop": true,
+"name": &"Item",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eksi1")
+}],
+"loop": true,
+"name": &"attack_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jincj")
+}],
+"loop": true,
+"name": &"attack_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqdc0")
+}],
+"loop": true,
+"name": &"attack_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr1w5")
+}],
+"loop": true,
+"name": &"attack_up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rcvs5")
@@ -178,16 +244,303 @@ region = Rect2(0, 0, 10.292625, 10)
 [sub_resource type="LabelSettings" id="LabelSettings_oikmp"]
 font_size = 20
 
+[sub_resource type="Animation" id="Animation_06tpx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.5000005, -8.999999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:flip_v")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_r5xpd"]
+resource_name = "attack_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:flip_v")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2.5000057, 6.999999), Vector2(-4.500006, 6.999999)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-4.4505897, -1.8849556]
+}
+
+[sub_resource type="Animation" id="Animation_ks1b7"]
+resource_name = "attack_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-7.5, 1.000002), Vector2(-8.5, 4.000003)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.08726646, -2.6179938]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:flip_v")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7g0yx"]
+resource_name = "attack_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(7.5, 1.000002), Vector2(8.499998, 4.000002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.08726646, 2.6179938]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:flip_v")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dey5f"]
+resource_name = "attack_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.3089969, -1.3089969]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1.5, -9), Vector2(-4.5, -9)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:flip_v")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5xpd"]
+_data = {
+&"RESET": SubResource("Animation_06tpx"),
+&"attack_down": SubResource("Animation_r5xpd"),
+&"attack_left": SubResource("Animation_ks1b7"),
+&"attack_right": SubResource("Animation_7g0yx"),
+&"attack_up": SubResource("Animation_dey5f")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=624711245]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_a3d8c")
 move_speed = 60.0
 
+[node name="Sword" type="Sprite2D" parent="." unique_id=411379334]
+visible = false
+position = Vector2(-4.5000005, -8.999999)
+texture = ExtResource("12_oikmp")
+offset = Vector2(0, -5)
+flip_h = true
+flip_v = true
+
+[node name="SwordArea2D" type="Area2D" parent="Sword" unique_id=1689244795]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 16
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/SwordArea2D" unique_id=1092136564]
+position = Vector2(-0.024836704, -6.020747)
+shape = SubResource("RectangleShape2D_06tpx")
+
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=2026893970]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_aqm4k")
 animation = &"move_down"
+autoplay = "move_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1863340187]
 position = Vector2(0, 1)
@@ -315,10 +668,19 @@ offset_bottom = 643.0
 script = ExtResource("9_jhyir")
 heart_scene = ExtResource("10_74mp2")
 
+[node name="AttackDuration" type="Timer" parent="." unique_id=1917151354]
+wait_time = 0.2
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1883385969]
+libraries/ = SubResource("AnimationLibrary_r5xpd")
+
 [connection signal="health_changed" from="." to="HealthBar/HFlowContainer" method="update_health_ui"]
 [connection signal="health_gained" from="." to="HealthBar/HFlowContainer" method="update_health_ui_for_healing"]
 [connection signal="new_life_container" from="." to="HealthBar/HFlowContainer" method="add_life_container"]
+[connection signal="body_entered" from="Sword/SwordArea2D" to="." method="_on_sword_area_2d_body_entered"]
 [connection signal="area_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_area_entered"]
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
+[connection signal="timeout" from="AttackDuration" to="." method="_on_attack_duration_timeout"]
