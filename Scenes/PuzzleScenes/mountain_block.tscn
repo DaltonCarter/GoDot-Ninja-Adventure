@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://p7hgye47mf2r"]
+
+[ext_resource type="PackedScene" uid="uid://du35scv4n4cq" path="res://Scenes/PuzzleScenes/block.tscn" id="1_cx4yy"]
+[ext_resource type="Texture2D" uid="uid://diqghrgnkcqox" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetNature.png" id="2_eetcd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uftfx"]
+atlas = ExtResource("2_eetcd")
+region = Rect2(239.796, 143.56, 16, 16)
+
+[node name="MountainBlock" instance=ExtResource("1_cx4yy")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_uftfx")

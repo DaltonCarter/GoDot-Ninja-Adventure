@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://qo6r0tcvalb2"]
+
+[ext_resource type="Script" uid="uid://c485ye487lbbr" path="res://old_man.gd" id="1_faw3b"]
+[ext_resource type="Texture2D" uid="uid://cgmntrh2mx7jy" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan3/SpriteSheet.png" id="2_7foq0"]
+[ext_resource type="Texture2D" uid="uid://bbrub0e3ie6cu" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBoxFaceset.png" id="3_7foq0"]
+[ext_resource type="Texture2D" uid="uid://0xknjbwky2ou" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan3/Faceset.png" id="4_w18ug"]
+[ext_resource type="AudioStream" uid="uid://bewk3jh358i8c" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Alert/Alert.wav" id="5_ncsuf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w18ug"]
+atlas = ExtResource("2_7foq0")
+region = Rect2(-0.03, 0.038, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncsuf"]
+size = Vector2(14, 14)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ncsuf"]
+font_size = 48
+font_color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w18ug"]
+font_size = 28
+
+[node name="OldMan" type="StaticBody2D" groups=["interactable"]]
+process_mode = 3
+script = ExtResource("1_faw3b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_w18ug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ncsuf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DialogueBox" type="TextureRect" parent="CanvasLayer"]
+offset_left = 24.000061
+offset_top = 0.99999994
+offset_right = 324.00006
+offset_bottom = 59.0
+scale = Vector2(3.7, 3.7)
+texture = ExtResource("3_7foq0")
+
+[node name="NPCFace" type="TextureRect" parent="CanvasLayer/DialogueBox"]
+layout_mode = 0
+offset_left = 4.0540376
+offset_top = 13.783782
+offset_right = 44.05404
+offset_bottom = 53.783783
+texture = ExtResource("4_w18ug")
+
+[node name="DialogueLabel" type="Label" parent="CanvasLayer"]
+offset_left = 215.0
+offset_top = 54.0
+offset_right = 1113.0
+offset_bottom = 193.0
+text = "You are either brave or foolish to come without a sword."
+label_settings = SubResource("LabelSettings_ncsuf")
+autowrap_mode = 3
+
+[node name="NameLabel" type="Label" parent="CanvasLayer"]
+offset_left = 42.0
+offset_top = 2.0
+offset_right = 279.0
+offset_bottom = 41.0
+text = "Old Man"
+label_settings = SubResource("LabelSettings_w18ug")
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ncsuf")

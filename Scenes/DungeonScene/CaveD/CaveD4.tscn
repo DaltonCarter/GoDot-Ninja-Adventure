@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c16ykdu6cgs6x"]
+
+[ext_resource type="PackedScene" uid="uid://cpa68qtuqsiq3" path="res://Scenes/DungeonScene/CaveD/CaveD3.tscn" id="1_sdlj6"]
+
+[node name="DungeonScene" instance=ExtResource("1_sdlj6")]
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(-1512, -1276)
+
+[editable path="OldMan"]

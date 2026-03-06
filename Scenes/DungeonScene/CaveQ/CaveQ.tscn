@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctk5k8tngo1mt"]
+
+[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/EquipmentCaves/dungeon_scene.tscn" id="1_77gr6"]
+[ext_resource type="Texture2D" uid="uid://drfa71mauwvxo" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldWoman/SpriteSheet.png" id="2_su4oh"]
+[ext_resource type="Texture2D" uid="uid://bqema4rg0y0g0" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldWoman/Faceset.png" id="3_u28r0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge0fv"]
+atlas = ExtResource("2_su4oh")
+region = Rect2(-0.03, 0.038, 16, 16)
+
+[node name="DungeonScene" instance=ExtResource("1_77gr6")]
+
+[node name="OldMan" parent="." index="2"]
+repeat_dialogue = true
+dialogue = Array[String](["Find the Master, where the Spirits sleep."])
+
+[node name="Sprite2D" parent="OldMan" index="0"]
+texture = SubResource("AtlasTexture_ge0fv")
+
+[node name="NPCFace" parent="OldMan/CanvasLayer/DialogueBox" index="0"]
+texture = ExtResource("3_u28r0")
+
+[node name="NameLabel" parent="OldMan/CanvasLayer" index="2"]
+text = "Old Woman"
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(-600, -45)
+
+[editable path="OldMan"]

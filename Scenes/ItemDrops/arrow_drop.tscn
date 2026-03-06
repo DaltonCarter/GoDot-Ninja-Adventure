@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://6kauo3ywedfc"]
+
+[ext_resource type="Script" uid="uid://buqf03q48iqhk" path="res://Scenes/ItemDrops/arrow_drop.gd" id="1_hr3na"]
+[ext_resource type="Texture2D" uid="uid://cjpor3utef0ak" path="res://Ninja Adventure - Asset Pack/Items/Projectile/Arrow.png" id="1_s1ff8"]
+[ext_resource type="AudioStream" uid="uid://dx2xfrpc2yary" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Bonus/PowerUp2.wav" id="3_5jfqa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr3na"]
+atlas = ExtResource("1_s1ff8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jfqa"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_5jfqa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6wala"]
+resource_name = "vanishing"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hpjnm"]
+_data = {
+&"RESET": SubResource("Animation_5jfqa"),
+&"vanishing": SubResource("Animation_6wala")
+}
+
+[node name="Arrow_Drop" type="Area2D" unique_id=1794477408]
+modulate = Color(1, 1, 1, 0.5)
+collision_mask = 2
+script = ExtResource("1_hr3na")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=493863230]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_hr3na")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1749420427]
+shape = SubResource("RectangleShape2D_5jfqa")
+
+[node name="Timer" type="Timer" parent="." unique_id=871277394]
+wait_time = 0.3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1475099494]
+stream = ExtResource("3_5jfqa")
+volume_db = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=488091907]
+libraries/ = SubResource("AnimationLibrary_hpjnm")
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

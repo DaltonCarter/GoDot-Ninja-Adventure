@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dakkak2s8lev"]
+
+[ext_resource type="Script" uid="uid://bfdpfwjo5dd1h" path="res://Scenes/LocalTransfer/LocalTransfer.gd" id="1_5qlia"]
+[ext_resource type="AudioStream" uid="uid://dn32q3owk1pli" path="res://Ninja Adventure - Asset Pack/Audio/Alt/Secret Sound.mp3" id="2_pkqkn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkqkn"]
+
+[node name="LocalTransfer" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_5qlia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pkqkn")
+
+[node name="Music Effect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pkqkn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b6ligwvnq7hcu"]
+
+[ext_resource type="Script" uid="uid://bmilnvn2ai2le" path="res://Scenes/ItemDrops/xal_coin_5.gd" id="1_65gbd"]
+[ext_resource type="Texture2D" uid="uid://dq55wxptk83y4" path="res://Ninja Adventure - Asset Pack/Items/Treasure/Coin2.png" id="1_pdvw6"]
+[ext_resource type="AudioStream" uid="uid://dtf7ismu5wqny" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Bonus/Coin.wav" id="3_tnygj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65gbd"]
+atlas = ExtResource("1_pdvw6")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnygj"]
+atlas = ExtResource("1_pdvw6")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6o4s"]
+atlas = ExtResource("1_pdvw6")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogqfy"]
+atlas = ExtResource("1_pdvw6")
+region = Rect2(30, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rec6f"]
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_65gbd")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_tnygj")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_y6o4s")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_ogqfy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afge0"]
+size = Vector2(6, 6)
+
+[node name="XalCoin5" type="Area2D" unique_id=1042612354]
+collision_mask = 2
+script = ExtResource("1_65gbd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1278134877]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_rec6f")
+autoplay = "default"
+frame_progress = 0.45940658
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1835509801]
+shape = SubResource("RectangleShape2D_afge0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1233958375]
+stream = ExtResource("3_tnygj")
+
+[node name="Timer" type="Timer" parent="." unique_id=857047865]
+wait_time = 0.2
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

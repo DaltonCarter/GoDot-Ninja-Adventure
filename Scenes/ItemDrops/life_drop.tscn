@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bqb6ecs8te1un"]
+
+[ext_resource type="Script" uid="uid://dqnn4twgxq0hr" path="res://Scenes/ItemDrops/life_drop.gd" id="1_6bsxq"]
+[ext_resource type="Texture2D" uid="uid://b34all6metq2v" path="res://Ninja Adventure - Asset Pack/Items/Potion/Heart_anim.png" id="1_d8i0k"]
+[ext_resource type="AudioStream" uid="uid://biu7poad2ke7" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Bonus/Bonus2.wav" id="3_kniqx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kniqx"]
+atlas = ExtResource("1_d8i0k")
+region = Rect2(0, 0, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o647b"]
+atlas = ExtResource("1_d8i0k")
+region = Rect2(9, 0, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7esje"]
+atlas = ExtResource("1_d8i0k")
+region = Rect2(18, 0, 9, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbuem"]
+atlas = ExtResource("1_d8i0k")
+region = Rect2(27, 0, 9, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x605p"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_kniqx")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_o647b")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_7esje")
+}, {
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_tbuem")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bsxq"]
+size = Vector2(5, 5)
+
+[node name="Life_Drop" type="Area2D" unique_id=193827540 groups=["Health"]]
+collision_mask = 2
+script = ExtResource("1_6bsxq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1465439165]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_x605p")
+autoplay = "default"
+frame_progress = 0.9695278
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2065488134]
+shape = SubResource("RectangleShape2D_6bsxq")
+debug_color = Color(0.36340642, 0.61717296, 1.1551381e-06, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=366166623]
+wait_time = 0.3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1606755517]
+stream = ExtResource("3_kniqx")
+volume_db = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

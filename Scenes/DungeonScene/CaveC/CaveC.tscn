@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnbdl78jr2b4v"]
+
+[ext_resource type="PackedScene" uid="uid://damhsabuy0qob" path="res://Scenes/DungeonScene/EquipmentCaves/dungeon_scene.tscn" id="1_77gr6"]
+[ext_resource type="Texture2D" uid="uid://cu64qswbdf7ut" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan/SpriteSheet.png" id="2_eg7vt"]
+[ext_resource type="Texture2D" uid="uid://b6v1m55gu05ud" path="res://Ninja Adventure - Asset Pack/Actor/Characters/OldMan/Faceset.png" id="3_b66h2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2d7u"]
+atlas = ExtResource("2_eg7vt")
+region = Rect2(-0.03, 0.038, 16, 16)
+
+[node name="DungeonScene" instance=ExtResource("1_77gr6")]
+
+[node name="OldMan" parent="." index="2"]
+dialogue = Array[String](["Let's play a money making game.", "Choose carefully."])
+
+[node name="Sprite2D" parent="OldMan" index="0"]
+texture = SubResource("AtlasTexture_q2d7u")
+
+[node name="NPCFace" parent="OldMan/CanvasLayer/DialogueBox" index="0"]
+texture = ExtResource("3_b66h2")
+
+[node name="SceneEntrance" parent="." index="4"]
+player_spawn_position = Vector2(-280, -45)
+
+[editable path="OldMan"]

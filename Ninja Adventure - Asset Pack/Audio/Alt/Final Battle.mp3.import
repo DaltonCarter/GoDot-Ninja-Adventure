@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjra67hdx3b4s"
+path="res://.godot/imported/Final Battle.mp3-f4038fbd28d892f5e04e7bd8e006ceb5.mp3str"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Audio/Alt/Final Battle.mp3"
+dest_files=["res://.godot/imported/Final Battle.mp3-f4038fbd28d892f5e04e7bd8e006ceb5.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwa4pq20ligwm"]
+
+[ext_resource type="Script" uid="uid://cehm2mv0latg4" path="res://Scenes/PuzzleScenes/switch_puzzle_manager.gd" id="1_h5c3a"]
+
+[node name="SwitchPuzzleManager" type="Marker2D"]
+gizmo_extents = 30.0
+script = ExtResource("1_h5c3a")

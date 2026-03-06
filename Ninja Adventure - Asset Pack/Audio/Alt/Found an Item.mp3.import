@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxrpe4r7i14x0"
+path="res://.godot/imported/Found an Item.mp3-d9f6abe1eae4cad1a667f5b0031114d2.mp3str"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Audio/Alt/Found an Item.mp3"
+dest_files=["res://.godot/imported/Found an Item.mp3-d9f6abe1eae4cad1a667f5b0031114d2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
