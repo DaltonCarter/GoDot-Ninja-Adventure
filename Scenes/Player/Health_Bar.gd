@@ -15,6 +15,9 @@ func current_hp():
 	
 		add_child(heart)
 		hearts.append(heart)
+		
+	if SceneManager.player_hp < SceneManager.player_max_hp:
+		update_health_ui(SceneManager.player_hp)
 
 
 func add_life_container():
@@ -23,18 +26,18 @@ func add_life_container():
 	hearts.append(heart)
 
 
-func update_health_ui(current_hp: int):
+func update_health_ui(current_health: int):
 	for i in range(SceneManager.player_life_containers):
 		var heart_range_start = i * 4
 		
-		var heart_hp = clamp(current_hp - heart_range_start, 0, 4)
+		var heart_hp = clamp(current_health - heart_range_start, 0, 4)
 		
 		hearts[i].get_child(0).get_child(0).frame = 4 - heart_hp
 
-func update_health_ui_for_healing(current_hp: int):
+func update_health_ui_for_healing(hp: int):
 	for i in range(SceneManager.player_life_containers):
 		var heart_range_start = i * 4
 		
-		var heart_hp = clamp(current_hp - heart_range_start, 0, 4)
+		var heart_hp = clamp(hp - heart_range_start, 0, 4)
 		
 		hearts[i].get_child(0).get_child(0).frame = 4 - heart_hp

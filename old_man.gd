@@ -10,7 +10,7 @@ var dialogue_index: int = 0
 
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("interact") and can_interact:
 		$AudioStreamPlayer2D.play()
 		if dialogue_index < dialogue.size():

@@ -10,6 +10,44 @@ atlas = ExtResource("1_hurx5")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1e336"]
 size = Vector2(8, 8)
 
+[sub_resource type="Animation" id="Animation_1e336"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kjvhb"]
+resource_name = "vanishing"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mt1u7"]
+_data = {
+&"RESET": SubResource("Animation_1e336"),
+&"vanishing": SubResource("Animation_kjvhb")
+}
+
 [node name="Bomb_Drop" type="Area2D" unique_id=1124218939]
 collision_mask = 2
 script = ExtResource("1_feabn")
@@ -27,6 +65,9 @@ wait_time = 0.3
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=798537769]
 stream = ExtResource("3_1e336")
 volume_db = 5.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=708308851]
+libraries/ = SubResource("AnimationLibrary_mt1u7")
 
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

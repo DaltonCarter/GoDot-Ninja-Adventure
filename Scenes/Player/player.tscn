@@ -515,6 +515,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=624711245]
 collision_layer = 2
 collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_a3d8c")
 move_speed = 60.0
 
@@ -675,6 +676,13 @@ one_shot = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1883385969]
 libraries/ = SubResource("AnimationLibrary_r5xpd")
 
+[node name="DeathTimer" type="Timer" parent="." unique_id=992605550]
+one_shot = true
+
+[node name="PlayerSFX" type="AudioStreamPlayer" parent="." unique_id=1449367236]
+volume_db = 5.0
+pitch_scale = 0.7
+
 [connection signal="health_changed" from="." to="HealthBar/HFlowContainer" method="update_health_ui"]
 [connection signal="health_gained" from="." to="HealthBar/HFlowContainer" method="update_health_ui_for_healing"]
 [connection signal="new_life_container" from="." to="HealthBar/HFlowContainer" method="add_life_container"]
@@ -684,3 +692,4 @@ libraries/ = SubResource("AnimationLibrary_r5xpd")
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
 [connection signal="timeout" from="AttackDuration" to="." method="_on_attack_duration_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

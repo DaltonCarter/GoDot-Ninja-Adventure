@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://f2vvrij1bqbv" path="res://Ninja Adventure - Asset Pack/Actor/Monsters/BlueBat/SpriteSheet.png" id="1_s5664"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vbqsa"]
-radius = 68.007355
+radius = 66.66667
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eswx7"]
 size = Vector2(16, 15)
@@ -156,7 +156,18 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eswx7"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+color = Color(0.63865525, 0.8303557, 0.8371833, 1)
+
 [node name="BatEnemy" type="CharacterBody2D" unique_id=1795263494 groups=["Hostiles"]]
+scale = Vector2(0.75, 0.75)
 collision_layer = 16
 motion_mode = 1
 script = ExtResource("1_eswx7")
@@ -177,6 +188,15 @@ shape = SubResource("RectangleShape2D_eswx7")
 sprite_frames = SubResource("SpriteFrames_eglj5")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="EnemySFX" type="AudioStreamPlayer" parent="." unique_id=942314222]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=974580451]
+emitting = false
+amount = 60
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_eswx7")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

@@ -3202,9 +3202,23 @@ position = Vector2(129, -317)
 [node name="PlaceHolder89" parent="ObstacleLayer/PlaceHolder" unique_id=1772327313 instance=ExtResource("14_jaj74")]
 position = Vector2(96, -348)
 
-[node name="BatEnemy" parent="ObstacleLayer" unique_id=1412562188 instance=ExtResource("19_cxqrt")]
-position = Vector2(-1, -171)
+[node name="BatEnemy4" parent="ObstacleLayer" unique_id=1826525882 instance=ExtResource("19_cxqrt")]
+position = Vector2(-363, -169)
 starting_point = Vector2(-1, -171)
+is_holding_key = true
+
+[node name="BatEnemy3" parent="ObstacleLayer" unique_id=1825351096 instance=ExtResource("19_cxqrt")]
+position = Vector2(-317, -21)
+starting_point = Vector2(-1, -171)
+
+[node name="BatEnemy2" parent="ObstacleLayer" unique_id=1795263494 instance=ExtResource("19_cxqrt")]
+position = Vector2(-163, -172)
+starting_point = Vector2(-1, -171)
+
+[node name="BatEnemy" parent="ObstacleLayer" unique_id=1412562188 instance=ExtResource("19_cxqrt")]
+position = Vector2(5, -160)
+starting_point = Vector2(-1, -171)
+HP = 3
 
 [node name="Entrance toSwordCave1" parent="." unique_id=560253601 instance=ExtResource("5_oi8ly")]
 editor_description = "Entrance to The Cave where you Obtain the First Sword,"
@@ -3627,18 +3641,18 @@ position = Vector2(-1518, -244.28574)
 scale = Vector2(1, 0.2857143)
 
 [connection signal="block_in_area" from="RemoveBlockSecret" to="ObstacleLayer/OverworldSecretFloorTile" method="_on_remove_block_secret_block_in_area"]
-[connection signal="block_out_of_area" from="RemoveBlockSecret" to="ObstacleLayer/OverworldSecretFloorTile" method="_on_remove_block_secret_block_out_of_area"]
+[connection signal="block_out_of_area" from="RemoveBlockSecret" to="ObstacleLayer/OverworldSecretFloorTile" method="_on_remove_block_secret_block_out_of_area" flags=3]
 [connection signal="body_entered" from="RemoveBlockSecret" to="RemoveBlockSecret" method="_on_body_entered"]
 [connection signal="body_exited" from="RemoveBlockSecret" to="RemoveBlockSecret" method="_on_body_exited"]
 [connection signal="block_in_area" from="RemoveBlockSecret/RemoveBlockSecret2" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTileForest" method="_on_remove_block_secret_block_in_area"]
-[connection signal="block_out_of_area" from="RemoveBlockSecret/RemoveBlockSecret2" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTileForest" method="_on_remove_block_secret_block_out_of_area"]
+[connection signal="block_out_of_area" from="RemoveBlockSecret/RemoveBlockSecret2" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTileForest" method="_on_remove_block_secret_block_out_of_area" flags=3]
 [connection signal="body_entered" from="RemoveBlockSecret/RemoveBlockSecret2" to="RemoveBlockSecret/RemoveBlockSecret2" method="_on_body_entered"]
 [connection signal="body_exited" from="RemoveBlockSecret/RemoveBlockSecret2" to="RemoveBlockSecret/RemoveBlockSecret2" method="_on_body_exited"]
 [connection signal="block_in_area" from="RemoveBlockSecret/RemoveBlockSecret" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTileMountain" method="_on_remove_block_secret_block_in_area"]
-[connection signal="block_out_of_area" from="RemoveBlockSecret/RemoveBlockSecret" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTileMountain" method="_on_remove_block_secret_block_out_of_area"]
+[connection signal="block_out_of_area" from="RemoveBlockSecret/RemoveBlockSecret" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTileMountain" method="_on_remove_block_secret_block_out_of_area" flags=3]
 [connection signal="body_entered" from="RemoveBlockSecret/RemoveBlockSecret" to="RemoveBlockSecret/RemoveBlockSecret" method="_on_body_entered"]
 [connection signal="body_exited" from="RemoveBlockSecret/RemoveBlockSecret" to="RemoveBlockSecret/RemoveBlockSecret" method="_on_body_exited"]
 [connection signal="block_in_area" from="RemoveBlockSecret/RemoveBlockSecret3" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTile2" method="_on_remove_block_secret_block_in_area"]
-[connection signal="block_out_of_area" from="RemoveBlockSecret/RemoveBlockSecret3" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTile2" method="_on_remove_block_secret_block_out_of_area"]
+[connection signal="block_out_of_area" from="RemoveBlockSecret/RemoveBlockSecret3" to="ObstacleLayer/OverworldSecretFloorTile/OverworldSecretFloorTile2" method="_on_remove_block_secret_block_out_of_area" flags=3]
 [connection signal="body_entered" from="RemoveBlockSecret/RemoveBlockSecret3" to="RemoveBlockSecret/RemoveBlockSecret3" method="_on_body_entered"]
 [connection signal="body_exited" from="RemoveBlockSecret/RemoveBlockSecret3" to="RemoveBlockSecret/RemoveBlockSecret3" method="_on_body_exited"]

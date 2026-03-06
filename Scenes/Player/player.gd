@@ -3,14 +3,25 @@ class_name Player
 
 @export var move_speed: float = 100
 @export var push_strength: float = 140
+@export var acceleration: float = 5
 var current_hp: int
 var is_attacking: bool = false
+
+var knockback_str: float = 150
 
 signal health_changed(new_health)
 signal health_gained(new_health)
 signal new_life_container()
 
 var hearts_list: Array = []
+
+var hurt_sfx = preload("res://Ninja Adventure - Asset Pack/Audio/Sounds/Hit & Impact/Hit9.wav")
+var death_sfx = preload("res://Ninja Adventure - Asset Pack/Audio/Sounds/Elemental/Explosion5.wav")
+var sword_sfx = preload("res://Ninja Adventure - Asset Pack/Audio/Sounds/Whoosh & Slash/Slash3.wav")
+var push_sfx = preload("res://Ninja Adventure - Asset Pack/Audio/Sounds/Hit & Impact/Impact3.wav")
+
+var can_interact: bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,7 +45,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
+	if SceneManager.player_hp <= 0:
+		return
 	
 	if not is_attacking:
 		move_player()
@@ -43,7 +56,7 @@ func _physics_process(delta):
 	update_wallet()
 	update_keys()
 	
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and not can_interact:
 		attack()
 	
 	move_and_slide()
@@ -55,8 +68,8 @@ func _physics_process(delta):
 func move_player():
 	var move_vector: Vector2 = Input.get_vector("move_left","move_right", "move_up", "move_down")
 	
+	velocity = velocity.move_toward(move_vector * move_speed, acceleration)
 	
-	velocity = move_vector * move_speed
 	
 	if velocity.x > 0:
 		$PlayerSprite.play("move_right")
@@ -84,6 +97,11 @@ func push_blocks():
 	if collision:
 		var collider_node = collision.get_collider()
 		if collider_node.is_in_group("pushable"):
+			if !$PlayerSFX.playing:
+				$PlayerSFX.stream = push_sfx
+				$PlayerSFX.volume_db = -3.0
+				$PlayerSFX.pitch_scale = 0.7
+				$PlayerSFX.playing = true
 			var collision_normal: Vector2 = collision.get_normal()
 			
 			collider_node.apply_central_force(-collision_normal * push_strength)
@@ -99,12 +117,14 @@ func update_keys():
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("interactable"):
+		can_interact = true
 		body.can_interact = true
 
 
 
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("interactable"):
+		can_interact = false
 		body.can_interact = false
 
 
@@ -120,7 +140,25 @@ func update_equipment_for_x_key():
 func _on_hitbox_area_2d_body_entered(body):
 	if body.is_in_group("Hostiles"):
 		if SceneManager.player_hp > 0:
-			take_damage(1)
+			$PlayerSFX.stream = hurt_sfx
+			$PlayerSFX.playing = true
+			take_damage(body.Atk_Dmg)
+	
+	var distance_to_player: Vector2 = global_position - body.global_position
+	var knockback_dir: Vector2 = distance_to_player.normalized()
+	
+	var enemy_knockback_str: float = body.knockback_str
+	velocity += knockback_dir * enemy_knockback_str
+	
+	var dmg_flash: Color = Color(1, .1, .1)
+	modulate = dmg_flash
+	
+	await get_tree().create_timer(0.2).timeout
+	
+	var og_color: Color = Color(1, 1, 1)
+	modulate = og_color
+
+
 
 func take_damage(amount: int):
 	if SceneManager.player_hp - amount <= 0:
@@ -131,6 +169,7 @@ func take_damage(amount: int):
 		SceneManager.player_hp = clamp(SceneManager.player_hp - amount, 0, SceneManager.player_max_hp)
 		health_changed.emit(SceneManager.player_hp)
 		print(SceneManager.player_hp)
+		
 
 
 func heal_damage(amount: int):
@@ -142,11 +181,17 @@ func heal_damage(amount: int):
 		health_gained.emit(SceneManager.player_hp)
 
 func die():
-	
+	if $DeathTimer.is_stopped():
+		$DeathTimer.start()
+		
+	$PlayerSprite.play("dead")
+	$PlayerSFX.stream = death_sfx
+	$PlayerSFX.playing = true
+
+
+func _on_death_timer_timeout():
 	SceneManager.player_hp = SceneManager.player_max_hp
 	get_tree().call_deferred("reload_current_scene")
-	
-
 
 func _on_interaction_area_2d_area_entered(area):
 	if area is Health_Drop:
@@ -168,7 +213,14 @@ func obtained_new_heart_jewel():
 	
 
 func attack():
+	if not $AttackDuration.is_stopped():
+		return
+	
 	$AttackDuration.start()
+	$PlayerSFX.stream = sword_sfx
+	$PlayerSFX.volume_db = -2.0
+	$PlayerSFX.pitch_scale = 0.8
+	$PlayerSFX.playing = true
 	$Sword.visible = true
 	%SwordArea2D.monitoring = true
 	is_attacking = true
@@ -191,7 +243,12 @@ func attack():
 			$AnimationPlayer.play("attack_up")
 
 func _on_sword_area_2d_body_entered(body):
-	body.queue_free()
+	var distance_to_enemy: Vector2 = body.global_position - global_position
+	var knockback_dir: Vector2 = distance_to_enemy.normalized()
+	
+	body.velocity += knockback_dir * knockback_str
+	
+	body.take_damage(SceneManager.player_damage)
 
 
 func _on_attack_duration_timeout():
