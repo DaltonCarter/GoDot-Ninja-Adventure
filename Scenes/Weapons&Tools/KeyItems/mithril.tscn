@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://o5whqw365f7e"]
+
+[ext_resource type="Texture2D" uid="uid://dpo0lbchei4kb" path="res://Ninja Adventure - Asset Pack/Items/Resource/BarMithril.png" id="1_eyjbw"]
+
+[node name="Mithril" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_eyjbw")

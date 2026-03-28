@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://i7k5wg2k4sge"]
+
+[ext_resource type="Texture2D" uid="uid://c2f387q4dho7a" path="res://Ninja Adventure - Asset Pack/Items/Resource/GemRed.png" id="1_cmtl7"]
+
+[node name="PowerGem" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_cmtl7")

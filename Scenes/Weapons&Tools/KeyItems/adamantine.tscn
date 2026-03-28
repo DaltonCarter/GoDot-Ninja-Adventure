@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://2e0d1lq8bvyi"]
+
+[ext_resource type="Texture2D" uid="uid://cdcdixyyowktl" path="res://Ninja Adventure - Asset Pack/Items/Resource/BarPurple.png" id="1_km74h"]
+
+[node name="Adamantine" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_km74h")

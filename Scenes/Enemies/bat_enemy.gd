@@ -78,7 +78,7 @@ func _on_detection_area_2d_body_exited(body):
 	
 
 func take_damage(dmg: int):
-	HP -= 1
+	HP -= dmg
 	
 	$EnemySFX.stream = hurt_sfx
 	$EnemySFX.pitch_scale = 1.0
@@ -116,13 +116,19 @@ func get_drops():
 				get_tree().current_scene.call_deferred("add_child", xal_drop_2)
 				xal_drop_2.global_position = global_position
 			"bombs":
-				var bomb_drop = SceneManager.BombDrop.instantiate()
-				get_tree().current_scene.call_deferred("add_child", bomb_drop)
-				bomb_drop.global_position = global_position
+				if EquipmentManager.obtained_equipment.has("BombBag"):
+					var bomb_drop = SceneManager.BombDrop.instantiate()
+					get_tree().current_scene.call_deferred("add_child", bomb_drop)
+					bomb_drop.global_position = global_position
+				else:
+					pass
 			"arrows":
-				var arrow_drop = SceneManager.ArrowDrop.instantiate()
-				get_tree().current_scene.call_deferred("add_child", arrow_drop)
-				arrow_drop.global_position = global_position
+				if EquipmentManager.obtained_equipment.has("Bow"):
+					var arrow_drop = SceneManager.ArrowDrop.instantiate()
+					get_tree().current_scene.call_deferred("add_child", arrow_drop)
+					arrow_drop.global_position = global_position
+				else:
+					pass
 			"nothing":
 				pass
 	else:

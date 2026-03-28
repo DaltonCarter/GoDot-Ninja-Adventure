@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cyfo4x2k7lfgr"]
+
+[ext_resource type="Texture2D" uid="uid://ba4ybi8t8jm8y" path="res://Ninja Adventure - Asset Pack/Items/Potion/WaterPot.png" id="1_v60yn"]
+
+[node name="WaterRelic" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_v60yn")

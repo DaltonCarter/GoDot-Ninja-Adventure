@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://baqpf2s3mct2k"]
+
+[ext_resource type="Texture2D" uid="uid://diejiqmlf1wax" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Bow/Sprite.png" id="1_w3y3t"]
+[ext_resource type="Texture2D" uid="uid://b1b06xe33h35x" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Bow/Arrow.png" id="2_rj2r8"]
+[ext_resource type="Texture2D" uid="uid://kg27bph3ny0q" path="res://Ninja Adventure - Asset Pack/Items/Projectile/MagicArrow.png" id="3_rj2r8"]
+
+[node name="Bow" type="TextureRect" unique_id=456855301]
+offset_top = 95.35288
+offset_right = 94.35288
+offset_bottom = 160.35287
+rotation = -1.5707964
+texture = ExtResource("1_w3y3t")
+
+[node name="Arrow" type="TextureRect" parent="." unique_id=1891195053]
+visible = false
+layout_mode = 0
+offset_left = -1.4502869
+offset_top = 66.0
+offset_right = 94.375916
+offset_bottom = 106.0
+texture = ExtResource("2_rj2r8")
+
+[node name="BlessedArrow" type="TextureRect" parent="." unique_id=469328827]
+visible = false
+layout_mode = 0
+offset_left = 38.579514
+offset_top = 26.747658
+offset_right = 119.07464
+offset_bottom = 103.859406
+rotation = 0.7853982
+texture = ExtResource("3_rj2r8")

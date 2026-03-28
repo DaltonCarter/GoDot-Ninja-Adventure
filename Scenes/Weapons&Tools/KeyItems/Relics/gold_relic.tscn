@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://kxvd0pd1d58c"]
+
+[ext_resource type="Texture2D" uid="uid://b6pduq5thd2b6" path="res://Ninja Adventure - Asset Pack/Items/Treasure/GoldCoin.png" id="1_8dpm3"]
+
+[node name="GoldRelic" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_8dpm3")

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://wcv7wueqsre4"]
+
+[ext_resource type="Texture2D" uid="uid://ce0oondbxx0f4" path="res://Ninja Adventure - Asset Pack/Items/Weapons/WoodenKatana/Sprite.png" id="1_tbf4d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06tpx"]
+size = Vector2(10, 16)
+
+[node name="Sword" type="Sprite2D" unique_id=1031659507]
+visible = false
+texture = ExtResource("1_tbf4d")
+offset = Vector2(0, -5)
+flip_h = true
+flip_v = true
+
+[node name="SwordArea2D" type="Area2D" parent="." unique_id=167098763]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 16
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea2D" unique_id=749254755]
+position = Vector2(-0.024836704, -6.020747)
+shape = SubResource("RectangleShape2D_06tpx")

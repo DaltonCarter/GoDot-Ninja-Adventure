@@ -1,0 +1,277 @@
+[gd_scene format=3 uid="uid://dqi8edsv0pqhb"]
+
+[ext_resource type="Script" uid="uid://bmc10he7xy24q" path="res://Scenes/Menu/gui.gd" id="1_2iksi"]
+[ext_resource type="Texture2D" uid="uid://00ay4s55f1mf" path="res://Ninja Adventure - Asset Pack/Ui/Theme/Wip/ThemeMetal/nine_path_panel.png" id="2_e5vwe"]
+[ext_resource type="Texture2D" uid="uid://ce0oondbxx0f4" path="res://Ninja Adventure - Asset Pack/Items/Weapons/WoodenKatana/Sprite.png" id="3_cxv77"]
+[ext_resource type="AudioStream" uid="uid://cummstmk7d2os" path="res://Ninja Adventure - Asset Pack/Audio/Sounds/Whoosh & Slash/Whoosh2.wav" id="4_1jovf"]
+
+[sub_resource type="Animation" id="Animation_10tw0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -648)]
+}
+
+[sub_resource type="Animation" id="Animation_2mddg"]
+resource_name = "menu_close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -648)]
+}
+
+[sub_resource type="Animation" id="Animation_aa73e"]
+resource_name = "menu_open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Menu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -648), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dcmbn"]
+_data = {
+&"RESET": SubResource("Animation_10tw0"),
+&"menu_close": SubResource("Animation_2mddg"),
+&"menu_open": SubResource("Animation_aa73e")
+}
+
+[node name="GUI" type="Control" unique_id=722580220]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2iksi")
+
+[node name="Menu" type="ColorRect" parent="." unique_id=2076801371]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -648.0
+offset_right = 2.0
+offset_bottom = -749.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu" unique_id=459790418]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 547.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Menu/MarginContainer" unique_id=1691636176]
+layout_mode = 2
+texture = ExtResource("2_e5vwe")
+draw_center = false
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer/NinePatchRect" unique_id=637578441]
+layout_mode = 0
+offset_right = 1122.0
+offset_bottom = 517.0
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/MarginContainer/NinePatchRect/MarginContainer" unique_id=1400648182]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer" unique_id=443314055]
+layout_mode = 2
+
+[node name="Inventory" type="Label" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=329155563]
+layout_mode = 2
+text = "INVENTORY
+"
+horizontal_alignment = 1
+
+[node name="KeyItems" type="Label" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=698554004]
+layout_mode = 2
+text = "KEY ITEMS"
+horizontal_alignment = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1939722868]
+clip_contents = true
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+texture = ExtResource("2_e5vwe")
+draw_center = false
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect2" unique_id=1808706861]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 20.0
+offset_right = 180.0
+offset_bottom = 76.0
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect2/HBoxContainer" unique_id=1238152328]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect2" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect2/HBoxContainer" unique_id=842946929]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect3" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect2/HBoxContainer" unique_id=23335088]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect4" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect2/HBoxContainer" unique_id=1249837430]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect5" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect2/HBoxContainer" unique_id=1385094776]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect6" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/NinePatchRect2/HBoxContainer" unique_id=432690730]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="WeaponsTools" type="Label" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=253085402]
+layout_mode = 2
+text = "WEAPONS AND TOOLS"
+horizontal_alignment = 1
+
+[node name="Equipment" type="MarginContainer" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1648941559]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment" unique_id=8185853]
+clip_contents = true
+custom_minimum_size = Vector2(225, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_e5vwe")
+draw_center = false
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2" unique_id=1640093632]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 15
+
+[node name="GridContainer" type="GridContainer" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer" unique_id=399681376]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 16
+columns = 5
+
+[node name="TextureRect" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1170679018]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect2" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1756770181]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect3" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1404447744]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect4" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=756796699]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect5" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1320802200]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect6" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1459572926]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect7" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1759125770]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect8" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1886499155]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect9" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1410902561]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="TextureRect10" type="TextureRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment/NinePatchRect2/MarginContainer/GridContainer" unique_id=1258353155]
+custom_minimum_size = Vector2(24, 56)
+layout_mode = 2
+texture = ExtResource("3_cxv77")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer" unique_id=1834068360]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1381806975]
+libraries/ = SubResource("AnimationLibrary_dcmbn")
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1971423855]
+stream = ExtResource("4_1jovf")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://slja36n5quwe"]
+
+[ext_resource type="Texture2D" uid="uid://dn158aa5a5h17" path="res://Ninja Adventure - Asset Pack/Items/Potion/BluePotion.png" id="1_de5jx"]
+
+[node name="BluePotion" type="TextureRect" unique_id=1150656546]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_de5jx")

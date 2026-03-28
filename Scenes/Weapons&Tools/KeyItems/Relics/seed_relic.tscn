@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b4gy8n8roi3rg"]
+
+[ext_resource type="Texture2D" uid="uid://c76e4unclt4cm" path="res://Ninja Adventure - Asset Pack/Items/Food/SeedLargeWhite.png" id="1_317v3"]
+
+[node name="SeedRelic" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_317v3")

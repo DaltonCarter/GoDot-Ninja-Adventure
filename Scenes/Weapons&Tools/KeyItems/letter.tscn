@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dvvh8c7whyejw"]
+
+[ext_resource type="Texture2D" uid="uid://bugne1kox6ky8" path="res://Ninja Adventure - Asset Pack/Items/Other/Letter.png" id="1_76sw4"]
+
+[node name="Letter" type="TextureRect" unique_id=1311344460]
+offset_right = 59.0
+offset_bottom = 40.0
+texture = ExtResource("1_76sw4")

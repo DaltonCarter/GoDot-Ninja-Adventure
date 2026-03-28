@@ -3203,22 +3203,36 @@ position = Vector2(129, -317)
 position = Vector2(96, -348)
 
 [node name="BatEnemy4" parent="ObstacleLayer" unique_id=1826525882 instance=ExtResource("19_cxqrt")]
-position = Vector2(-363, -169)
+position = Vector2(63, -215)
 starting_point = Vector2(-1, -171)
-is_holding_key = true
 
 [node name="BatEnemy3" parent="ObstacleLayer" unique_id=1825351096 instance=ExtResource("19_cxqrt")]
-position = Vector2(-317, -21)
+position = Vector2(81, -129)
 starting_point = Vector2(-1, -171)
 
 [node name="BatEnemy2" parent="ObstacleLayer" unique_id=1795263494 instance=ExtResource("19_cxqrt")]
-position = Vector2(-163, -172)
+position = Vector2(-97, -216)
 starting_point = Vector2(-1, -171)
 
 [node name="BatEnemy" parent="ObstacleLayer" unique_id=1412562188 instance=ExtResource("19_cxqrt")]
 position = Vector2(5, -160)
 starting_point = Vector2(-1, -171)
-HP = 3
+
+[node name="BatEnemy5" parent="ObstacleLayer" unique_id=1135013153 instance=ExtResource("19_cxqrt")]
+position = Vector2(-256, -132)
+starting_point = Vector2(-1, -171)
+
+[node name="BatEnemy6" parent="ObstacleLayer" unique_id=1552581740 instance=ExtResource("19_cxqrt")]
+position = Vector2(-256, -210)
+starting_point = Vector2(-1, -171)
+
+[node name="BatEnemy7" parent="ObstacleLayer" unique_id=1823495635 instance=ExtResource("19_cxqrt")]
+position = Vector2(-353, -209)
+starting_point = Vector2(-1, -171)
+
+[node name="BatEnemy8" parent="ObstacleLayer" unique_id=1325874676 instance=ExtResource("19_cxqrt")]
+position = Vector2(-366, -139)
+starting_point = Vector2(-1, -171)
 
 [node name="Entrance toSwordCave1" parent="." unique_id=560253601 instance=ExtResource("5_oi8ly")]
 editor_description = "Entrance to The Cave where you Obtain the First Sword,"

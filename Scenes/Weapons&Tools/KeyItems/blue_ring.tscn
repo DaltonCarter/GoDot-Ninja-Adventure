@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dlce363cs4jeh"]
+
+[ext_resource type="Texture2D" uid="uid://dvs4x2hc1737h" path="res://Ninja Adventure - Asset Pack/Items/Other/BlueRing.png" id="1_id4f4"]
+
+[node name="BlueRing" type="TextureRect" unique_id=1311344460]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_id4f4")

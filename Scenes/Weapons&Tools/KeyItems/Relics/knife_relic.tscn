@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://v7amdu6ing6u"]
+
+[ext_resource type="Texture2D" uid="uid://d23sd5py1b1il" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Sword/Sprite.png" id="1_vlops"]
+
+[node name="KnifeRelic" type="TextureRect" unique_id=1311344460]
+offset_right = 35.0
+offset_bottom = 60.0
+texture = ExtResource("1_vlops")

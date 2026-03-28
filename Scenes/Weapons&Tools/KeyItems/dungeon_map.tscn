@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cc5qflrmwg0du"]
+
+[ext_resource type="Texture2D" uid="uid://eceqyvpq6wgc" path="res://Ninja Adventure - Asset Pack/Items/Other/Map.png" id="1_rwdwv"]
+
+[node name="DungeonMap" type="TextureRect" unique_id=1311344460]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_rwdwv")

@@ -11,8 +11,10 @@ func _on_area_2d_body_entered(body):
 		$Timer.start()
 		$Sprite2D.visible = false
 		$AudioStreamPlayer.playing = true
-		SceneManager.bombs += 3
-		print(SceneManager.bombs)
+		if SceneManager.bombs + 3 >= SceneManager.max_bombs:
+			SceneManager.bombs = SceneManager.max_bombs
+		else:
+			SceneManager.bombs += 3
 		
 
 

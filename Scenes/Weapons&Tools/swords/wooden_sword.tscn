@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://baeopxbjbf7jj"]
+
+[ext_resource type="Texture2D" uid="uid://ce0oondbxx0f4" path="res://Ninja Adventure - Asset Pack/Items/Weapons/WoodenKatana/Sprite.png" id="1_m51xe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_satjg"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="WoodenSword" type="TextureRect" unique_id=652735535]
+offset_right = 38.0
+offset_bottom = 65.0
+texture = ExtResource("1_m51xe")
+
+[node name="Label" type="Label" parent="." unique_id=694185160]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 25.0
+offset_right = 70.0
+offset_bottom = 53.0
+text = "L-1"
+label_settings = SubResource("LabelSettings_satjg")

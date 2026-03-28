@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c24w11w1svwgx"]
+
+[ext_resource type="Texture2D" uid="uid://bscnfr0lglep1" path="res://Ninja Adventure - Asset Pack/Items/Tool/Lantern.png" id="1_bvfw3"]
+
+[node name="Lantern" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_bvfw3")

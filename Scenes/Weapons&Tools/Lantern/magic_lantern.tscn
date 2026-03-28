@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cri8h5cyv7ba2"]
+
+[ext_resource type="Texture2D" uid="uid://ddfkelygrayx0" path="res://Ninja Adventure - Asset Pack/Items/Tool/MagicLantern.png" id="1_f6v7v"]
+
+[node name="MagicLantern" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_f6v7v")

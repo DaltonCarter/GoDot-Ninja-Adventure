@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://x4nwcwpk8bv4"]
+
+[ext_resource type="Texture2D" uid="uid://drkon018vdbbo" path="res://Ninja Adventure - Asset Pack/Items/Other/Compass.png" id="1_mtay8"]
+
+[node name="Compass" type="TextureRect" unique_id=1311344460]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_mtay8")

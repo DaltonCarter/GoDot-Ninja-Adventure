@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b3k11j7w5tbax"]
+
+[ext_resource type="Texture2D" uid="uid://cvyqqy6fl6iku" path="res://Ninja Adventure - Asset Pack/Items/Resource/feather.png" id="1_wuw85"]
+
+[node name="GarudaPinion" type="TextureRect" unique_id=1950651394]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_wuw85")

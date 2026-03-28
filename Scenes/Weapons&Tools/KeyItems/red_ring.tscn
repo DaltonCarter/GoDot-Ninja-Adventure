@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cq0p686uc3ykl"]
+
+[ext_resource type="Texture2D" uid="uid://bu3nh4j85gcap" path="res://Ninja Adventure - Asset Pack/Items/Other/RedRing.png" id="1_o5qs4"]
+
+[node name="RedRing" type="TextureRect" unique_id=1311344460]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_o5qs4")

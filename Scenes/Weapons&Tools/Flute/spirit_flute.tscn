@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dpdxcdevbnfj1"]
+
+[ext_resource type="Texture2D" uid="uid://hvpuryc0lawp" path="res://Ninja Adventure - Asset Pack/Items/Object/PanFlute.png" id="1_6toe5"]
+
+[node name="SpiritFlute" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_6toe5")

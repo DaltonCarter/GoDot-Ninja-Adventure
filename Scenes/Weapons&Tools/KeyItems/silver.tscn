@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://btuwik7nbld8j"]
+
+[ext_resource type="Texture2D" uid="uid://2rxlp7uihfgr" path="res://Ninja Adventure - Asset Pack/Items/Resource/BarSilver.png" id="1_esm2r"]
+
+[node name="Silver" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_esm2r")

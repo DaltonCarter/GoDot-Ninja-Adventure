@@ -11,8 +11,10 @@ func _on_area_2d_body_entered(body):
 		$Timer.start()
 		$Sprite2D.visible = false
 		$AudioStreamPlayer.playing = true
-		SceneManager.arrows += 5
-		print(SceneManager.arrows)
+		if SceneManager.arrows + 5 >= SceneManager.max_arrows:
+			SceneManager.arrows = SceneManager.max_arrows
+		else:
+			SceneManager.arrows += 5
 		
 
 

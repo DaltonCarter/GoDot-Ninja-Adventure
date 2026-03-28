@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bxcebyoi8eaep"]
+
+[ext_resource type="Texture2D" uid="uid://bfwmq4ikic6t1" path="res://Ninja Adventure - Asset Pack/Items/Object/Hourglass.png" id="1_75hun"]
+
+[node name="HourglassRelic" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_75hun")

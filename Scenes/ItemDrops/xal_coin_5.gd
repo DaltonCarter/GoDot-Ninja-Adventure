@@ -13,7 +13,10 @@ func _on_area_2d_body_entered(body):
 		$Timer.start()
 		$AnimatedSprite2D.visible = false
 		$AudioStreamPlayer.playing = true
-		SceneManager.wallet += 5
+		if SceneManager.wallet + 5 >= SceneManager.max_wallet:
+			SceneManager.wallet = SceneManager.max_wallet
+		else:
+			SceneManager.wallet += 5
 		
 
 

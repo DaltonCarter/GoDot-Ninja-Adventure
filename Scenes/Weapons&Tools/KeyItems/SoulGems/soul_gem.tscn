@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://wvuoalf7vd17"]
+
+[ext_resource type="Texture2D" uid="uid://omyvcsqtdmal" path="res://Ninja Adventure - Asset Pack/Items/Resource/GemGreen.png" id="1_pqxqk"]
+
+[node name="SoulGem" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_pqxqk")

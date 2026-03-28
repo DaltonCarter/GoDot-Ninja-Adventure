@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b1d7n4f0tfuhx"]
+
+[ext_resource type="Texture2D" uid="uid://kk0t6atscqf5" path="res://Ninja Adventure - Asset Pack/Items/Treasure/GoldKey.png" id="1_cl6mn"]
+
+[node name="SkeletonKey" type="TextureRect" unique_id=1311344460]
+offset_left = 40.0
+offset_right = 99.0
+offset_bottom = 40.0
+rotation = 1.5707964
+texture = ExtResource("1_cl6mn")

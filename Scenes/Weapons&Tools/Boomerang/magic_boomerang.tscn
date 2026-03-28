@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bniw2e3sgx1kv"]
+
+[ext_resource type="Texture2D" uid="uid://cgwrhqxcoerwg" path="res://Ninja Adventure - Asset Pack/Items/Projectile/MagicBoomerang.png" id="1_cykuq"]
+
+[node name="MagicBoomerang" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_cykuq")

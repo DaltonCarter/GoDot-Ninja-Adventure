@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dv8gme50gyedu"]
+
+[ext_resource type="Texture2D" uid="uid://qcxiuey7wdp0" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Katana/Sprite.png" id="1_60vee"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cpmu6"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Sword" type="TextureRect" unique_id=456855301]
+offset_right = 38.0
+offset_bottom = 65.0
+texture = ExtResource("1_60vee")
+
+[node name="Label" type="Label" parent="." unique_id=1882191661]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 25.0
+offset_right = 70.0
+offset_bottom = 53.0
+text = "L-2"
+label_settings = SubResource("LabelSettings_cpmu6")

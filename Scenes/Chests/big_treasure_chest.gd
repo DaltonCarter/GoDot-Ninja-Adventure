@@ -70,3 +70,6 @@ func give_contents_to_player():
 			print("you found the boomerang!")
 		"mboomerang":
 			print("you found the magic boomerang!")
+		"woodensword":
+			EquipmentManager.obtained_equipment.append("WoodenSword")
+			EquipmentManager.currently_equipped_to_X = "WoodenSword"

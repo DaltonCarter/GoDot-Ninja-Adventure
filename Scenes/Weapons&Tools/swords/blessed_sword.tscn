@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cmi4bya4qse0r"]
+
+[ext_resource type="Texture2D" uid="uid://byftwjemrbm5s" path="res://Ninja Adventure - Asset Pack/Items/Weapons/LegendaryKatana/Sprite.png" id="1_y8ooe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cpmu6"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="BlessedSword" type="TextureRect" unique_id=456855301]
+offset_right = 38.0
+offset_bottom = 65.0
+texture = ExtResource("1_y8ooe")
+
+[node name="Label" type="Label" parent="." unique_id=1882191661]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 25.0
+offset_right = 70.0
+offset_bottom = 53.0
+text = "L-5"
+label_settings = SubResource("LabelSettings_cpmu6")

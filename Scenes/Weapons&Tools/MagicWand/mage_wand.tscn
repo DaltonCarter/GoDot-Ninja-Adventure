@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://35ux5rvhslqn"]
+
+[ext_resource type="Texture2D" uid="uid://ciqvwe427g0ao" path="res://Ninja Adventure - Asset Pack/Items/Weapons/MagicWand/Sprite2.png" id="1_y7ubr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y7ubr"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="MageWand" type="TextureRect" unique_id=1311344460]
+offset_right = 30.0
+offset_bottom = 60.0
+texture = ExtResource("1_y7ubr")
+
+[node name="Label" type="Label" parent="." unique_id=1257313541]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 18.0
+offset_right = 62.0
+offset_bottom = 46.0
+text = "L-2"
+label_settings = SubResource("LabelSettings_y7ubr")

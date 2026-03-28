@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bfx3c7kosq4i2"]
+
+[ext_resource type="Texture2D" uid="uid://cs40700yy0rxm" path="res://Ninja Adventure - Asset Pack/Items/Resource/BarGold.png" id="1_nbeaq"]
+
+[node name="Gold" type="TextureRect" unique_id=1311344460]
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_nbeaq")

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cfw0jw7f0u4xq"]
+
+[ext_resource type="Texture2D" uid="uid://wrfl5qjfolgf" path="res://Ninja Adventure - Asset Pack/Items/Other/PowerRing.png" id="1_2vyqb"]
+
+[node name="PowerRing" type="TextureRect" unique_id=1311344460]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_2vyqb")

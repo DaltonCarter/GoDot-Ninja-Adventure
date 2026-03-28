@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+
 @export var move_speed: float = 100
 @export var push_strength: float = 140
 @export var acceleration: float = 5
@@ -28,11 +29,15 @@ func _ready():
 
 	update_wallet()
 	update_keys()
-	#update_hp_bar()
+	update_bombs()
+	update_arrows()
+	
+	update_equipment_for_x_key()
+	update_equipment_for_z_key()
 	
 	if SceneManager.player_spawn_position != Vector2(0, 0):
 		position = SceneManager.player_spawn_position
-		
+	
 	if SceneManager.player_direction == Vector2(0, 1):
 		$PlayerSprite.set_animation("move_down")
 	elif SceneManager.player_direction == Vector2(0, -1):
@@ -55,9 +60,19 @@ func _physics_process(_delta):
 	push_blocks()
 	update_wallet()
 	update_keys()
+	update_bombs()
+	update_arrows()
+	
+	update_equipment_for_x_key()
+
+	update_equipment_for_z_key()
 	
 	if Input.is_action_just_pressed("interact") and not can_interact:
 		attack()
+	
+	if Input.is_action_just_pressed("action") and not can_interact:
+		action()
+	
 	
 	move_and_slide()
 	
@@ -114,6 +129,16 @@ func update_wallet():
 func update_keys():
 	var key_amount: int = SceneManager.keys
 	%keys.text = "x " + str(key_amount)
+	
+
+func update_bombs():
+	var bomb_amount: int = SceneManager.bombs
+	%Bombs.text = "x " + str(bomb_amount)
+
+func update_arrows():
+	var arrow_amount: int = SceneManager.arrows
+	%Arrows.text = "x " + str(arrow_amount)
+
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("interactable"):
@@ -129,11 +154,20 @@ func _on_area_2d_body_exited(body):
 
 
 func update_equipment_for_z_key():
-	pass
+	match EquipmentManager.currently_equipped_to_Z:
+		"WoodenSword": 
+			%"Currently Equiped to X".equip_wooden_sword_to_Z()
+		"":
+			pass
 
 
 func update_equipment_for_x_key():
-	pass
+	if EquipmentManager.currently_equipped_to_X != "":
+		match EquipmentManager.currently_equipped_to_X:
+			"WoodenSword": 
+				%"Currently Equiped to X".equip_wooden_sword_to_X()
+			"":
+				pass
 
 
 
@@ -180,6 +214,7 @@ func heal_damage(amount: int):
 		SceneManager.player_hp = clamp(SceneManager.player_hp + amount, 4, SceneManager.player_max_hp)
 		health_gained.emit(SceneManager.player_hp)
 
+
 func die():
 	if $DeathTimer.is_stopped():
 		$DeathTimer.start()
@@ -193,6 +228,7 @@ func _on_death_timer_timeout():
 	SceneManager.player_hp = SceneManager.player_max_hp
 	get_tree().call_deferred("reload_current_scene")
 
+
 func _on_interaction_area_2d_area_entered(area):
 	if area is Health_Drop:
 		heal_damage(4)
@@ -203,44 +239,82 @@ func _on_interaction_area_2d_area_entered(area):
 		print(SceneManager.player_max_hp)
 		print(SceneManager.player_life_containers)
 
-		
 
 func obtained_new_heart_jewel():
 	SceneManager.player_life_containers += 1
 	SceneManager.player_max_hp = 4 * SceneManager.player_life_containers
 	new_life_container.emit()
 	heal_damage(80)
-	
+
 
 func attack():
-	if not $AttackDuration.is_stopped():
-		return
 	
-	$AttackDuration.start()
-	$PlayerSFX.stream = sword_sfx
-	$PlayerSFX.volume_db = -2.0
-	$PlayerSFX.pitch_scale = 0.8
-	$PlayerSFX.playing = true
-	$Sword.visible = true
-	%SwordArea2D.monitoring = true
-	is_attacking = true
-	velocity = Vector2(0, 0)
-	
-	var player_anim: String = $PlayerSprite.animation
-	
-	match player_anim:
-		"move_right":
-			$PlayerSprite.play("attack_right")
-			$AnimationPlayer.play("attack_right")
-		"move_left":
-			$PlayerSprite.play("attack_left")
-			$AnimationPlayer.play("attack_left")
-		"move_down":
-			$PlayerSprite.play("attack_down")
-			$AnimationPlayer.play("attack_down")
-		"move_up":
-			$PlayerSprite.play("attack_up")
-			$AnimationPlayer.play("attack_up")
+	if EquipmentManager.currently_equipped_to_X == "":
+		pass
+	else:
+		if not $AttackDuration.is_stopped():
+			return
+		
+		$AttackDuration.start()
+		$PlayerSFX.stream = sword_sfx
+		$PlayerSFX.volume_db = -2.0
+		$PlayerSFX.pitch_scale = 0.8
+		$PlayerSFX.playing = true
+		$Sword.visible = true
+		%SwordArea2D2.monitoring = true
+		is_attacking = true
+		velocity = Vector2(0, 0)
+		
+		var player_anim: String = $PlayerSprite.animation
+		
+		match player_anim:
+			"move_right":
+				$PlayerSprite.play("attack_right")
+				$AnimationPlayer.play("attack_right")
+			"move_left":
+				$PlayerSprite.play("attack_left")
+				$AnimationPlayer.play("attack_left")
+			"move_down":
+				$PlayerSprite.play("attack_down")
+				$AnimationPlayer.play("attack_down")
+			"move_up":
+				$PlayerSprite.play("attack_up")
+				$AnimationPlayer.play("attack_up")
+
+
+func action():
+	if EquipmentManager.currently_equipped_to_Z == "":
+		pass
+	else:
+		if not $AttackDuration.is_stopped():
+			return
+		
+		$AttackDuration.start()
+		$PlayerSFX.stream = sword_sfx
+		$PlayerSFX.volume_db = -2.0
+		$PlayerSFX.pitch_scale = 0.8
+		$PlayerSFX.playing = true
+		$Sword.visible = true
+		%SwordArea2D2.monitoring = true
+		is_attacking = true
+		velocity = Vector2(0, 0)
+		
+		var player_anim: String = $PlayerSprite.animation
+		
+		match player_anim:
+			"move_right":
+				$PlayerSprite.play("attack_right")
+				$AnimationPlayer.play("attack_right")
+			"move_left":
+				$PlayerSprite.play("attack_left")
+				$AnimationPlayer.play("attack_left")
+			"move_down":
+				$PlayerSprite.play("attack_down")
+				$AnimationPlayer.play("attack_down")
+			"move_up":
+				$PlayerSprite.play("attack_up")
+				$AnimationPlayer.play("attack_up")
+
 
 func _on_sword_area_2d_body_entered(body):
 	var distance_to_enemy: Vector2 = body.global_position - global_position
@@ -253,7 +327,7 @@ func _on_sword_area_2d_body_entered(body):
 
 func _on_attack_duration_timeout():
 	$Sword.visible = false
-	%SwordArea2D.monitoring = false
+	%SwordArea2D2.monitoring = false
 	is_attacking = false
 	
 	var player_anim: String = $PlayerSprite.animation
