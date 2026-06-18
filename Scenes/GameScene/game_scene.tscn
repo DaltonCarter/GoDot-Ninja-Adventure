@@ -3322,7 +3322,7 @@ player_direction = Vector2(0, -1)
 
 [node name="EntranceToCaveM2" parent="Entrance toSwordCave1" unique_id=1811004758 instance=ExtResource("5_oi8ly")]
 position = Vector2(1824, -368)
-next_scene = "res://Scenes/DungeonScene/CaveM/cave_m_2.tscn"
+next_scene = "res://Scenes/DungeonScene/CaveM/CaveM2.tscn"
 player_spawn_position = Vector2(0, 25)
 player_direction = Vector2(0, -1)
 

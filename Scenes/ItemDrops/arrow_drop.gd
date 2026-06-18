@@ -1,6 +1,6 @@
 extends Area2D
 
-func _process(delta):
+func _process(_delta):
 	await get_tree().create_timer(6.0).timeout
 	$AnimationPlayer.play("vanishing")
 	await get_tree().create_timer(2.0).timeout

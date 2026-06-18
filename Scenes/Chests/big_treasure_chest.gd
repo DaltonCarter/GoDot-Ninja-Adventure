@@ -11,7 +11,7 @@ func _ready():
 		is_open = true
 		$AnimatedSprite2D.set_animation("open")
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("interact") and can_interact:
 		if !is_open:
 			$SFX.playing = true
@@ -28,8 +28,7 @@ func open_chest():
 	SceneManager.opened_chests.append(chest_name)
 	get_tree().paused = true
 	
-	
-	
+
 
 
 func _on_timer_timeout():
@@ -43,33 +42,62 @@ func set_texture_2d():
 func give_contents_to_player():
 	match contents:
 		"bow":
-			print("you found a bow!")
+			EquipmentManager.obtained_equipment.append("Bow")
 		"wand":
-			print("you found a magic wand!")
+			EquipmentManager.obtained_equipment.append("MagicWand")
 		"map":
 			print("you found the dungeon map!")
 		"compass":
 			print("you found the dungeon compass!")
 		"pinion":
-			print("you found the garuda pinion!")
+			EquipmentManager.obtained_equipment.append("GarudaPinion")
+		"magiclantern":
+			EquipmentManager.obtained_equipment.erase("Lantern")
+			if EquipmentManager.currently_equipped_to_X == "Lantern":
+				EquipmentManager.currently_equipped_to_X = ""
+			elif EquipmentManager.currently_equipped_to_Z == "Lantern":
+				EquipmentManager.currently_equipped_to_Z = "" 
+			EquipmentManager.obtained_equipment.append("MagicLantern")
 		"lantern":
-			print("you found the magic lantern!")
+			EquipmentManager.obtained_equipment.append("Lantern")
 		"flute":
-			print("you found the spirit flute!")
-		"scroll":
-			print("you found the wizards scroll!")
+			EquipmentManager.obtained_equipment.append("SpiritFlute")
+		"wizard":
+			EquipmentManager.obtained_equipment.erase("MagicWand")
+			if EquipmentManager.currently_equipped_to_X == "MagicWand":
+				EquipmentManager.currently_equipped_to_X = ""
+			elif EquipmentManager.currently_equipped_to_Z == "MagicWand":
+				EquipmentManager.currently_equipped_to_Z = "" 
+			EquipmentManager.obtained_equipment.append("WizardWand")
 		"power":
-			print("you found the power ring!")
+			EquipmentManager.obtained_equipment.append("PowerRing")
 		"red":
-			print("you found the red ring!")
+			EquipmentManager.obtained_equipment.append("RedRing")
+			EquipmentManager.obtained_equipment.erase("BlueRing")
 		"skey":
-			print("you found the skeleton key!")
+			EquipmentManager.obtained_equipment.append("SkeletonKey")
 		"mkey":
-			print("you found the magic key!")
+			EquipmentManager.obtained_equipment.append("MasterKey")
+			EquipmentManager.obtained_equipment.erase("SkeletonKey")
 		"boomerang":
-			print("you found the boomerang!")
+			EquipmentManager.obtained_equipment.append("Boomerang")
 		"mboomerang":
-			print("you found the magic boomerang!")
+			EquipmentManager.obtained_equipment.erase("Boomerang")
+			if EquipmentManager.currently_equipped_to_X == "Boomerang":
+				EquipmentManager.currently_equipped_to_X = ""
+			elif EquipmentManager.currently_equipped_to_Z == "Boomerang":
+				EquipmentManager.currently_equipped_to_Z = "" 
+			EquipmentManager.obtained_equipment.append("MagicBoomerang")
+		"bombbag":
+			EquipmentManager.obtained_equipment.append("BombSatchel")
+		"meat":
+			EquipmentManager.obtained_equipment.append("Meat")
+		"redpotion":
+			EquipmentManager.obtained_equipment.append("RedPotion")
 		"woodensword":
 			EquipmentManager.obtained_equipment.append("WoodenSword")
 			EquipmentManager.currently_equipped_to_X = "WoodenSword"
+		"letter":
+			EquipmentManager.obtained_equipment.append("Letter")
+		"watershoes":
+			EquipmentManager.obtained_equipment.append("WaterShoes")

@@ -129,7 +129,6 @@ func update_wallet():
 func update_keys():
 	var key_amount: int = SceneManager.keys
 	%keys.text = "x " + str(key_amount)
-	
 
 func update_bombs():
 	var bomb_amount: int = SceneManager.bombs
@@ -139,37 +138,258 @@ func update_arrows():
 	var arrow_amount: int = SceneManager.arrows
 	%Arrows.text = "x " + str(arrow_amount)
 
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("interactable"):
 		can_interact = true
 		body.can_interact = true
-
-
 
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("interactable"):
 		can_interact = false
 		body.can_interact = false
 
-
-func update_equipment_for_z_key():
-	match EquipmentManager.currently_equipped_to_Z:
-		"WoodenSword": 
-			%"Currently Equiped to X".equip_wooden_sword_to_Z()
-		"":
-			pass
-
-
 func update_equipment_for_x_key():
 	if EquipmentManager.currently_equipped_to_X != "":
-		match EquipmentManager.currently_equipped_to_X:
-			"WoodenSword": 
+		%"Currently Equiped to X".remove_equip_from_X()
+		match_equipment_X()
+	else:
+		if %"Currently Equiped to X".get_child_count() == 0:
+			pass
+		else:
+			%"Currently Equiped to X".remove_equip_from_X()
+
+func update_equipment_for_z_key():
+	if EquipmentManager.currently_equipped_to_Z != "":
+		match_equipment_Z()
+	else:
+		if %"Currently Equipped to Z".get_child_count() == 0:
+			pass
+		else:
+			%"Currently Equipped to Z".remove_equip_from_Z()
+
+func match_equipment_X():
+	
+	match EquipmentManager.currently_equipped_to_X:
+		"WoodenSword": 
+			if %"Currently Equiped to X".get_child_count() == 0:
 				%"Currently Equiped to X".equip_wooden_sword_to_X()
-			"":
-				pass
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_wooden_sword_to_X()
+		"Sword":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_sword_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_sword_to_X()
+		"MagicSword":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_magic_sword_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_magic_sword_to_X()
+		"TemperedSword":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_tempered_sword_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_tempered_sword_to_X()
+		"BlessedSword":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_blessed_sword_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_blessed_sword_to_X()
+		"Bow":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_bow_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_bow_to_X()
+		"Boomerang":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_boomerang_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_boomerang_to_X()
+		"MagicBoomerang":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_magic_boomerang_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_magic_boomerang_to_X()
+		"Bombs":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_bombs_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_bombs_to_X()
+		"Lantern":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_lantern_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_lantern_to_X()
+		"MagicLantern":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_magic_lantern_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_magic_lantern_to_X()
+		"SpiritFlute":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_spirit_flute_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_spirit_flute_to_X()
+		"MagicWand":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_magic_wand_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_magic_wand_to_X()
+		"WizardWand":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_wizard_wand_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_wizard_wand_to_X()
+		"Meat":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_meat_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_meat_to_X()
+		"GarudaPinion":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_garuda_pinion_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_garuda_pinion_to_X()
+		"RedPotion":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_red_potion_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_red_potion_to_X()
+		"BluePotion":
+			if %"Currently Equiped to X".get_child_count() == 0:
+				%"Currently Equiped to X".equip_blue_potion_to_X()
+			else:
+				%"Currently Equiped to X".remove_equip_from_X()
+				%"Currently Equiped to X".equip_blue_potion_to_X()
 
-
+func match_equipment_Z():
+	
+	match EquipmentManager.currently_equipped_to_Z:
+		"WoodenSword": 
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_wooden_sword_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_wooden_sword_to_Z()
+		"Sword":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_sword_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_sword_to_Z()
+		"MagicSword":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_magic_sword_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_magic_sword_to_Z()
+		"TemperedSword":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_tempered_sword_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_tempered_sword_to_Z()
+		"BlessedSword":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_blessed_sword_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_blessed_sword_to_Z()
+		"Bow":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_bow_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_bow_to_Z()
+		"Boomerang":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_boomerang_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_boomerang_to_Z()
+		"MagicBoomerang":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_magic_boomerang_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_magic_boomerang_to_Z()
+		"Bombs":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_bombs_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_bombs_to_Z()
+		"Lantern":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_lantern_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_lantern_to_Z()
+		"MagicLantern":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_magic_lantern_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_magic_lantern_to_Z()
+		"SpiritFlute":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_spirit_flute_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_spirit_flute_to_Z()
+		"MagicWand":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_magic_wand_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_magic_wand_to_Z()
+		"WizardWand":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_wizard_wand_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_wizard_wand_to_Z()
+		"Meat":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_meat_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_meat_to_Z()
+		"GarudaPinion":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_garuda_pinion_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_garuda_pinion_to_Z()
+		"RedPotion":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_red_potion_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_red_potion_to_Z()
+		"BluePotion":
+			if %"Currently Equipped to Z".get_child_count() == 0:
+				%"Currently Equipped to Z".equip_blue_potion_to_Z()
+			else:
+				%"Currently Equipped to Z".remove_equip_from_Z()
+				%"Currently Equipped to Z".equip_blue_potion_to_Z()
 
 func _on_hitbox_area_2d_body_entered(body):
 	if body.is_in_group("Hostiles"):
@@ -192,8 +412,6 @@ func _on_hitbox_area_2d_body_entered(body):
 	var og_color: Color = Color(1, 1, 1)
 	modulate = og_color
 
-
-
 func take_damage(amount: int):
 	if SceneManager.player_hp - amount <= 0:
 		SceneManager.player_hp = clamp(SceneManager.player_hp - amount, 0, SceneManager.player_max_hp)
@@ -203,8 +421,6 @@ func take_damage(amount: int):
 		SceneManager.player_hp = clamp(SceneManager.player_hp - amount, 0, SceneManager.player_max_hp)
 		health_changed.emit(SceneManager.player_hp)
 		print(SceneManager.player_hp)
-		
-
 
 func heal_damage(amount: int):
 	if SceneManager.player_hp + amount > SceneManager.player_max_hp:
@@ -214,7 +430,6 @@ func heal_damage(amount: int):
 		SceneManager.player_hp = clamp(SceneManager.player_hp + amount, 4, SceneManager.player_max_hp)
 		health_gained.emit(SceneManager.player_hp)
 
-
 func die():
 	if $DeathTimer.is_stopped():
 		$DeathTimer.start()
@@ -223,11 +438,9 @@ func die():
 	$PlayerSFX.stream = death_sfx
 	$PlayerSFX.playing = true
 
-
 func _on_death_timer_timeout():
 	SceneManager.player_hp = SceneManager.player_max_hp
 	get_tree().call_deferred("reload_current_scene")
-
 
 func _on_interaction_area_2d_area_entered(area):
 	if area is Health_Drop:
@@ -239,19 +452,20 @@ func _on_interaction_area_2d_area_entered(area):
 		print(SceneManager.player_max_hp)
 		print(SceneManager.player_life_containers)
 
-
 func obtained_new_heart_jewel():
-	SceneManager.player_life_containers += 1
-	SceneManager.player_max_hp = 4 * SceneManager.player_life_containers
-	new_life_container.emit()
-	heal_damage(80)
-
+	if SceneManager.player_life_containers == 20:
+		heal_damage(80)
+	else:
+		SceneManager.player_life_containers += 1
+		SceneManager.player_max_hp = 4 * SceneManager.player_life_containers
+		new_life_container.emit()
+		heal_damage(80)
 
 func attack():
 	
 	if EquipmentManager.currently_equipped_to_X == "":
 		pass
-	else:
+	elif EquipmentManager.currently_equipped_to_X == "WoodenSword":
 		if not $AttackDuration.is_stopped():
 			return
 		
@@ -285,7 +499,7 @@ func attack():
 func action():
 	if EquipmentManager.currently_equipped_to_Z == "":
 		pass
-	else:
+	elif EquipmentManager.currently_equipped_to_Z == "WoodenSword":
 		if not $AttackDuration.is_stopped():
 			return
 		

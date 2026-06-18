@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drudfxor8y36r"]
 
-[ext_resource type="Texture2D" uid="uid://dqpftqk3hwma6" path="res://Ninja Adventure - Asset Pack/Items/Object/MoneyBag.png" id="1_w6laq"]
+[ext_resource type="Texture2D" uid="uid://dm1jqt0lju6sl" path="res://Ninja Adventure - Asset Pack/Items/Object/Bag.png" id="1_w6laq"]
 
 [node name="BombSack" type="TextureRect" unique_id=1311344460]
 offset_right = 60.0

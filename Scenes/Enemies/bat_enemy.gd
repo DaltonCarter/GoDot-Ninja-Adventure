@@ -116,7 +116,7 @@ func get_drops():
 				get_tree().current_scene.call_deferred("add_child", xal_drop_2)
 				xal_drop_2.global_position = global_position
 			"bombs":
-				if EquipmentManager.obtained_equipment.has("BombBag"):
+				if EquipmentManager.obtained_equipment.has("BombSatchel"):
 					var bomb_drop = SceneManager.BombDrop.instantiate()
 					get_tree().current_scene.call_deferred("add_child", bomb_drop)
 					bomb_drop.global_position = global_position

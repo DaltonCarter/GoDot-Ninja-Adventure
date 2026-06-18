@@ -569,6 +569,7 @@ debug_color = Color(0.99610955, 0, 0.2014986, 0.41960785)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=599445408]
 
 [node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1717501203]
+process_mode = 3
 offset_top = 549.0
 offset_right = 1152.0
 offset_bottom = 650.0
@@ -591,6 +592,7 @@ texture = ExtResource("4_mtuoh")
 
 [node name="Currently Equiped to X" type="TextureRect" parent="CanvasLayer/Panel/Equip Frame X" unique_id=2109752690]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 0
 offset_left = 39.0
 offset_top = 17.0
@@ -616,6 +618,7 @@ texture = ExtResource("4_mtuoh")
 
 [node name="Currently Equipped to Z" type="TextureRect" parent="CanvasLayer/Panel/Equip Frame Z" unique_id=451681511]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 0
 offset_left = 38.0
 offset_top = 17.0
@@ -745,5 +748,7 @@ pitch_scale = 0.7
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
+[connection signal="update_x_key" from="CanvasLayer/GUI" to="." method="update_equipment_for_x_key"]
+[connection signal="update_z_key" from="CanvasLayer/GUI" to="." method="update_equipment_for_z_key"]
 [connection signal="timeout" from="AttackDuration" to="." method="_on_attack_duration_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

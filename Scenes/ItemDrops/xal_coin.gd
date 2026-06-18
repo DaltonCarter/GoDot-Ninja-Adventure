@@ -1,7 +1,7 @@
 extends Area2D
 
 
-func _process(delta):
+func _process(_delta):
 	await get_tree().create_timer(6.0).timeout
 	var vanish: Color = Color(1, 1, 1, .5)
 	modulate = vanish

@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy2myrwykc3gs"]
+[gd_scene format=4 uid="uid://dy2myrwykc3gs"]
 
 [ext_resource type="PackedScene" uid="uid://b7tu0hq20yrc1" path="res://Scenes/DungeonScene/CaveM/CaveM.tscn" id="1_vptfn"]
 
-[node name="CaveM_1" instance=ExtResource("1_vptfn")]
+[node name="Cave M3" unique_id=462667116 instance=ExtResource("1_vptfn")]
 
-[node name="Player" parent="." index="3"]
+[node name="Dungeon Decoration" parent="WallLayer" parent_id_path=PackedInt32Array(778166002) index="0" unique_id=439317009]
+tile_map_data = PackedByteArray("AAAAAAIAAQAAAAIAAQD//wIAAQABAAIAAQD8//v/AgACAAIAAAADAPv/AgACAAIAAAD///3/AwAOAAUAAAAAAP3/AwAOAAUAAAABAP3/AwAOAAUAAAABAPz/AwAOAAUAAAAAAPz/AwAOAAUAAAD///z/AwAOAAUAAAD+//z/AwAOAAUAAAD+//3/AwAOAAUAAAD+//v/AwAOAAQAAAD///v/AwAOAAQAAAAAAPv/AwAOAAQAAAABAPv/AwAOAAQAAAACAPv/AwAPAAQAAAACAPz/AwAPAAUAAAD9//v/AwANAAQAAAD9//z/AwANAAUAAAD9//3/AwANAAUAAAACAP3/AwAPAAUAAAABAP7/AwAOAAYAAAACAP7/AwAPAAYAAAD9//7/AwANAAYAAAAAAP7/AwAOAAYAAAD///7/AwAOAAYAAAD+//7/AwAOAAYAAAD+//n/BAAOABMAAAABAPn/BAAOABMAAAD+//j/BAAOABIAAAABAPj/BAAOABIAAAD6//j/BAAQAAsAAAD6//n/BAAQAAwAAAD7//j/BAARAAsAAAD7//n/BAARAAwAAAD///j/AwAEAAMAAAD///n/AwAEAAQAAAAAAPj/AwAFAAMAAAAAAPn/AwAFAAQAAAAFAPj/AwAAAAcAAAAFAPn/AwAAAAgAAAAEAPn/AwADAAEAAAAFAP//AwAAAAoAAAAFAAAAAwAAAAoAAAAEAAAAAwAAAAoAAAD6////AwAAAAoAAAD6/wAAAwAAAAoAAAD7/wAAAwAAAAoAAAA=")
+
+[node name="Player" parent="." index="3" unique_id=1302233293]
 position = Vector2(1, 21)
 
-[node name="SceneEntrance" parent="." index="4"]
+[node name="SceneEntrance" parent="." index="4" unique_id=1534303184]
 player_spawn_position = Vector2(1288, -1276)
 
 [editable path="OldMan"]

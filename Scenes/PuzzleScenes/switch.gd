@@ -7,7 +7,7 @@ var can_interact: bool = false
 var is_activated: bool = false
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("interact") and can_interact:
 		if is_activated:
 			deactivate_switch()

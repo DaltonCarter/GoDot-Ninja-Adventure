@@ -1058,6 +1058,18 @@ tile_set = SubResource("TileSet_8vbta")
 tile_map_data = PackedByteArray("AAD///n/AAAHAAEAAAD///D/AAAHAAIAAAD//+j/AAAHAAEAAAD//+D/AAAHAAIAAAA=")
 tile_set = SubResource("TileSet_q3w2c")
 
+[node name="Switch2" parent="WallLayer/Obstacle" unique_id=1774345163 instance=ExtResource("17_vlkug")]
+position = Vector2(-87, -635)
+
+[node name="Switch3" parent="WallLayer/Obstacle" unique_id=581463243 instance=ExtResource("17_vlkug")]
+position = Vector2(-34, -588)
+
+[node name="Switch4" parent="WallLayer/Obstacle" unique_id=1499327740 instance=ExtResource("17_vlkug")]
+position = Vector2(88, -636)
+
+[node name="Switch" parent="WallLayer/Obstacle" unique_id=1000580528 instance=ExtResource("17_vlkug")]
+position = Vector2(33, -588)
+
 [node name="PuzzleDoorUp" parent="WallLayer/Obstacle" unique_id=574451291 instance=ExtResource("9_x0xbn")]
 position = Vector2(-0.07, -103)
 
@@ -1070,6 +1082,12 @@ position = Vector2(-414, -667)
 chest_name = "Demo Chest"
 contents_path = "res://Ninja Adventure - Asset Pack/Items/Weapons/MagicWand/Sprite.png"
 contents = "wand"
+
+[node name="BigTreasureChest15" parent="WallLayer/Obstacle" unique_id=365786592 instance=ExtResource("10_digx6")]
+position = Vector2(-413, -550)
+chest_name = "Demo Chest15"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Object/Bag.png"
+contents = "bombbag"
 
 [node name="BigTreasureChest2" parent="WallLayer/Obstacle" unique_id=442566663 instance=ExtResource("10_digx6")]
 position = Vector2(-378, -667)
@@ -1090,9 +1108,15 @@ contents_path = "res://Ninja Adventure - Asset Pack/Items/Resource/feather.png"
 contents = "pinion"
 
 [node name="BigTreasureChest6" parent="WallLayer/Obstacle" unique_id=51517381 instance=ExtResource("10_digx6")]
-position = Vector2(-277, -625)
+position = Vector2(-386, -491)
 chest_name = "Demo Chest6"
 contents_path = "res://Ninja Adventure - Asset Pack/Items/Tool/MagicLantern.png"
+contents = "magiclantern"
+
+[node name="BigTreasureChest21" parent="WallLayer/Obstacle" unique_id=201873844 instance=ExtResource("10_digx6")]
+position = Vector2(-334, -491)
+chest_name = "Demo Chest21"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Tool/Lantern.png"
 contents = "lantern"
 
 [node name="BigTreasureChest7" parent="WallLayer/Obstacle" unique_id=1405666471 instance=ExtResource("10_digx6")]
@@ -1104,8 +1128,8 @@ contents = "flute"
 [node name="BigTreasureChest8" parent="WallLayer/Obstacle" unique_id=1866120418 instance=ExtResource("10_digx6")]
 position = Vector2(-344, -625)
 chest_name = "Demo Chest8"
-contents_path = "res://Ninja Adventure - Asset Pack/Items/Scroll/ScrollFire.png"
-contents = "scroll"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Weapons/MagicWand/Sprite2.png"
+contents = "wizard"
 
 [node name="BigTreasureChest9" parent="WallLayer/Obstacle" unique_id=214295498 instance=ExtResource("10_digx6")]
 position = Vector2(-378, -625)
@@ -1153,24 +1177,73 @@ contents = "compass"
 position = Vector2(245, -625)
 chest_name = "Xal Chest1"
 contents = "money5"
+is_mini_game = false
 
 [node name="TreasureChest3" parent="WallLayer/Obstacle" unique_id=1320054099 instance=ExtResource("11_4albc")]
 position = Vector2(279, -625)
 chest_name = "Xal Chest2"
 contents = "money5"
+is_mini_game = false
 
 [node name="TreasureChest4" parent="WallLayer/Obstacle" unique_id=1496351415 instance=ExtResource("11_4albc")]
 position = Vector2(314, -625)
 chest_name = "Xal Chest3"
 contents = "money5"
+is_mini_game = false
 
 [node name="TreasureChest2" parent="WallLayer/Obstacle" unique_id=1717196596 instance=ExtResource("11_4albc")]
 position = Vector2(280, -568)
 chest_name = "Small Key1"
 contents_path = "res://Ninja Adventure - Asset Pack/Items/Treasure/SilverKey.png"
 contents = "key"
+is_mini_game = false
+
+[node name="TreasureChest5" parent="WallLayer/Obstacle" unique_id=1576461822 instance=ExtResource("11_4albc")]
+position = Vector2(247, -568)
+chest_name = "arrows1"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Projectile/Arrow.png"
+contents = "arrows10"
+is_mini_game = false
+
+[node name="TreasureChest6" parent="WallLayer/Obstacle" unique_id=1697068384 instance=ExtResource("11_4albc")]
+position = Vector2(314, -568)
+chest_name = "Bombs1"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Projectile/BlueBomb.png"
+contents = "bombs"
+is_mini_game = false
+
+[node name="BigTreasureChest16" parent="WallLayer/Obstacle" unique_id=138797865 instance=ExtResource("10_digx6")]
+position = Vector2(-380, -550)
+chest_name = "WoodenSword"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Weapons/WoodenKatana/Sprite.png"
+contents = "woodensword"
+
+[node name="BigTreasureChest17" parent="WallLayer/Obstacle" unique_id=1193679660 instance=ExtResource("10_digx6")]
+position = Vector2(-345, -551)
+chest_name = "Meat"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Food/Meat.png"
+contents = "meat"
+
+[node name="BigTreasureChest18" parent="WallLayer/Obstacle" unique_id=1259664092 instance=ExtResource("10_digx6")]
+position = Vector2(-311, -551)
+chest_name = "RedPotion"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Potion/RedPotion.png"
+contents = "redpotion"
+
+[node name="BigTreasureChest19" parent="WallLayer/Obstacle" unique_id=1046614721 instance=ExtResource("10_digx6")]
+position = Vector2(-278, -551)
+chest_name = "Letter"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Other/Letter.png"
+contents = "letter"
+
+[node name="BigTreasureChest20" parent="WallLayer/Obstacle" unique_id=1925873932 instance=ExtResource("10_digx6")]
+position = Vector2(-278, -584)
+chest_name = "watershoes"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Other/Water Shoes.png"
+contents = "watershoes"
 
 [node name="SecretWallLayer" type="TileMapLayer" parent="." unique_id=176581372]
+visible = false
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAHANn/AQAEAAcAAAAHANr/AQAEAAcAAAAHANv/AQAEAAcAAAAHANz/AQAEAAcAAAAIANn/AQAEAAUAAAAIANr/AQAEAAUAAAAIANv/AQAEAAUAAAAIANz/AQAEAAUAAAAIAN3/AQAEAAUAAAAIAN7/AQAEAAUAAAAJANn/AQAEAAUAAAAJANr/AQAEAAUAAAAJANv/AQAEAAUAAAAJANz/AQAEAAUAAAAJAN3/AQAEAAUAAAAJAN7/AQAEAAUAAAAKANn/AQAEAAUAAAAKANr/AQAEAAUAAAAKANv/AQAEAAUAAAAKANz/AQAEAAUAAAAKAN3/AQAEAAUAAAAKAN7/AQAEAAUAAAALANn/AQAEAAUAAAALANr/AQAEAAUAAAALANv/AQAEAAUAAAALANz/AQAEAAUAAAALAN3/AQAEAAUAAAALAN7/AQAEAAUAAAAMANn/AQAEAAUAAAAMANr/AQAEAAUAAAAMANv/AQAEAAUAAAAMANz/AQAEAAUAAAAMAN3/AQAEAAUAAAAMAN7/AQAEAAUAAAANANn/AQAEAAUAAAANANr/AQAEAAUAAAANANv/AQAEAAUAAAANANz/AQAEAAUAAAANAN3/AQAEAAUAAAANAN7/AQAEAAUAAAAOANn/AQAEAAUAAAAOANr/AQAEAAUAAAAOANv/AQAEAAUAAAAOANz/AQAEAAUAAAAOAN3/AQAEAAUAAAAOAN7/AQAEAAUAAAAPANn/AQAEAAUAAAAPANr/AQAEAAUAAAAPANv/AQAEAAUAAAAPANz/AQAEAAUAAAAPAN3/AQAEAAUAAAAPAN7/AQAEAAUAAAAQANn/AQAEAAUAAAAQANr/AQAEAAUAAAAQANv/AQAEAAUAAAAQANz/AQAEAAUAAAAQAN3/AQAEAAUAAAAQAN7/AQAEAAUAAAARANn/AQAEAAUAAAARANr/AQAEAAUAAAARANv/AQAEAAUAAAARANz/AQAEAAUAAAARAN3/AQAEAAUAAAARAN7/AQAEAAUAAAASANn/AQAEAAUAAAASANr/AQAEAAUAAAASANv/AQAEAAUAAAASANz/AQAEAAUAAAASAN3/AQAEAAUAAAASAN7/AQAEAAUAAAATANn/AQAEAAUAAAATANr/AQAEAAUAAAATANv/AQAEAAUAAAATANz/AQAEAAUAAAATAN3/AQAEAAUAAAATAN7/AQAEAAUAAAAUANn/AQAEAAUAAAAUANr/AQAEAAUAAAAUANv/AQAEAAUAAAAUANz/AQAEAAUAAAAUAN3/AQAEAAUAAAAUAN7/AQAEAAUAAAAVANn/AQAEAAUAAAAVANr/AQAEAAUAAAAVANv/AQAEAAUAAAAVANz/AQAEAAUAAAAVAN3/AQAEAAUAAAAVAN7/AQAEAAUAAAANANf/AQAEAAUAAAANANj/AQAEAAUAAAAOANf/AQAEAAUAAAAOANj/AQAEAAUAAAAPANf/AQAEAAUAAAAPANj/AQAEAAUAAAAQANf/AQAEAAUAAAAQANj/AQAEAAUAAAARANf/AQAEAAUAAAARANj/AQAEAAUAAAASANf/AQAEAAUAAAASANj/AQAEAAUAAAATANf/AQAEAAUAAAATANj/AQAEAAUAAAAUANf/AQAEAAUAAAAUANj/AQAEAAUAAAAVANf/AQAEAAUAAAAVANj/AQAEAAUAAAA=")
 tile_set = SubResource("TileSet_8vbta")
@@ -1248,22 +1321,18 @@ stream = ExtResource("18_0ltn3")
 volume_db = -8.0
 autoplay = true
 
-[node name="Switch2" parent="." unique_id=1774345163 instance=ExtResource("17_vlkug")]
-position = Vector2(-87, -635)
-
-[node name="Switch3" parent="." unique_id=581463243 instance=ExtResource("17_vlkug")]
-position = Vector2(-34, -588)
-
-[node name="Switch4" parent="." unique_id=1499327740 instance=ExtResource("17_vlkug")]
-position = Vector2(88, -636)
-
-[node name="Switch" parent="." unique_id=1000580528 instance=ExtResource("17_vlkug")]
-position = Vector2(33, -588)
-
 [node name="SwitchPuzzleManager" parent="." unique_id=1867416401 instance=ExtResource("20_abctd")]
 position = Vector2(0, -619)
 target_score = 2
 
+[connection signal="switch_activated" from="WallLayer/Obstacle/Switch2" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_deactivated" from="WallLayer/Obstacle/Switch2" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_activated" from="WallLayer/Obstacle/Switch3" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_deactivated" from="WallLayer/Obstacle/Switch3" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_activated" from="WallLayer/Obstacle/Switch4" to="SwitchPuzzleManager" method="decrease_score"]
+[connection signal="switch_deactivated" from="WallLayer/Obstacle/Switch4" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_activated" from="WallLayer/Obstacle/Switch" to="SwitchPuzzleManager" method="increase_score"]
+[connection signal="switch_deactivated" from="WallLayer/Obstacle/Switch" to="SwitchPuzzleManager" method="decrease_score"]
 [connection signal="pressed" from="PuzzleButton" to="WallLayer/Obstacle/PuzzleDoorUp" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton" to="WallLayer/Obstacle/PuzzleDoorUp" method="_on_puzzle_button_unpressed"]
 [connection signal="pressed" from="PuzzleButton/PuzzleButton2" to="WallLayer/Obstacle/PuzzleDoorUp" method="_on_puzzle_button_pressed"]
@@ -1271,13 +1340,5 @@ target_score = 2
 [connection signal="pressed" from="PuzzleButton/PuzzleButton3" to="WallLayer/Obstacle/PuzzleDoorUp" method="_on_puzzle_button_pressed"]
 [connection signal="unpressed" from="PuzzleButton/PuzzleButton3" to="WallLayer/Obstacle/PuzzleDoorUp" method="_on_puzzle_button_unpressed"]
 [connection signal="pressed" from="PuzzleButton/SingleUsePuzzleButton" to="WallLayer/Obstacle/PuzzleDoorUp/PuzzleDoorUp2" method="_on_puzzle_button_pressed"]
-[connection signal="switch_activated" from="Switch2" to="SwitchPuzzleManager" method="increase_score"]
-[connection signal="switch_deactivated" from="Switch2" to="SwitchPuzzleManager" method="decrease_score"]
-[connection signal="switch_activated" from="Switch3" to="SwitchPuzzleManager" method="decrease_score"]
-[connection signal="switch_deactivated" from="Switch3" to="SwitchPuzzleManager" method="increase_score"]
-[connection signal="switch_activated" from="Switch4" to="SwitchPuzzleManager" method="decrease_score"]
-[connection signal="switch_deactivated" from="Switch4" to="SwitchPuzzleManager" method="increase_score"]
-[connection signal="switch_activated" from="Switch" to="SwitchPuzzleManager" method="increase_score"]
-[connection signal="switch_deactivated" from="Switch" to="SwitchPuzzleManager" method="decrease_score"]
 [connection signal="puzzle_failed" from="SwitchPuzzleManager" to="SecretWallLayer" method="enable_secret_wall"]
 [connection signal="puzzle_solved" from="SwitchPuzzleManager" to="SecretWallLayer" method="disable_secret_wall"]

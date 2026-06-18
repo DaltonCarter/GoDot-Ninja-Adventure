@@ -5,13 +5,14 @@ var is_open: bool = false
 @export var chest_name: String
 @export var contents_path: String = "res://Ninja Adventure - Asset Pack/Items/Scroll/Scroll.png"
 @export var contents: String = ""
+@export var is_mini_game: bool = false
 
 func _ready():
 	if SceneManager.opened_chests.has(chest_name):
 		is_open = true
 		$AnimatedSprite2D.set_animation("open")
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("interact") and can_interact:
 		if !is_open:
 			$SFX.playing = true
@@ -44,19 +45,33 @@ func give_contents_to_player():
 	match contents:
 		"money1":
 			SceneManager.wallet += 1
-			print(SceneManager.wallet)
+			
 		"money5":
 			SceneManager.wallet += 5
-			print(SceneManager.wallet)
+			
 		"key":
 			SceneManager.keys += 1
-			print(SceneManager.keys)
+			
 		"bombs":
-			SceneManager.bombs += 4
-			print(SceneManager.bombs)
+			SceneManager.bombs += 3
+			
 		"arrows5":
 			SceneManager.arrows += 5
-			print(SceneManager.arrows)
+			
 		"arrows10":
 			SceneManager.arrows += 10
-			print(SceneManager.arrows)
+			
+
+func open_mini_game_chest():
+	is_open = true
+	$AnimatedSprite2D.set_animation("open")
+	$Sprite2D.visible = true
+	$ME.playing = true
+	$Timer.start()
+	get_tree().paused = true
+
+func mini_game_result():
+	match contents:
+		"random":
+			SceneManager.wallet += 1
+			
