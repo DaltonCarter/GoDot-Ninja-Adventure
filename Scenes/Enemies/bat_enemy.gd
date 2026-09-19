@@ -136,6 +136,24 @@ func get_drops():
 		get_tree().current_scene.call_deferred("add_child", key_drop)
 		key_drop.global_position = global_position
 
+@export_enum("Small", "Healthy", "Armored") var boomerang_effect: String = "Small"
+
+func handle_boomerang_hit(projectile: Node2D) -> void:
+	match boomerang_effect:
+		"Small":
+			take_damage(1)
+			
+		"Healthy":
+			#trigger_stun_state(2.5)
+			pass
+			
+		"Armored":
+			if projectile.get("is_magic_tier") == true:
+				#trigger_stun_state(1.0)
+				pass
+
+			else:
+				pass
 
 func die():
 	$GPUParticles2D.emitting = true

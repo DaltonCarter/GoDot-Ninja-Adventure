@@ -7,11 +7,32 @@ class_name Menu extends Control
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _items: Array = %Equippable.get_children() + %Equippable2.get_children()
 
+@onready var equipment_map: Dictionary = {
+		"WoodenSword": %Sword,
+		"Sword": %Sword,
+		"MagicSword": %Sword,
+		"TemperedSword": %Sword,
+		"BlessedSword": %Sword,
+		"Bow": %Bow,
+		"Boomerang": %Boomerang,
+		"MagicBoomerang": %Boomerang,
+		"Bombs": %Bombs,
+		"Lantern": %Lantern,
+		"MagicLantern": %Lantern,
+		"SpiritFlute": %SpiritFlute,
+		"MagicWand": %MagicWand,
+		"WizardWand": %MagicWand,
+		"Meat": %Meat,
+		"GarudaPinion": %GarudaPinion,
+		"RedPotion": %Potions,
+		"BluePotion": %Potions
+	}
+
 signal update_x_key
 signal update_z_key
 
 const columns: int = 5
-var in_menu: bool = false
+@export var in_menu: bool = false
 var item_index: int = 0
 
 
@@ -19,28 +40,23 @@ func _ready():
 	initialize_equipment()
 	initialize_key_items()
 	
-	
-	#for button in get_tree().get_nodes_in_group("Equipment Buttons"):
-		#button.focus_entered.connect(on_button_focused.bind(button))
-		#button.pressed.connect(on_button_pressed_X.bind(button))
-
-
-
-# Proposed handling for changing focus, detect input and increment the Item Index up or down and grab focus. 
-# Potential handling for up or down to increment/decrement by 5. 
-# Needs to restric increment/decrement to the bounds of the array maximum 9 minimum 0 with
-# handling for the start of the game when you have literally nothing.
-# Once the navigation has been handled I will need to only allow equipping to happen
-# when the X or Z key is pressed, and pass the correct info into the Equipment handler
-# so that if you have the Magic Lantern it doesn't equip the regular one etc...
 
 func _process(_delta):
 	
 	if Input.is_action_just_pressed("open_menu"):
-		toggle_menu()
 		
-	initialize_equipment()
-	initialize_key_items()
+		if SceneManager.is_knocked_back:
+			return
+		else:
+			toggle_menu()
+			initialize_equipment()
+			initialize_key_items()
+	
+	if not in_menu or Input.is_action_just_pressed("open_menu"):
+		return
+	
+	if not has_selectable_item():
+		return
 	
 	if in_menu:
 		if Input.is_action_just_pressed("ui_left"):
@@ -60,34 +76,60 @@ func _process(_delta):
 			
 		if Input.is_action_just_pressed("action"):
 			menu_navigation("Z")
-
-
+			
+		if Input.is_action_just_pressed("ui_focus_next"):
+			menu_navigation("right")
+		
+		if Input.is_action_pressed("ui_focus_next"):
+			menu_navigation("right")
 
 func toggle_menu():
 	in_menu = !in_menu
 	
 	if in_menu:
-		#print(_items)
-		get_tree().paused = true
 		Input.flush_buffered_events()
-		_animation_player.play("menu_open")
-		await _animation_player.animation_finished
-		find_initial_focus()
+		for action in InputMap.get_actions():
+			Input.action_release(action)
+		call_deferred("_open_menu")
+
 	else:
 		_items[item_index].release_focus()
 		_animation_player.play("menu_close")
 		item_index = 0
+		clear_menu()
 		await _animation_player.animation_finished
+		refresh_player()
 		get_tree().paused = false
 		in_menu = false
 
+func _open_menu() -> void:
+		#print(_items)
+		get_tree().paused = true
+		_animation_player.play("menu_open")
+		await _animation_player.animation_finished
+		find_initial_focus()
+
+func refresh_player() -> void:
+	var player = get_parent()
+	if player and player.has_method("update_equipment"):
+		player.update_equipment()
+
+func has_selectable_item() -> bool:
+	for button in _items:
+		if button.visible and not button.disabled:
+			return true
+	return false
+
 func find_initial_focus():
 	for i in range(_items.size()):
-		if _items[i].visible:
+		if _items[i].visible and not _items[i].disabled:
 			item_index = i
 			_items[item_index].grab_focus()
+			print(item_index)
 			break
-
+	
+	item_index = 0
+	release_focus() 
 
 func menu_navigation(string):
 	if in_menu:
@@ -96,18 +138,24 @@ func menu_navigation(string):
 				find_visible_button(-1)
 			"right":
 				find_visible_button(1)
-			"up", "down":
-				find_visible_vertical_button()
+			"up":
+				find_visible_vertical_button(-1)
+			"down":
+				find_visible_vertical_button(1)
 			"X":
-				#_items[item_index].pressed.emit()
-				if not _items[item_index].disabled:
-					on_button_pressed_X(_items[item_index])
-					#print(EquipmentManager.currently_equipped_to_X)
+				var current_focus = get_viewport().gui_get_focus_owner()
+				if current_focus and current_focus in _items:
+					item_index = _items.find(current_focus)
+					
+					if not _items[item_index].disabled:
+						on_button_pressed(_items[item_index], "X")
 			"Z":
-				#_items[item_index].pressed.emit()
-				if not _items[item_index].disabled:
-					on_button_pressed_Z(_items[item_index])
-					#print(EquipmentManager.currently_equipped_to_Z)
+				var current_focus = get_viewport().gui_get_focus_owner()
+				if current_focus and current_focus in _items:
+					item_index = _items.find(current_focus)
+					
+					if not _items[item_index].disabled:
+						on_button_pressed(_items[item_index], "Z")
 
 func find_visible_button(direction: int) -> void:
 	var total_buttons = _items.size()
@@ -128,16 +176,22 @@ func find_visible_button(direction: int) -> void:
 			_items[item_index].grab_focus()
 			return
 
-func find_visible_vertical_button() -> void:
+func find_visible_vertical_button(dir_sign: int) -> void:
 	var total_buttons = _items.size()
-	var target_index = (item_index + columns) % total_buttons
+	var target_index = (item_index + (dir_sign * columns))
+	
+	if target_index < 0:
+		target_index = (target_index + total_buttons) % total_buttons
+	elif target_index >= total_buttons:
+		target_index = target_index % total_buttons
+	
+	var target_row_start = (target_index / columns) * columns
 	
 	if _items[target_index].visible:
-		item_index = target_index
+		item_index = target_index 
 		_items[item_index].grab_focus()
 		return
 	
-	var target_row_start = (target_index / columns) * columns
 	for scan_dist in range(1, columns):
 		var right_side_check = target_index + scan_dist
 		if right_side_check < target_row_start + columns and _items[right_side_check].visible:
@@ -146,621 +200,112 @@ func find_visible_vertical_button() -> void:
 			return
 		
 		var left_side_check = target_index - scan_dist
-		if left_side_check >= target_row_start + columns and _items[left_side_check].visible:
+		if left_side_check >= target_row_start and _items[left_side_check].visible:
 			item_index = left_side_check
 			_items[item_index].grab_focus()
 			return
 
 func initialize_equipment():
-	var CurrentEquipment = EquipmentManager.obtained_equipment
-	#Look into how bad it would be to accomplish this Via Map function to streamline it.
+	for item_id in EquipmentManager.obtained_equipment:
+		if equipment_map.has(item_id):
+			var button = equipment_map[item_id]
+			
+			button.disabled = false
+			button.visible = true
+			
+			var item_texture = EquipmentManager.get_equipment_texture(item_id)
+			if item_texture:
+				button.texture_normal = item_texture
 
-	if CurrentEquipment.has("WoodenSword"):
-		%Sword.disabled = false
-		%Sword.texture_normal = EquipmentManager.sword_1
-		%Sword.visible = true
-	elif CurrentEquipment.has("Sword"):
-		%Sword.disabled = false
-		%Sword.texture_normal = EquipmentManager.sword_2
-		%Sword.visible = true
-	elif CurrentEquipment.has("MagicSword"):
-		%Sword.disabled = false
-		%Sword.texture_normal = EquipmentManager.sword_3
-		%Sword.visible = true
-	elif CurrentEquipment.has("TemperedSword"):
-		%Sword.disabled = false
-		%Sword.texture_normal = EquipmentManager.sword_4
-		%Sword.visible = true
-	elif CurrentEquipment.has("BlessedSword"):
-		%Sword.disabled = false
-		%Sword.texture_normal = EquipmentManager.sword_5
-		%Sword.visible = true
-	else:
-		%Sword.disabled = true
-	if CurrentEquipment.has("Boomerang"):
-		%Boomerang.disabled = false
-		%Boomerang.texture_normal = EquipmentManager.boomerang
-		%Boomerang.visible = true
-	elif CurrentEquipment.has("MagicBoomerang"):
-		%Boomerang.disabled = false
-		%Boomerang.texture_normal = EquipmentManager.magic_boomerang
-		%Boomerang.visible = true
-	else:
-		%Boomerang.disabled = true
-	if CurrentEquipment.has("Lantern"):
-		%Lantern.disabled = false
-		%Lantern.texture_normal = EquipmentManager.lantern
-		%Lantern.visible = true
-	elif CurrentEquipment.has("MagicLantern"):
-		%Lantern.disabled = false
-		%Lantern.texture_normal = EquipmentManager.magic_lantern
-		%Lantern.visible = true
-	else:
-		%Lantern.disabled = true
-	if CurrentEquipment.has("Bow"):
-		%Bow.disabled = false
-		if !EquipmentManager.has_holy_arrow:
-			if SceneManager.arrows == 0:
-				%Bow.texture_normal = EquipmentManager.bow
-				%Bow.visible = true
-			else:
-				%Bow.texture_normal = EquipmentManager.bowandarrow
-				%Bow.visible = true
-		else:
-			if SceneManager.arrows == 0:
-				%Bow.texture_normal = EquipmentManager.bow
-				%Bow.visible = true
-			else:
-				%Bow.texture_normal = EquipmentManager.bowandmarrow
-				%Bow.visible = true
-	else:
-		%Bow.disabled = true
-	if CurrentEquipment.has("BombSatchel") && SceneManager.bombs > 0:
-		%Bombs.disabled = false
-		%Bombs.texture_normal = EquipmentManager.bombs
-		%Bombs.visible = true
-	else:
-		%Bombs.disabled = true
-	if CurrentEquipment.has("SpiritFlute"):
-		%SpiritFlute.disabled = false
-		%SpiritFlute.texture_normal = EquipmentManager.flute
-		%SpiritFlute.visible = true
-	else:
-		%SpiritFlute.disabled = true
-	if CurrentEquipment.has("GarudaPinion"):
-		%GarudaPinion.disabled = false
-		%GarudaPinion.texture_normal = EquipmentManager.pinion
-		%GarudaPinion.visible = true
-	else:
-		%GarudaPinion.disabled = true
-	if CurrentEquipment.has("RedPotion"):
-		%Potions.disabled = false
-		%Potions.texture_normal = EquipmentManager.red_potion
-		%Potions.visible = true
-	elif CurrentEquipment.has("BluePotion"):
-		%Potions.disabled = false
-		%Potions.texture_normal = EquipmentManager.blue_potion
-		%Potions.visible = true
-	else:
-		%Potions.disabled = true
-	if CurrentEquipment.has("MagicWand"):
-		%MagicWand.disabled = false
-		%MagicWand.texture_normal = EquipmentManager.magic_wand
-		%MagicWand.visible = true
-	elif CurrentEquipment.has("WizardWand"):
-		%MagicWand.disabled = false
-		%MagicWand.texture_normal = EquipmentManager.wizard_wand
-		%MagicWand.visible = true
-	else:
-		%MagicWand.disabled = true
-	if CurrentEquipment.has("Meat"):
-		%Meat.disabled = false
-		%Meat.texture_normal = EquipmentManager.meat
-		%Meat.visible = true
-	else:
-		%Meat.disabled = true
+func clear_menu() -> void:
+	for button in equipment_map.values():
+		button.visible = false
+		button.disabled = true
 
 func initialize_key_items():
-	var CurrentEquipment = EquipmentManager.obtained_equipment
-	#Look into how bad it would be to accomplish this Via Map function to streamline it.
+	var key_item_map: Dictionary = {
+		"Letter": %Letter,
+		"BombSatchel": %BombSatchel,
+		"PowerRing": %RingofStrength,
+		"WaterShoes": %WaterShoes,
+		"BlueRing": %RingofDefense,
+		"RedRing": %RingofDefense,
+		"SkeletonKey": %MasterKey,
+		"MasterKey": %MasterKey
+		
+	}
 	
-	if CurrentEquipment.has("PowerRing"):
-		%RingofStrength.texture = EquipmentManager.power_ring
-		%RingofStrength.visible = true
-	if CurrentEquipment.has("BombSatchel"):
-		%BombSatchel.texture = EquipmentManager.bomb_satchel
-		%BombSatchel.visible = true
-	if CurrentEquipment.has("Letter"):
-		%Letter.texture = EquipmentManager.letter
-		%Letter.visible = true
-	if CurrentEquipment.has("WaterShoes"):
-		%WaterShoes.texture = EquipmentManager.water_shoes
-		%WaterShoes.visible = true
-	if CurrentEquipment.has("BlueRing"):
-		%RingofDefense.texture = EquipmentManager.blue_ring
-		%RingofDefense.visible = true
-	if CurrentEquipment.has("RedRing"):
-		%RingofDefense.texture = EquipmentManager.red_ring
-		%RingofDefense.visible = true
-	if CurrentEquipment.has("SkeletonKey"):
-		%MasterKey.texture = EquipmentManager.master_key1
-		%MasterKey.visible = true
-	if CurrentEquipment.has("MasterKey"):
-		%MasterKey.texture = EquipmentManager.master_key2
-		%MasterKey.visible = true
+	for textureRect in key_item_map.values():
+		textureRect.visible = false
+		
+	
+	for item_id in EquipmentManager.obtained_equipment:
+		if key_item_map.has(item_id):
+			var textureRect = key_item_map[item_id]
+			
+			textureRect.visible = true
+			
+			var item_texture = EquipmentManager.get_equipment_texture(item_id)
+			if item_texture:
+				textureRect.texture = item_texture
 
 func on_button_focused(_button: TextureButton) -> void:
 	pass
 	#I seemingly don't need this to move the focus around. I will instead leave it as a bug testing and diagnostic function. Might add SFX handling here.
 
-func on_button_pressed_X(button: TextureButton) -> void:
-	#print(button, "is pressed with X key.")
-	if button.name == "Sword":
-		if "WoodenSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "WoodenSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "WoodenSword"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "WoodenSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "WoodenSword"
-				update_x_key.emit()
-		elif "Sword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "Sword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "Sword"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "Sword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "Sword"
-				update_x_key.emit()
-		elif "MagicSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "MagicSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "MagicSword"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "MagicSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "MagicSword"
-				update_x_key.emit()
-		elif "TemperedSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "TemperedSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "TemperedSword"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "TemperedSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "TemperedSword"
-				update_x_key.emit()
-		elif "BlessedSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "BlessedSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "BlessedSword"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "BlessedSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "Blessed-Sword"
-				update_x_key.emit()
-
-	if button.name == "Bow":
-		if EquipmentManager.currently_equipped_to_Z == "Bow":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-			EquipmentManager.currently_equipped_to_X = "Bow"
-			update_x_key.emit()
-		elif EquipmentManager.currently_equipped_to_X == "Bow":
+func on_button_pressed(button: TextureButton, target: String) -> void:
+	var item_id: String = _get_current_upgrade(button.name)
+	
+	if "Bow" in item_id:
+		item_id = "Bow"
+	
+	if target == "X":
+		if EquipmentManager.currently_equipped_to_X == item_id:
 			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
 		else:
-			EquipmentManager.currently_equipped_to_X = "Bow"
-			update_x_key.emit()
-
-	if button.name == "Boomerang":
-		if "MagicBoomerang" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "MagicBoomerang":
+			if EquipmentManager.currently_equipped_to_Z == item_id:
 				EquipmentManager.currently_equipped_to_Z = ""
 				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "MagicBoomerang"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "MagicBoomerang":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "MagicBoomerang"
-				update_x_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_Z == "Boomerang":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "Boomerang"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "Boomerang":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "Boomerang"
-				update_x_key.emit()
-
-	if button.name == "Bombs":
-		if EquipmentManager.currently_equipped_to_Z == "Bombs":
+			
+			EquipmentManager.currently_equipped_to_X = item_id
+			
+		update_x_key.emit()
+		
+	elif target == "Z":
+		if EquipmentManager.currently_equipped_to_Z == item_id:
 			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-			EquipmentManager.currently_equipped_to_X = "Bombs"
-			update_x_key.emit()
-		elif EquipmentManager.currently_equipped_to_X == "Bombs":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
 		else:
-			EquipmentManager.currently_equipped_to_X = "Bombs"
-			update_x_key.emit()
-
-	if button.name == "Lantern":
-		if "MagicLantern" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "MagicLantern":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "MagicLantern"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "MagicLantern":
+			if EquipmentManager.currently_equipped_to_X == item_id:
 				EquipmentManager.currently_equipped_to_X = ""
 				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "MagicLantern"
-				update_x_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_Z == "Lantern":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "Lantern"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "Lantern":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "Lantern"
-				update_x_key.emit()
+			
+			EquipmentManager.currently_equipped_to_Z = item_id
+			
+		update_z_key.emit()
 
-	if button.name == "SpiritFlute":
-		if EquipmentManager.currently_equipped_to_Z == "SpiritFlute":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-			EquipmentManager.currently_equipped_to_X = "SpiritFlute"
-			update_x_key.emit()
-		elif EquipmentManager.currently_equipped_to_X == "SpiritFlute":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_X = "SpiritFlute"
-			update_x_key.emit()
-
-	if button.name == "MagicWand":
-		if "MagicLantern" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "WizardWand":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "WizardWand"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "WizardWand":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "WizardWand"
-				update_x_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_Z == "MagicWand":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "MagicWand"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "MagicWand":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "MagicWand"
-				update_x_key.emit()
-
-	if button.name == "Meat":
-		if EquipmentManager.currently_equipped_to_Z == "Meat":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-			EquipmentManager.currently_equipped_to_X = "Meat"
-			update_x_key.emit()
-		elif EquipmentManager.currently_equipped_to_X == "Meat":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_X = "Meat"
-			update_x_key.emit()
-
-	if button.name == "GarudaPinion":
-		if EquipmentManager.currently_equipped_to_Z == "GarudaPinion":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-			EquipmentManager.currently_equipped_to_X = "GarudaPinion"
-			update_x_key.emit()
-		elif EquipmentManager.currently_equipped_to_X == "GarudaPinion":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_X = "GarudaPinion"
-			update_x_key.emit()
-
-	if button.name == "Potions":
-		if "BluePotion" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_Z == "BluePotion":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "BluePotion"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "BluePotion":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "BluePotion"
-				update_x_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_Z == "RedPotion":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-				EquipmentManager.currently_equipped_to_X = "RedPotion"
-				update_x_key.emit()
-			elif EquipmentManager.currently_equipped_to_X == "RedPotion":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_X = "RedPotion"
-				update_x_key.emit()
-
-
-
-	#todo: Handle Equip here? Play sound to confirm action here.
-
-func on_button_pressed_Z(button: TextureButton) -> void:
-	#print(button, "is pressed with Z key.")
-	if button.name == "Sword":
-		if "WoodenSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "WoodenSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "WoodenSword"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "WoodenSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "WoodenSword"
-				update_z_key.emit()
-		elif "Sword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "Sword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "Sword"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "Sword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "Sword"
-				update_z_key.emit()
-		elif "MagicSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "MagicSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "MagicSword"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "MagicSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "MagicSword"
-				update_z_key.emit()
-		elif "TemperedSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "TemperedSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "TemperedSword"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "TemperedSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "TemperedSword"
-				update_z_key.emit()
-		elif "BlessedSword" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "BlessedSword":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "BlessedSword"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "BlessedSword":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "Blessed-Sword"
-				update_z_key.emit()
-
-	if button.name == "Bow":
-		if EquipmentManager.currently_equipped_to_X == "Bow":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-			EquipmentManager.currently_equipped_to_Z = "Bow"
-			update_z_key.emit()
-		elif EquipmentManager.currently_equipped_to_Z == "Bow":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_Z = "Bow"
-			update_z_key.emit()
-
-	if button.name == "Boomerang":
-		if "MagicBoomerang" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "MagicBoomerang":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "MagicBoomerang"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "MagicBoomerang":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_z = "MagicBoomerang"
-				update_z_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_X == "Boomerang":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "Boomerang"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "Boomerang":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "Boomerang"
-				update_z_key.emit()
-
-	if button.name == "Bombs":
-		if EquipmentManager.currently_equipped_to_X == "Bombs":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-			EquipmentManager.currently_equipped_to_Z = "Bombs"
-			update_z_key.emit()
-		elif EquipmentManager.currently_equipped_to_Z == "Bombs":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_Z = "Bombs"
-			update_z_key.emit()
-
-	if button.name == "Lantern":
-		if "MagicLantern" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "MagicLantern":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "MagicLantern"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "MagicLantern":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "MagicLantern"
-				update_z_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_X == "Lantern":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "Lantern"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "Lantern":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "Lantern"
-				update_z_key.emit()
-
-	if button.name == "SpiritFlute":
-		if EquipmentManager.currently_equipped_to_X == "SpiritFlute":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-			EquipmentManager.currently_equipped_to_Z = "SpiritFlute"
-			update_z_key.emit()
-		elif EquipmentManager.currently_equipped_to_Z == "SpiritFlute":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_Z = "SpiritFlute"
-			update_z_key.emit()
-
-	if button.name == "MagicWand":
-		if "MagicLantern" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "WizardWand":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "WizardWand"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "WizardWand":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "WizardWand"
-				update_z_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_X == "MagicWand":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "MagicWand"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "MagicWand":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "MagicWand"
-				update_z_key.emit()
-
-	if button.name == "Meat":
-		if EquipmentManager.currently_equipped_to_X == "Meat":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-			EquipmentManager.currently_equipped_to_Z = "Meat"
-			update_z_key.emit()
-		elif EquipmentManager.currently_equipped_to_Z == "Meat":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_Z = "Meat"
-			update_z_key.emit()
-
-	if button.name == "GarudaPinion":
-		if EquipmentManager.currently_equipped_to_X == "GarudaPinion":
-			EquipmentManager.currently_equipped_to_X = ""
-			update_x_key.emit()
-			EquipmentManager.currently_equipped_to_Z = "GarudaPinion"
-			update_z_key.emit()
-		elif EquipmentManager.currently_equipped_to_Z == "GarudaPinion":
-			EquipmentManager.currently_equipped_to_Z = ""
-			update_z_key.emit()
-		else:
-			EquipmentManager.currently_equipped_to_Z = "GarudaPinion"
-			update_z_key.emit()
-
-	if button.name == "Potions":
-		if "BluePotion" in EquipmentManager.obtained_equipment:
-			if EquipmentManager.currently_equipped_to_X == "BluePotion":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "BluePotion"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "BluePotion":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "BluePotion"
-				update_z_key.emit()
-		else:
-			if EquipmentManager.currently_equipped_to_X == "RedPotion":
-				EquipmentManager.currently_equipped_to_X = ""
-				update_x_key.emit()
-				EquipmentManager.currently_equipped_to_Z = "RedPotion"
-				update_z_key.emit()
-			elif EquipmentManager.currently_equipped_to_Z == "RedPotion":
-				EquipmentManager.currently_equipped_to_Z = ""
-				update_z_key.emit()
-			else:
-				EquipmentManager.currently_equipped_to_Z = "RedPotion"
-				update_z_key.emit()
-
-	#todo: Handle Equip here? Play sound to confirm action here.
+func _get_current_upgrade(button_name: String) -> String:
+	if button_name == "Sword":
+		for tier in ["BlessedSword", "TemperedSword", "MagicSword", "Sword", "WoodenSword"]:
+			if EquipmentManager.obtained_equipment.has(tier):
+				return tier
+				
+	elif button_name == "Boomerang":
+		for tier in ["MagicBoomerang", "Boomerang"]:
+			if EquipmentManager.obtained_equipment.has(tier):
+				return tier
+				
+	elif button_name == "Lantern":
+		for tier in ["MagicLantern", "Lantern"]:
+			if EquipmentManager.obtained_equipment.has(tier):
+				return tier
+	elif button_name == "MagicWand":
+		for tier in ["WizardWand", "MagicWand"]:
+			if EquipmentManager.obtained_equipment.has(tier):
+				return tier
+				
+	elif button_name == "Potions":
+		for tier in ["BluePotion", "RedPotion"]:
+			if EquipmentManager.obtained_equipment.has(tier):
+				return tier
+				
+	return button_name

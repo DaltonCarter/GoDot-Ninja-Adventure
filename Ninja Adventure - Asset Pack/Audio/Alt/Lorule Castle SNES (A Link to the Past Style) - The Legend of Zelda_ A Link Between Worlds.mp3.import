@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bev3uprtc5g0k"
+path="res://.godot/imported/Lorule Castle SNES (A Link to the Past Style) - The Legend of Zelda_ A Link Between Worlds.mp3-25e518a7d77d083fc26c1e4db56e8b8d.mp3str"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Audio/Alt/Lorule Castle SNES (A Link to the Past Style) - The Legend of Zelda_ A Link Between Worlds.mp3"
+dest_files=["res://.godot/imported/Lorule Castle SNES (A Link to the Past Style) - The Legend of Zelda_ A Link Between Worlds.mp3-25e518a7d77d083fc26c1e4db56e8b8d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

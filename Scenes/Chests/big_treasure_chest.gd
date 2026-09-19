@@ -6,6 +6,8 @@ var is_open: bool = false
 @export var contents_path: String = "res://Ninja Adventure - Asset Pack/Items/Scroll/Scroll.png"
 @export var contents: String = ""
 
+
+
 func _ready():
 	if SceneManager.opened_chests.has(chest_name):
 		is_open = true
@@ -71,9 +73,14 @@ func give_contents_to_player():
 			EquipmentManager.obtained_equipment.append("WizardWand")
 		"power":
 			EquipmentManager.obtained_equipment.append("PowerRing")
+		"blue":
+			EquipmentManager.obtained_equipment.append("BlueRing")
+			
+			EquipmentManager.refresh_sword_and_armor.emit()
 		"red":
 			EquipmentManager.obtained_equipment.append("RedRing")
 			EquipmentManager.obtained_equipment.erase("BlueRing")
+			EquipmentManager.refresh_sword_and_armor.emit()
 		"skey":
 			EquipmentManager.obtained_equipment.append("SkeletonKey")
 		"mkey":
@@ -94,6 +101,10 @@ func give_contents_to_player():
 			EquipmentManager.obtained_equipment.append("Meat")
 		"redpotion":
 			EquipmentManager.obtained_equipment.append("RedPotion")
+			EquipmentManager.obtained_equipment.erase("BluePotion")
+		"bluepotion":
+			EquipmentManager.obtained_equipment.append("BluePotion")
+			EquipmentManager.obtained_equipment.erase("RedPotion")
 		"woodensword":
 			EquipmentManager.obtained_equipment.append("WoodenSword")
 			EquipmentManager.currently_equipped_to_X = "WoodenSword"

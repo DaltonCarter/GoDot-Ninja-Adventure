@@ -1,8 +1,93 @@
 [gd_scene format=3 uid="uid://6emwqxx7hu0k"]
 
-[ext_resource type="Texture2D" uid="uid://ccjkfe3gj10lt" path="res://Ninja Adventure - Asset Pack/Items/Projectile/Boomerang.png" id="1_ph2qt"]
+[ext_resource type="Texture2D" uid="uid://cd6ywwyqbhh45" path="res://Ninja Adventure - Asset Pack/Items/Projectile/BoomerangAnim.png" id="1_duqcn"]
+[ext_resource type="Script" uid="uid://b7qn6ehlf2x8b" path="res://Scenes/Weapons&Tools/Boomerang/boomerang.gd" id="1_ju2sj"]
+[ext_resource type="Texture2D" uid="uid://cdmic2gjcrvyt" path="res://Ninja Adventure - Asset Pack/Items/Projectile/MagicBoomerangAnim.png" id="2_ju2sj"]
 
-[node name="Boomerang" type="TextureRect" unique_id=1311344460]
-offset_right = 60.0
-offset_bottom = 60.0
-texture = ExtResource("1_ph2qt")
+[sub_resource type="CircleShape2D" id="CircleShape2D_myqks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0u5q"]
+atlas = ExtResource("1_duqcn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xru2v"]
+atlas = ExtResource("1_duqcn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pxj7"]
+atlas = ExtResource("1_duqcn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn3yj"]
+atlas = ExtResource("1_duqcn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0anx"]
+atlas = ExtResource("2_ju2sj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1y5l"]
+atlas = ExtResource("2_ju2sj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vybj5"]
+atlas = ExtResource("2_ju2sj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2fg3"]
+atlas = ExtResource("2_ju2sj")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svg1f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0u5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xru2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pxj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn3yj")
+}],
+"loop": 1,
+"name": &"Basic_Spin",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0anx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1y5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vybj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2fg3")
+}],
+"loop": 1,
+"name": &"Magic_Spin",
+"speed": 6.0
+}]
+
+[node name="Area2D" type="Area2D" unique_id=143112428 groups=["active_player_boomerangs"]]
+process_mode = 3
+collision_layer = 32
+collision_mask = 29
+script = ExtResource("1_ju2sj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2137240324]
+shape = SubResource("CircleShape2D_myqks")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1859432900]
+sprite_frames = SubResource("SpriteFrames_svg1f")
+animation = &"Magic_Spin"
+speed_scale = 2.5
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2136455494]
+rect = Rect2(-7, -7, 14, 14)

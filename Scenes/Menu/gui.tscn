@@ -177,8 +177,8 @@ text = "KEY ITEMS"
 horizontal_alignment = 1
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1939722868]
-clip_contents = true
 custom_minimum_size = Vector2(300, 80)
+clip_contents = true
 layout_mode = 2
 texture = ExtResource("2_e5vwe")
 draw_center = false
@@ -275,8 +275,8 @@ layout_mode = 2
 theme_override_constants/margin_top = 1
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="Menu/MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/VBoxContainer/Equipment" unique_id=8185853]
-clip_contents = true
 custom_minimum_size = Vector2(300, 155)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

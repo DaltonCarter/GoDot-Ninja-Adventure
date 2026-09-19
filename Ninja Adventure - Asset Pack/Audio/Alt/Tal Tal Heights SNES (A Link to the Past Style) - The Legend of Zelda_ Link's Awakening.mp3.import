@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b03ybclbgbnjq"
+path="res://.godot/imported/Tal Tal Heights SNES (A Link to the Past Style) - The Legend of Zelda_ Link's Awakening.mp3-465807840f9b47d077a95499fb22f2ef.mp3str"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Audio/Alt/Tal Tal Heights SNES (A Link to the Past Style) - The Legend of Zelda_ Link's Awakening.mp3"
+dest_files=["res://.godot/imported/Tal Tal Heights SNES (A Link to the Past Style) - The Legend of Zelda_ Link's Awakening.mp3-465807840f9b47d077a95499fb22f2ef.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

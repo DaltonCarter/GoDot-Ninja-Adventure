@@ -1,7 +1,7 @@
 extends TextureRect
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	if SceneManager.arrows == 0:
 		%BlessedArrow.visible = false
@@ -14,7 +14,7 @@ func _ready():
 			%Arrow.visible = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
 	if SceneManager.arrows == 0:
 		%BlessedArrow.visible = false

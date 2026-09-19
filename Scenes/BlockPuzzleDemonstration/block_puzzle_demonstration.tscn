@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dfbnddxo4byn2" path="res://Scenes/PuzzleScenes/switch.tscn" id="17_vlkug"]
 [ext_resource type="AudioStream" uid="uid://bgewsgdq1kcm1" path="res://Ninja Adventure - Asset Pack/Audio/Alt/Dungeon.mp3" id="18_0ltn3"]
 [ext_resource type="PackedScene" uid="uid://dwa4pq20ligwm" path="res://Scenes/PuzzleScenes/switch_puzzle_manager.tscn" id="20_abctd"]
+[ext_resource type="PackedScene" uid="uid://cwndnfyb5xd36" path="res://Scenes/Enemies/bat_enemy.tscn" id="23_2hnuf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4albc"]
 texture = ExtResource("1_dtjwb")
@@ -1108,13 +1109,13 @@ contents_path = "res://Ninja Adventure - Asset Pack/Items/Resource/feather.png"
 contents = "pinion"
 
 [node name="BigTreasureChest6" parent="WallLayer/Obstacle" unique_id=51517381 instance=ExtResource("10_digx6")]
-position = Vector2(-386, -491)
+position = Vector2(-377, -521)
 chest_name = "Demo Chest6"
 contents_path = "res://Ninja Adventure - Asset Pack/Items/Tool/MagicLantern.png"
 contents = "magiclantern"
 
 [node name="BigTreasureChest21" parent="WallLayer/Obstacle" unique_id=201873844 instance=ExtResource("10_digx6")]
-position = Vector2(-334, -491)
+position = Vector2(-412, -519)
 chest_name = "Demo Chest21"
 contents_path = "res://Ninja Adventure - Asset Pack/Items/Tool/Lantern.png"
 contents = "lantern"
@@ -1142,6 +1143,12 @@ position = Vector2(-413, -625)
 chest_name = "Demo Chest10"
 contents_path = "res://Ninja Adventure - Asset Pack/Items/Other/RedRing.png"
 contents = "red"
+
+[node name="BigTreasureChest23" parent="WallLayer/Obstacle" unique_id=805255123 instance=ExtResource("10_digx6")]
+position = Vector2(-326, -489)
+chest_name = "Demo Chest23"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Other/BlueRing.png"
+contents = "blue"
 
 [node name="BigTreasureChest11" parent="WallLayer/Obstacle" unique_id=1702331556 instance=ExtResource("10_digx6")]
 position = Vector2(-413, -584)
@@ -1229,6 +1236,12 @@ position = Vector2(-311, -551)
 chest_name = "RedPotion"
 contents_path = "res://Ninja Adventure - Asset Pack/Items/Potion/RedPotion.png"
 contents = "redpotion"
+
+[node name="BigTreasureChest22" parent="WallLayer/Obstacle" unique_id=290061132 instance=ExtResource("10_digx6")]
+position = Vector2(-276, -625)
+chest_name = "BluePotion"
+contents_path = "res://Ninja Adventure - Asset Pack/Items/Potion/BluePotion.png"
+contents = "bluepotion"
 
 [node name="BigTreasureChest19" parent="WallLayer/Obstacle" unique_id=1046614721 instance=ExtResource("10_digx6")]
 position = Vector2(-278, -551)
@@ -1324,6 +1337,15 @@ autoplay = true
 [node name="SwitchPuzzleManager" parent="." unique_id=1867416401 instance=ExtResource("20_abctd")]
 position = Vector2(0, -619)
 target_score = 2
+
+[node name="BatEnemy" parent="." unique_id=1795263494 instance=ExtResource("23_2hnuf")]
+position = Vector2(-140, -37)
+
+[node name="BatEnemy2" parent="." unique_id=908223223 instance=ExtResource("23_2hnuf")]
+position = Vector2(63, -9)
+
+[node name="BatEnemy3" parent="." unique_id=866981604 instance=ExtResource("23_2hnuf")]
+position = Vector2(-319, 2)
 
 [connection signal="switch_activated" from="WallLayer/Obstacle/Switch2" to="SwitchPuzzleManager" method="increase_score"]
 [connection signal="switch_deactivated" from="WallLayer/Obstacle/Switch2" to="SwitchPuzzleManager" method="decrease_score"]

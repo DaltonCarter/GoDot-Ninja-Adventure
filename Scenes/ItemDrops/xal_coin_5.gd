@@ -10,14 +10,16 @@ func _process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if body is Player:
-		$Timer.start()
-		$AnimatedSprite2D.visible = false
-		$AudioStreamPlayer.playing = true
-		if SceneManager.wallet + 5 >= SceneManager.max_wallet:
-			SceneManager.wallet = SceneManager.max_wallet
-		else:
-			SceneManager.wallet += 5
-		
+		collect_item()
+
+func collect_item() -> void:
+	$Timer.start()
+	$AnimatedSprite2D.visible = false
+	$AudioStreamPlayer.playing = true
+	if SceneManager.wallet + 5 >= SceneManager.max_wallet:
+		SceneManager.wallet = SceneManager.max_wallet
+	else:
+		SceneManager.wallet += 5
 
 
 

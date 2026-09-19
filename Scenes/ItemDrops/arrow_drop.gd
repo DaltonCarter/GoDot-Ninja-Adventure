@@ -8,16 +8,17 @@ func _process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if body is Player:
-		$Timer.start()
-		$Sprite2D.visible = false
-		$AudioStreamPlayer.playing = true
-		if SceneManager.arrows + 5 >= SceneManager.max_arrows:
-			SceneManager.arrows = SceneManager.max_arrows
-		else:
-			SceneManager.arrows += 5
-		
+		collect_item()
 
 
+func collect_item() -> void:
+	$Timer.start()
+	$Sprite2D.visible = false
+	$AudioStreamPlayer.playing = true
+	if SceneManager.arrows + 5 >= SceneManager.max_arrows:
+		SceneManager.arrows = SceneManager.max_arrows
+	else:
+		SceneManager.arrows += 5
 
 func _on_timer_timeout():
 	queue_free()

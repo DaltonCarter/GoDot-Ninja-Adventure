@@ -8,16 +8,19 @@ func _process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if body is Player:
-		$Timer.start()
-		$Sprite2D.visible = false
-		$AudioStreamPlayer.playing = true
-		if SceneManager.bombs + 3 >= SceneManager.max_bombs:
-			SceneManager.bombs = SceneManager.max_bombs
-		else:
-			SceneManager.bombs += 3
-		
+		collect_item()
 
-
+func collect_item() -> void:
+	$Timer.start()
+	$Sprite2D.visible = false
+	$AudioStreamPlayer.playing = true
+	if not EquipmentManager.obtained_equipment.has("Bombs"):
+		EquipmentManager.obtained_equipment.append("Bombs")
+	
+	if SceneManager.bombs + 3 >= SceneManager.max_bombs:
+		SceneManager.bombs = SceneManager.max_bombs
+	else:
+		SceneManager.bombs += 3
 
 func _on_timer_timeout():
 	queue_free()

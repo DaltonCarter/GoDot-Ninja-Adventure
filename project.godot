@@ -17,7 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="GoDot Ninja Adventure"
 config/tags=PackedStringArray("2d", "action", "adventure", "fantasy")
 run/main_scene="uid://bjijdfhncf3jx"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -52,6 +52,8 @@ Burnable="things that can be burned"
 Bombable="Things that can be destroyed with bombs"
 "Attackable Switches"="Switches that must be hit with a weapon or tool"
 "Equipment Buttons"="The U.I buttons tied to tools and Equipment"
+item_drops="Item drops from enemies, etc..."
+active_player_boomerangs="to prevent and endless string of Boomerangs."
 
 [input]
 
@@ -116,6 +118,7 @@ action={
 2d_physics/layer_3="Puzzle Elements"
 2d_physics/layer_4="Puzzle Walls"
 2d_physics/layer_5="Enemies"
+2d_physics/layer_6="Projectiles"
 
 [rendering]
 

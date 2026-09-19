@@ -11,10 +11,12 @@ func _process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if body is Player:
-		$Timer.start()
-		$AnimatedSprite2D.visible = false
-		$AudioStreamPlayer.playing = true
+		collect_item()
 
+func collect_item() -> void:
+	$Timer.start()
+	$AnimatedSprite2D.visible = false
+	$AudioStreamPlayer.playing = true
 
 func _on_timer_timeout():
 	queue_free()

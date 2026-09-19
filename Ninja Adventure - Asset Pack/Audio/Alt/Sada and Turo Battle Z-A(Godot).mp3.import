@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b4hgv8iqmhe10"
+path="res://.godot/imported/Sada and Turo Battle Z-A(Godot).mp3-737840c9f0e189c82d211ff15b2fac1b.mp3str"
+
+[deps]
+
+source_file="res://Ninja Adventure - Asset Pack/Audio/Alt/Sada and Turo Battle Z-A(Godot).mp3"
+dest_files=["res://.godot/imported/Sada and Turo Battle Z-A(Godot).mp3-737840c9f0e189c82d211ff15b2fac1b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=3.1
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -10,8 +10,13 @@ var player_hp: int = 12
 var player_life_containers: int = 3
 var player_max_hp: int = 12
 var player_damage: int = 1
+var player_defense: float = 1.0
+var is_knocked_back: bool = false
 
 var enemy_drops: Array[String] = ["health", "health","health", "1xal", "1xal", "5xal", "bombs", "arrows", "nothing", "nothing", "nothing", "nothing", "nothing", "nothing", "nothing", "nothing", "nothing", "nothing", "nothing", "nothing"]
+
+const blue_armor = preload("res://Ninja Adventure - Asset Pack/Actor/Characters/RoninBlue/blue_palette.png")
+const red_armor = preload("res://Ninja Adventure - Asset Pack/Actor/Characters/RoninRed/red_palette.png")
 
 const LifeDrop: PackedScene = preload("res://Scenes/ItemDrops/life_drop.tscn")
 const MoneyDrop1: PackedScene = preload("res://Scenes/ItemDrops/xal_coin.tscn")

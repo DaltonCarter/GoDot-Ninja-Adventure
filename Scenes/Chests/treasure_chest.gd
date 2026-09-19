@@ -15,10 +15,19 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("interact") and can_interact:
 		if !is_open:
-			$SFX.playing = true
-			set_texture_2d()
-			open_chest()
-			give_contents_to_player()
+			if contents == "bombs":
+				if not EquipmentManager.obtained_equipment.has("BombSatchel"):
+					return
+				else:
+					$SFX.playing = true
+					set_texture_2d()
+					open_chest()
+					give_contents_to_player()
+			else:
+				$SFX.playing = true
+				set_texture_2d()
+				open_chest()
+				give_contents_to_player()
 
 func open_chest():
 	is_open = true
@@ -54,13 +63,22 @@ func give_contents_to_player():
 			
 		"bombs":
 			SceneManager.bombs += 3
-			
+			if not EquipmentManager.obtained_equipment.has("Bombs"):
+				EquipmentManager.obtained_equipment.append("Bombs")
+			var player = get_tree().get_first_node_in_group("Player")
+			if player:
+				player.update_equipment()
 		"arrows5":
 			SceneManager.arrows += 5
+			var player = get_tree().get_first_node_in_group("Player")
+			if player:
+				player.update_equipment()
 			
 		"arrows10":
 			SceneManager.arrows += 10
-			
+			var player = get_tree().get_first_node_in_group("Player")
+			if player:
+				player.update_equipment()
 
 func open_mini_game_chest():
 	is_open = true
