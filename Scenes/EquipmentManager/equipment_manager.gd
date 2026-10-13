@@ -9,7 +9,7 @@ var currently_equipped_to_Z: String = ""
 
 var obtained_equipment: Array[String] = []
 
-
+#warning_ignore("unused_private_class_variable") (or function) (or signal)
 signal refresh_sword_and_armor
 
 #Equipment Texture Preloads:

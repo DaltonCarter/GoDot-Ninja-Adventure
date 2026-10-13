@@ -31,8 +31,6 @@ func open_chest():
 	get_tree().paused = true
 	
 
-
-
 func _on_timer_timeout():
 	$Sprite2D.visible = false
 	get_tree().paused = false

@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://kltdh7qvmeg8" path="res://Ninja Adventure - Asset Pack/Actor/Characters/RoninGrey/SeperateAnim/Dead.png" id="6_h8ma5"]
 [ext_resource type="Texture2D" uid="uid://b7oh5cqhr11ba" path="res://Ninja Adventure - Asset Pack/Items/Treasure/SilverKey.png" id="7_0u5uq"]
 [ext_resource type="Texture2D" uid="uid://dc8h0h4x2xc1k" path="res://Ninja Adventure - Asset Pack/Actor/Characters/RoninGrey/SeperateAnim/Walk.png" id="7_eksi1"]
+[ext_resource type="Texture2D" uid="uid://b87s04vxm57dj" path="res://Ninja Adventure - Asset Pack/Actor/Characters/RoninGrey/SeperateAnim/Jump.png" id="8_rcvs5"]
 [ext_resource type="Script" uid="uid://ddswoyqdrm5g6" path="res://Scenes/Player/Health_Bar.gd" id="9_jhyir"]
 [ext_resource type="Script" uid="uid://crrv85nf8csjd" path="res://Scenes/EquipmentManager/equipment.gd" id="9_r5xpd"]
 [ext_resource type="PackedScene" uid="uid://b351f2yuvdutx" path="res://Scenes/Player/life_container.tscn" id="10_74mp2"]
@@ -28,6 +29,8 @@ shader = ExtResource("3_hnuln")
 shader_parameter/base_palette = ExtResource("4_rcvs5")
 shader_parameter/active_palette = ExtResource("4_rcvs5")
 shader_parameter/number_of_colors = 3
+shader_parameter/flash_color = Color(1, 0.1, 0.1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jincj"]
 atlas = ExtResource("4_aqm4k")
@@ -52,6 +55,22 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur3l4"]
 atlas = ExtResource("6_h8ma5")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ma5"]
+atlas = ExtResource("8_rcvs5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eksi1"]
+atlas = ExtResource("8_rcvs5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v37cr"]
+atlas = ExtResource("8_rcvs5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8d028"]
+atlas = ExtResource("8_rcvs5")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ahak"]
 atlas = ExtResource("7_eksi1")
@@ -167,6 +186,38 @@ animations = [{
 "loop": 1,
 "name": &"dead",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8ma5")
+}],
+"loop": 1,
+"name": &"jump_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eksi1")
+}],
+"loop": 1,
+"name": &"jump_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v37cr")
+}],
+"loop": 1,
+"name": &"jump_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8d028")
+}],
+"loop": 1,
+"name": &"jump_up",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -556,7 +607,7 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_eiy36")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_aqm4k")
-animation = &"Item"
+animation = &"attack_down"
 autoplay = "move_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1863340187]
@@ -572,8 +623,9 @@ shape = SubResource("RectangleShape2D_a3d8c")
 debug_color = Color(0.2191405, 0.6394035, 0, 0.41960785)
 
 [node name="HitboxArea2D" type="Area2D" parent="." unique_id=1884008005]
+unique_name_in_owner = true
 collision_layer = 2
-collision_mask = 16
+collision_mask = 208
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D" unique_id=854230324]
 shape = SubResource("CircleShape2D_0u5uq")
@@ -762,6 +814,7 @@ pitch_scale = 0.7
 [connection signal="area_entered" from="InteractionArea2D" to="." method="_on_interaction_area_2d_area_entered"]
 [connection signal="body_entered" from="InteractionArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="InteractionArea2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_area_entered"]
 [connection signal="body_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_body_entered"]
 [connection signal="update_x_key" from="CanvasLayer/GUI" to="." method="update_equipment"]
 [connection signal="update_z_key" from="CanvasLayer/GUI" to="." method="update_equipment"]

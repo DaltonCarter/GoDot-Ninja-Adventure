@@ -18,6 +18,7 @@ var is_magic_boomerang: bool = false
 var player: CharacterBody2D = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var wall_detector: RayCast2D = $WallDetector
 
 var timer: float = 0.05
 
@@ -57,13 +58,18 @@ func _physics_process(delta: float) -> void:
 			
 			var velocity: Vector2 = throw_direction * travel_speed * delta
 			global_position += velocity
+			
+			if wall_detector:
+				wall_detector.target_position = throw_direction * (velocity.length() + 4.0)
+				wall_detector.force_raycast_update()
+			
+			
+			if (wall_detector and wall_detector.is_colliding()) or distance_traveled >= max_range:
+				active_state = FlightState.RETURNING
+				return 
+			
 			distance_traveled += velocity.length()
 			
-			# Print every single tick line to track continuous frames
-			print("🪃 Tick Track - Distance: ", distance_traveled, " | Heading: ", throw_direction)
-			
-			if distance_traveled >= max_range:
-				active_state = FlightState.RETURNING
 				
 		FlightState.RETURNING:
 			if not is_instance_valid(player):
@@ -76,7 +82,6 @@ func _physics_process(delta: float) -> void:
 			global_position += direction_to_character * return_speed * delta
 			
 			if vector_to_character.length() < 12.0 and timer <= 0.0 :
-				print("found character at: ", global_position)
 				_return_to_character()
 
 func _on_body_entered(body: Node2D) -> void:
@@ -89,31 +94,32 @@ func _on_body_entered(body: Node2D) -> void:
 	if timer > 0.0:
 		return
 	
+	if body.is_in_group("Hostiles"):
+		print("Found Hostile")
+		
+		if body and body.has_method("boomerang_hit"):
+			print("Hostile Should be taking damage...")
+			body.boomerang_hit(self)
+		active_state = FlightState.RETURNING
+	
+	
+	if body.is_in_group("Attackable Switches"):
+		print("Found a Switch")
+		if body.has_method("toggle_switch"):
+			body.toggle_switch()
+	
 	if active_state == FlightState.OUTGOING:
 		active_state = FlightState.RETURNING
 		
 
 func _on_area_entered(area: Area2D) -> void:
 	
-	print("Area Entered, boomerang script")
-	
-	if area.is_in_group("Hostiles"):
-		var enemy = area.owner
-		if enemy and enemy.has_method("boomerang_hit"):
-			enemy.boomerang_hit(self)
-		active_state = FlightState.RETURNING
-	
-	if area.is_in_group("item_drops"):
+	if area.is_in_group("item_drops") or (area.owner and area.owner.is_in_group("item_drops")):
 		area.call_deferred("reparent", self)
-		area.position = Vector2.ZERO
-	
-	if area.is_in_group("Attackable Switches"):
-		if area.has_method("toggle_switch"):
-			area.toggle_switch()
+		area.call_deferred("position", Vector2.ZERO)
 	
 
 func _return_to_character() -> void:
-	print("Return to character Triggered, boomerang script")
 	for child in get_children():
 		if child.is_in_group("item_drops"):
 			if child.has_method("collect_item"):

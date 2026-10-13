@@ -4,6 +4,7 @@ var player_spawn_position: Vector2
 var player_direction: Vector2
 var last_directions_traveled: Array[String]
 var opened_chests: Array[String] = []
+var found_secrets: Array[int] = []
 
 
 var player_hp: int = 12

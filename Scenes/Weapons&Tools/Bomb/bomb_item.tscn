@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cyitpqperg6yu"]
+
+[ext_resource type="Script" uid="uid://rdgq11i45hay" path="res://Scenes/Weapons&Tools/Bomb/bomb_item.gd" id="1_1ocp3"]
+[ext_resource type="Texture2D" uid="uid://c0w1poj8swxan" path="res://Ninja Adventure - Asset Pack/Items/Projectile/BlueBombAnim.png" id="2_mnsps"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1eho"]
+atlas = ExtResource("2_mnsps")
+region = Rect2(0, 0, 12, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5the"]
+atlas = ExtResource("2_mnsps")
+region = Rect2(12, 0, 12, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_myqks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1eho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5the")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_svg1f"]
+
+[node name="BombItem" type="CharacterBody2D" unique_id=1219357709]
+script = ExtResource("1_1ocp3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1499089442]
+sprite_frames = SubResource("SpriteFrames_myqks")
+frame_progress = 0.23435915
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1082313683]
+shape = SubResource("CircleShape2D_svg1f")
+
+[node name="Timer" type="Timer" parent="." unique_id=647866222]
+wait_time = 2.0

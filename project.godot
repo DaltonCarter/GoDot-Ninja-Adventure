@@ -54,6 +54,8 @@ Bombable="Things that can be destroyed with bombs"
 "Equipment Buttons"="The U.I buttons tied to tools and Equipment"
 item_drops="Item drops from enemies, etc..."
 active_player_boomerangs="to prevent and endless string of Boomerangs."
+explosions="explosions"
+active_bombs="Where all active explosives go"
 
 [input]
 
@@ -119,6 +121,9 @@ action={
 2d_physics/layer_4="Puzzle Walls"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="Projectiles"
+2d_physics/layer_7="Enemy Projectiles"
+2d_physics/layer_8="Explosions"
+2d_physics/layer_9="Breakables"
 
 [rendering]
 

@@ -1,6 +1,6 @@
 extends Area2D
 
-class_name Health_Drop
+class_name Life_Drop
 
 func _process(_delta):
 	await get_tree().create_timer(6.0).timeout

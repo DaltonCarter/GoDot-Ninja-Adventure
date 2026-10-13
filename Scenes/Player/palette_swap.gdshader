@@ -5,6 +5,9 @@ uniform sampler2D base_palette : filter_nearest;
 uniform sampler2D active_palette : filter_nearest;
 uniform int number_of_colors = 3;
 
+uniform vec4 flash_color: source_color = vec4(1.0, 0.1, 0.1, 1.0);
+uniform float flash_modifier: hint_range(0.0, 1.0) = 0.0;
+
 void fragment() {
 	vec4 current_color = texture(TEXTURE, UV);
 	
@@ -24,7 +27,12 @@ void fragment() {
 		}
 	}
 	
-	COLOR = vec4(final_color.rgb, current_color.a);
+	vec4 output_color = vec4(final_color.rgb, current_color.a);
+	
+	output_color.rgb = mix(output_color.rgb, flash_color.rgb, flash_modifier);
+	
+	
+	COLOR = output_color;
 }
 
 //void light() {

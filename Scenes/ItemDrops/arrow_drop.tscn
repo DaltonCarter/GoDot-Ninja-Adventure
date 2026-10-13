@@ -48,7 +48,7 @@ _data = {
 &"vanishing": SubResource("Animation_6wala")
 }
 
-[node name="Arrow_Drop" type="Area2D" unique_id=1794477408]
+[node name="Arrow_Drop" type="Area2D" unique_id=1794477408 groups=["item_drops"]]
 modulate = Color(1, 1, 1, 0.5)
 collision_mask = 2
 script = ExtResource("1_hr3na")

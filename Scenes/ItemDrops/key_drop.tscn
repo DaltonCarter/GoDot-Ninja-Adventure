@@ -10,7 +10,7 @@ atlas = ExtResource("2_0t572")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0t572"]
 size = Vector2(4, 8)
 
-[node name="Key_Drop" type="Area2D" unique_id=542279587]
+[node name="Key_Drop" type="Area2D" unique_id=542279587 groups=["item_drops"]]
 scale = Vector2(0.75, 0.75)
 collision_mask = 2
 script = ExtResource("1_bnogd")

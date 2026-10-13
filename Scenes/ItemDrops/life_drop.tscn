@@ -35,7 +35,7 @@ animations = [{
 "duration": 0.2,
 "texture": SubResource("AtlasTexture_tbuem")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 1.5
 }]
@@ -43,7 +43,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bsxq"]
 size = Vector2(5, 5)
 
-[node name="Life_Drop" type="Area2D" unique_id=193827540 groups=["Health"]]
+[node name="Life_Drop" type="Area2D" unique_id=193827540 groups=["Health", "item_drops"]]
 collision_mask = 2
 script = ExtResource("1_6bsxq")
 

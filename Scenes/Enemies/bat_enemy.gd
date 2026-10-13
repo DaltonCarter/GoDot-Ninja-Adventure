@@ -70,12 +70,13 @@ func animate_enemy():
 func _on_detection_area_2d_body_entered(body):
 	if body is Player:
 		target = body
-
+	
 
 func _on_detection_area_2d_body_exited(body):
 	if body is Player:
 		target = null
 	
+
 
 func take_damage(dmg: int):
 	HP -= dmg
@@ -105,28 +106,33 @@ func get_drops():
 		match  random_drop:
 			"health":
 				var heart_drop = SceneManager.LifeDrop.instantiate()
-				get_tree().current_scene.call_deferred("add_child", heart_drop)
 				heart_drop.global_position = global_position
+				get_tree().current_scene.call_deferred("add_child", heart_drop)
+				
 			"1xal":
 				var xal_drop_1 = SceneManager.MoneyDrop1.instantiate()
-				get_tree().current_scene.call_deferred("add_child", xal_drop_1)
 				xal_drop_1.global_position = global_position
+				get_tree().current_scene.call_deferred("add_child", xal_drop_1)
+				
 			"5xal":
 				var xal_drop_2 = SceneManager.MoneyDrop2.instantiate()
-				get_tree().current_scene.call_deferred("add_child", xal_drop_2)
 				xal_drop_2.global_position = global_position
+				get_tree().current_scene.call_deferred("add_child", xal_drop_2)
+				
 			"bombs":
 				if EquipmentManager.obtained_equipment.has("BombSatchel"):
 					var bomb_drop = SceneManager.BombDrop.instantiate()
-					get_tree().current_scene.call_deferred("add_child", bomb_drop)
 					bomb_drop.global_position = global_position
+					get_tree().current_scene.call_deferred("add_child", bomb_drop)
+					
 				else:
 					pass
 			"arrows":
 				if EquipmentManager.obtained_equipment.has("Bow"):
 					var arrow_drop = SceneManager.ArrowDrop.instantiate()
-					get_tree().current_scene.call_deferred("add_child", arrow_drop)
 					arrow_drop.global_position = global_position
+					get_tree().current_scene.call_deferred("add_child", arrow_drop)
+					
 				else:
 					pass
 			"nothing":
@@ -136,9 +142,10 @@ func get_drops():
 		get_tree().current_scene.call_deferred("add_child", key_drop)
 		key_drop.global_position = global_position
 
-@export_enum("Small", "Healthy", "Armored") var boomerang_effect: String = "Small"
+@export_enum("Small", "Healthy", "Armored")
+var boomerang_effect: String = "Small"
 
-func handle_boomerang_hit(projectile: Node2D) -> void:
+func boomerang_hit(projectile: Node2D) -> void:
 	match boomerang_effect:
 		"Small":
 			take_damage(1)
